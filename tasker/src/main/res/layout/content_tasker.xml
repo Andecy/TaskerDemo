@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_task_do"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/header_tasker"/>
+
+    <View
+        android:id="@+id/v_dotask_divider"
+        style="@style/DivideHorizontal"
+        android:background="@color/divider_dark"/>
+
+    <com.lancoo.tasker.view.SplitView
+        android:id="@+id/split_tasker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:minSplitBottom="8dp"
+        app:minSplitTop="8dp"
+        app:splitRatio="0.382">
+
+        <include layout="@layout/content_tasker_topic"/>
+
+        <include layout="@layout/module_tasker_handle"/>
+
+        <include layout="@layout/content_tasker_item"/>
+
+    </com.lancoo.tasker.view.SplitView>
+</LinearLayout>

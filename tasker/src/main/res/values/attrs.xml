@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--分屏-->
+    <declare-styleable name="SplitView">
+        <attr name="splitRatio" format="float"/>
+        <attr name="minSplitTop" format="dimension"/>
+        <attr name="minSplitBottom" format="dimension"/>
+    </declare-styleable>
+
+    <!--作答-->
+    <declare-styleable name="TaskView">
+
+    </declare-styleable>
+</resources>

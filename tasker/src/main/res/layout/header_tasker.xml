@@ -1,0 +1,45 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:id="@+id/rl_dotask"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/default_background"
+    android:padding="@dimen/padding_screen">
+
+    <TextView
+        android:id="@+id/tv_tasker_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        tools:text="(总分：70.0)"/>
+
+    <TextView
+        android:id="@+id/tv_tasker_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_tv_ic_drawable"
+        android:layout_marginRight="@dimen/padding_screen"
+        android:paddingRight="@dimen/padding_screen"
+        android:singleLine="true"
+        tools:text="超级牛逼的作业题目哈哈123456！"/>
+
+    <TextView
+        android:paddingLeft="@dimen/padding_screen"
+        android:layout_marginLeft="@dimen/padding_screen"
+        android:id="@+id/tv_tasker_topicno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_dark"
+        android:textSize="20sp"
+        tools:text="2"/>
+
+    <TextView
+        android:id="@+id/tv_tasker_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="/10"/>
+
+</LinearLayout>

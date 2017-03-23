@@ -1,0 +1,19 @@
+<resources>
+
+    <!--风格统一的颜色-->
+    <!--风格统一的颜色-->
+    <color name="light_gray">#fff5f5f5</color>
+    <color name="primary">#45A1CF</color>
+    <color name="primary_dark">#3399CC</color>
+    <color name="primary_dark_semit">#AC246D92</color>
+    <!--<color name="primary_dark">#0288D1</color>-->
+    <color name="primary_light">#B3E5FC</color>
+    <color name="accent">#4CAF50</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="primary_text">#333333</color>
+    <color name="secondary_text">#989898</color>
+    <color name="divider">#ededed</color>
+    <color name="divider_dark">#bebebe</color>
+    <color name="default_background">#E8E8E7</color>
+
+</resources>

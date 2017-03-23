@@ -1,0 +1,31 @@
+<resources>
+
+    <!--水平分割线-->
+    <style name="DivideHorizontal">
+        <item name="android:background">@color/divider</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/height_divider</item>
+    </style>
+
+    <!-- 各个题型风格-->
+    <style name="TopicTypeStyle"/>
+
+    <style name="TopicTypeStyle.xuanze2">
+        <!--然并卵-->
+        <item name="android:paddingLeft">@dimen/padding_tv_ic_drawable</item>
+        <item name="android:paddingTop">@dimen/marginleft_tv_ic_tv</item>
+        <item name="android:paddingBottom">@dimen/marginleft_tv_ic_tv</item>
+        <item name="android:button">@drawable/slct_btn_xuanze</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TopicTypeStyle.TV_standard">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>
