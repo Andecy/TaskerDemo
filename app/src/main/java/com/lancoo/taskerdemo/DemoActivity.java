@@ -33,5 +33,16 @@ public class DemoActivity extends AppCompatActivity {
 
         mTaskView.setItemAdapter(adapter);
 
+        mTaskView.addTaskListener(new TaskView.TaskListener() {
+            @Override
+            public void onTaskRenderFinished() {
+
+            }
+
+            @Override
+            public void onItemChanged(int topicPosition, int itemPosition, String oldAnswer, String newAnswer) {
+
+            }
+        });
     }
 }

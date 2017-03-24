@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -54,7 +55,7 @@ public class TaskView extends LinearLayout {
     private SplitView mSplitView;
 
     //小题
-    private ScrollViewPager vp_item;
+    private ViewPager vp_item;
     private TextView tv_type;
     private TextView tv_itemNo;
     private TextView tv_itemCount;
@@ -139,10 +140,19 @@ public class TaskView extends LinearLayout {
         curTopicPosition = position;
         TopicTimu topicTimu = mTaskData.getTaskTimu().getTopicTimus().get(position);
         tv_topicno.setText("" + (curTopicPosition + 1));
+        tv_itemNo.setText("(" + (position + 1) + ")");
+
         if (mItemAdapter != null) {
             vp_item.setAdapter(mItemAdapter);
+            vp_item.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+                @Override
+                public void onPageSelected(int position) {
+                    super.onPageSelected(position);
+                    tv_itemNo.setText("(" + (position + 1) + ")");
+                }
+            });
         }
-
+        tv_itemCount.setText("/(" + topicTimu.getItemTimus().size() + ")");
         tv_type.setText("(" + topicTimu.getTypeName() + ")");
         if (TextUtils.isEmpty(topicTimu.getContent()) && TextUtils.isEmpty(topicTimu.getAudioUrl())) {
             mSplitView.setSplitRatio(0);
@@ -152,6 +162,12 @@ public class TaskView extends LinearLayout {
         }
     }
 
+    /**
+     * 添加一个用于监听作业事件的Listener到Listener列表中.
+     *
+     * @param listener 要添加的监听器.
+     * @see #removeTaskListener(TaskListener)
+     */
     public void addTaskListener(@NonNull TaskListener listener) {
         if (listener == null) {
             return;
@@ -160,6 +176,23 @@ public class TaskView extends LinearLayout {
             mListeners = new ArrayList<TaskListener>();
         }
         mListeners.add(listener);
+    }
+
+    /**
+     * 从Listener列表中移除某个用于监听作业事件的Listener.
+     *
+     * @param listener 要移除的监听器
+     * @see #addTaskListener(TaskListener)
+     */
+    public void removeTaskListener(@NonNull TaskListener listener) {
+        if (listener == null) {
+            return;
+        }
+        if (mListeners == null) {
+            // This can happen if this method is called before the first call to addDrawerListener
+            return;
+        }
+        mListeners.remove(listener);
     }
 
     public void setItemAdapter(@NonNull BaseItemAdapter adapter) {

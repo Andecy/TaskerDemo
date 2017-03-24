@@ -20,7 +20,6 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment {
         return fragment;
     }
 
-
     @Override
     protected int getContentViewId() {
         return R.layout.fragment_tasker_item_single_choice;
