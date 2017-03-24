@@ -27,6 +27,11 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
         mData = data;
     }
 
+    public void update(int topicPosition) {
+        curTopicPosition = topicPosition;
+        notifyDataSetChanged();
+    }
+
     public TaskData getData() {
         return mData;
     }

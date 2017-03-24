@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -137,21 +138,26 @@ public class TaskView extends LinearLayout {
      * @param position 大题位置
      */
     private void setTopicInfo(int position) {
+        if (mItemAdapter == null ||
+                mItemAdapter.getData() == null ||
+                mItemAdapter.getData().getTaskTimu().getTopicTimus().size() <= position) {
+            return;
+        }
+
         curTopicPosition = position;
         curItemPosition = 0;
+        Log.w("TaskView", "curTopicPosition-->" + curTopicPosition);
 
         TopicTimu topicTimu = mTaskData.getTaskTimu().getTopicTimus().get(position);
 
         if (mListeners != null) {
-            // Notify the listeners. Do that from the end of the list so that if a listener
-            // removes itself as the result of being called, it won't mess up with our iteration
             int listenerCount = mListeners.size();
             for (int i = listenerCount - 1; i >= 0; i--) {
                 mListeners.get(i).onTimuChanged(curTopicPosition, curItemPosition);
             }
         }
 
-        if (mItemAdapter != null) {
+        if (vp_item.getAdapter() != mItemAdapter) {
             vp_item.setAdapter(mItemAdapter);
             vp_item.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
                 @Override
@@ -160,8 +166,6 @@ public class TaskView extends LinearLayout {
                     curItemPosition = position;
                     tv_itemNo.setText("(" + (position + 1) + ")");
                     if (mListeners != null) {
-                        // Notify the listeners. Do that from the end of the list so that if a listener
-                        // removes itself as the result of being called, it won't mess up with our iteration
                         int listenerCount = mListeners.size();
                         for (int i = listenerCount - 1; i >= 0; i--) {
                             mListeners.get(i).onTimuChanged(curTopicPosition, curItemPosition);
@@ -169,9 +173,12 @@ public class TaskView extends LinearLayout {
                     }
                 }
             });
+        } else {
+            //update adapter data
+            mItemAdapter.update(curTopicPosition);
         }
-
         tv_topicno.setText("" + (curTopicPosition + 1));
+        vp_item.setCurrentItem(0);
         tv_itemNo.setText("(" + (curItemPosition + 1) + ")");
         tv_itemCount.setText("/(" + topicTimu.getItemTimus().size() + ")");
         tv_type.setText("(大题总分：" + topicTimu.getScore() + "分)" + topicTimu.getTypeName());
@@ -223,7 +230,14 @@ public class TaskView extends LinearLayout {
             injectData(mTaskData);
             invalidate();
         }
+    }
 
+    public void changeTopicPosition(int topicPosition) {
+        if (topicPosition < 0 || topicPosition == curTopicPosition) {
+            return;
+        }
+        setTopicInfo(topicPosition);
+        invalidate();
     }
 
     public interface TaskListener {

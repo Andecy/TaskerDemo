@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.lancoo.tasker.adapter.SimpleItemAdapter;
 import com.lancoo.tasker.module.TaskData;
@@ -20,6 +21,8 @@ import com.lancoo.taskerdemo.model.timu.KSTaskTimu;
 
 public class DemoActivity extends AppCompatActivity {
     private TaskView mTaskView;
+
+    private int position;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,5 +49,17 @@ public class DemoActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void onForwardClick(View view) {
+        mTaskView.changeTopicPosition(--position);
+        Log.w("Demo","pos-->"+position);
+
+    }
+
+    public void onBackWorkClick(View view) {
+        mTaskView.changeTopicPosition(++position);
+        Log.w("Demo","pos-->"+position);
+
     }
 }
