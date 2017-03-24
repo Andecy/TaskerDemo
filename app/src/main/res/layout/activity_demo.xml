@@ -13,12 +13,22 @@
             android:onClick="onForwardClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="上一题"/>
+            android:text="上大题"/>
         <Button
             android:onClick="onBackWorkClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="下一题"/>
+            android:text="下大题"/>
+        <Button
+            android:onClick="onForwardItemClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上小题"/>
+        <Button
+            android:onClick="onBackWorkItemClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下小题"/>
     </LinearLayout>
     <com.lancoo.tasker.view.TaskView
         android:id="@+id/tasker_demo"

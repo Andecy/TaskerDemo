@@ -70,6 +70,8 @@ public class TaskView extends LinearLayout {
     private int curTopicPosition;
     private int curItemPosition;
 
+    private ViewPager.OnPageChangeListener itemChangeListener;
+
     public TaskView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -133,7 +135,7 @@ public class TaskView extends LinearLayout {
     }
 
     /**
-     * 设置大题信息(通用)
+     * 设置大题信息
      *
      * @param position 大题位置
      */
@@ -145,7 +147,9 @@ public class TaskView extends LinearLayout {
         }
 
         curTopicPosition = position;
-        curItemPosition = 0;
+
+        setItemInfo(0);
+
         Log.w("TaskView", "curTopicPosition-->" + curTopicPosition);
 
         TopicTimu topicTimu = mTaskData.getTaskTimu().getTopicTimus().get(position);
@@ -159,7 +163,40 @@ public class TaskView extends LinearLayout {
 
         if (vp_item.getAdapter() != mItemAdapter) {
             vp_item.setAdapter(mItemAdapter);
-            vp_item.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        } else {
+            //update adapter data
+            mItemAdapter.update(curTopicPosition);
+        }
+        tv_topicno.setText("" + (curTopicPosition + 1));
+
+        tv_itemCount.setText("/(" + topicTimu.getItemTimus().size() + ")");
+        tv_type.setText("(大题总分：" + topicTimu.getScore() + "分)" + topicTimu.getTypeName());
+        if (TextUtils.isEmpty(topicTimu.getContent()) && TextUtils.isEmpty(topicTimu.getAudioUrl())) {
+            mSplitView.setSplitRatio(0);
+        } else {
+            mSplitView.setSplitRatio(0.3f);
+            UITool.setRichTitle(topicTimu.getContent(), tv_content);
+        }
+    }
+
+
+    private void setItemInfo(int position) {
+        if (mItemAdapter == null ||
+                mItemAdapter.getData() == null ||
+                mItemAdapter.getData().getTaskTimu().getTopicTimus().get(curTopicPosition).getItemTimus().size() <= position) {
+
+            return;
+        }
+
+        curItemPosition = position;
+
+        Log.w("TaskView", "curItemPosition-->" + curItemPosition);
+
+        vp_item.setCurrentItem(curItemPosition);
+        tv_itemNo.setText("(" + (curItemPosition + 1) + ")");
+
+        if (itemChangeListener == null) {
+            itemChangeListener = new ViewPager.SimpleOnPageChangeListener() {
                 @Override
                 public void onPageSelected(int position) {
                     super.onPageSelected(position);
@@ -172,22 +209,10 @@ public class TaskView extends LinearLayout {
                         }
                     }
                 }
-            });
-        } else {
-            //update adapter data
-            mItemAdapter.update(curTopicPosition);
+            };
+            vp_item.addOnPageChangeListener(itemChangeListener);
         }
-        tv_topicno.setText("" + (curTopicPosition + 1));
-        vp_item.setCurrentItem(0);
-        tv_itemNo.setText("(" + (curItemPosition + 1) + ")");
-        tv_itemCount.setText("/(" + topicTimu.getItemTimus().size() + ")");
-        tv_type.setText("(大题总分：" + topicTimu.getScore() + "分)" + topicTimu.getTypeName());
-        if (TextUtils.isEmpty(topicTimu.getContent()) && TextUtils.isEmpty(topicTimu.getAudioUrl())) {
-            mSplitView.setSplitRatio(0);
-        } else {
-            mSplitView.setSplitRatio(0.3f);
-            UITool.setRichTitle(topicTimu.getContent(), tv_content);
-        }
+
     }
 
     /**
@@ -232,11 +257,19 @@ public class TaskView extends LinearLayout {
         }
     }
 
-    public void changeTopicPosition(int topicPosition) {
-        if (topicPosition < 0 || topicPosition == curTopicPosition) {
+    public void changeTopicPosition(int position) {
+        if (position < 0 || position == curTopicPosition) {
             return;
         }
-        setTopicInfo(topicPosition);
+        setTopicInfo(position);
+        invalidate();
+    }
+
+    public void changeItemPosition(int position) {
+        if (position < 0 || position == curItemPosition) {
+            return;
+        }
+        setItemInfo(position);
         invalidate();
     }
 

@@ -24,6 +24,8 @@ public class DemoActivity extends AppCompatActivity {
 
     private int position;
 
+    private int itemPosition;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +55,23 @@ public class DemoActivity extends AppCompatActivity {
 
     public void onForwardClick(View view) {
         mTaskView.changeTopicPosition(--position);
-        Log.w("Demo","pos-->"+position);
-
+        Log.w("Demo", "topicPos-->" + position);
+        itemPosition = 0;
     }
 
     public void onBackWorkClick(View view) {
         mTaskView.changeTopicPosition(++position);
-        Log.w("Demo","pos-->"+position);
+        Log.w("Demo", "topicPos-->" + position);
+        itemPosition = 0;
+    }
 
+    public void onForwardItemClick(View view) {
+        mTaskView.changeItemPosition(--itemPosition);
+        Log.w("Demo", "itemPos-->" + itemPosition);
+    }
+
+    public void onBackWorkItemClick(View view) {
+        mTaskView.changeItemPosition(++itemPosition);
+        Log.w("Demo", "itemPos-->" + itemPosition);
     }
 }
