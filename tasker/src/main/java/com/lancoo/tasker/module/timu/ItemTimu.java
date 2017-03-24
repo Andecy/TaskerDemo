@@ -1,5 +1,7 @@
 package com.lancoo.tasker.module.timu;
 
+import java.io.Serializable;
+
 /**
  * Author: Andecy
  * Time: 2017/3/1
@@ -7,7 +9,7 @@ package com.lancoo.tasker.module.timu;
  * Description: TODO
  */
 
-public interface ItemTimu {
+public interface ItemTimu extends Serializable {
 
     float getScore();
 

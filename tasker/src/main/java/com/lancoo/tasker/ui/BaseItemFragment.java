@@ -32,13 +32,19 @@ public abstract class BaseItemFragment extends TBaseFragment {
     }
 
     public void setItems(boolean answerable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
-        mItemTimu = itemTimu;
-        mItemAnswer = itemAnswer;
-        mAnswerable = answerable;
+        Bundle args = new Bundle();
+        args.putSerializable("timu", itemTimu);
+        args.putSerializable("answer", itemAnswer);
+        args.putBoolean("answerable", answerable);
+        setArguments(args);
     }
 
     @Override
     protected void initView(View view, @Nullable Bundle savedInstanceState) {
+        mItemAnswer = (ItemAnswer) getArguments().getSerializable("answer");
+        mItemTimu = (ItemTimu) getArguments().getSerializable("timu");
+        mAnswerable = getArguments().getBoolean("answerable");
+
         UITool.setRichTitle(
                 mItemTimu.getIndex() + "." +
                         (mItemTimu.getOptionAsk() == null ? "" : mItemTimu.getOptionAsk()) +

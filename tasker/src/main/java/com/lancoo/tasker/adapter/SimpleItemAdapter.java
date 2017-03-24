@@ -14,6 +14,7 @@ import com.lancoo.tasker.ui.DefaultSingleChoiceFragment;
  */
 
 public class SimpleItemAdapter extends BaseItemAdapter {
+    private boolean mAnswerable = true;
 
     public SimpleItemAdapter(FragmentManager fm, TaskData data) {
         super(fm, data);
@@ -21,6 +22,8 @@ public class SimpleItemAdapter extends BaseItemAdapter {
 
     @Override
     protected BaseItemFragment getItemByType(TaskData data, int topicPosition, int itemPosition) {
-        return DefaultSingleChoiceFragment.newInstance();
+        return DefaultSingleChoiceFragment.newInstance(true,
+                data.getTaskTimu().getTopicTimus().get(topicPosition).getItemTimus().get(itemPosition),
+                data.getTaskAnswer().geTopicAnswers().get(topicPosition).getItemAnswers().get(itemPosition));
     }
 }

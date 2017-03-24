@@ -1,10 +1,8 @@
 package com.lancoo.tasker.ui;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.View;
-
 import com.lancoo.tasker.R;
+import com.lancoo.tasker.module.answer.ItemAnswer;
+import com.lancoo.tasker.module.timu.ItemTimu;
 
 /**
  * Author: Andecy
@@ -16,21 +14,10 @@ import com.lancoo.tasker.R;
 public class DefaultSingleChoiceFragment extends BaseItemFragment {
 
 
-    public static DefaultSingleChoiceFragment newInstance() {
-        Bundle args = new Bundle();
+    public static DefaultSingleChoiceFragment newInstance(boolean answerable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
         DefaultSingleChoiceFragment fragment = new DefaultSingleChoiceFragment();
-        fragment.setArguments(args);
+        fragment.setItems(answerable, itemTimu, itemAnswer);
         return fragment;
-    }
-
-    @Override
-    protected void findViews() {
-
-    }
-
-    @Override
-    protected void initView(View view, @Nullable Bundle savedInstanceState) {
-        super.initView(view, savedInstanceState);
     }
 
 
