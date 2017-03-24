@@ -13,7 +13,7 @@ public interface TaskTimu {
 
     List<TopicTimu> getTopicTimus();
 
-    float getTaskScore();
+    float getScore();
 
     String getTaskName();
 

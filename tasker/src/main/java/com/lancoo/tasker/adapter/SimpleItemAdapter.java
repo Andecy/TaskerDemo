@@ -3,8 +3,10 @@ package com.lancoo.tasker.adapter;
 import android.support.v4.app.FragmentManager;
 
 import com.lancoo.tasker.module.TaskData;
+import com.lancoo.tasker.module.answer.ItemAnswer;
+import com.lancoo.tasker.module.timu.ItemTimu;
 import com.lancoo.tasker.ui.BaseItemFragment;
-import com.lancoo.tasker.ui.DefaultSingleChoiceFragment;
+import com.lancoo.tasker.ui.DefaultFillBlankFragment;
 
 /**
  * Author: Andecy
@@ -21,9 +23,8 @@ public class SimpleItemAdapter extends BaseItemAdapter {
     }
 
     @Override
-    protected BaseItemFragment getItemByType(TaskData data, int topicPosition, int itemPosition) {
-        return DefaultSingleChoiceFragment.newInstance(true,
-                data.getTaskTimu().getTopicTimus().get(topicPosition).getItemTimus().get(itemPosition),
-                data.getTaskAnswer().geTopicAnswers().get(topicPosition).getItemAnswers().get(itemPosition));
+    protected BaseItemFragment getItemByType(ItemTimu itemTimu, ItemAnswer itemAnswer) {
+        return DefaultFillBlankFragment.newInstance(true, itemTimu, itemAnswer);
     }
+
 }

@@ -3,6 +3,7 @@ package com.lancoo.taskerdemo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.lancoo.tasker.adapter.SimpleItemAdapter;
 import com.lancoo.tasker.module.TaskData;
@@ -40,9 +41,10 @@ public class DemoActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onItemChanged(int topicPosition, int itemPosition, String oldAnswer, String newAnswer) {
-
+            public void onTimuChanged(int topicPosition, int itemPosition) {
+                Log.w("TAG", "topicPos-->" + topicPosition + ",itemPos-->" + itemPosition);
             }
+
         });
     }
 }

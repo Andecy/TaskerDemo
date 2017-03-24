@@ -67,6 +67,7 @@ public class TaskView extends LinearLayout {
     private TaskData mTaskData;
 
     private int curTopicPosition;
+    private int curItemPosition;
 
     public TaskView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -113,7 +114,6 @@ public class TaskView extends LinearLayout {
         TaskTimu taskTimu = data.getTaskTimu();
         TaskAnswer taskAnswer = data.getTaskAnswer();
         setTaskInfo(taskTimu);
-
         setTopicInfo(0);
     }
 
@@ -122,8 +122,8 @@ public class TaskView extends LinearLayout {
      *
      * @param taskTimu 作业信息类
      */
-    protected void setTaskInfo(TaskTimu taskTimu) {
-        tv_score.setText("(总分：" + taskTimu.getTaskScore() + ")");
+    private void setTaskInfo(TaskTimu taskTimu) {
+        tv_score.setText("(作业总分：" + taskTimu.getScore() + ")");
         tv_name.setText(taskTimu.getTaskName());
         if (taskTimu.getTopicTimus() == null) {
             return;
@@ -136,11 +136,20 @@ public class TaskView extends LinearLayout {
      *
      * @param position 大题位置
      */
-    protected void setTopicInfo(int position) {
+    private void setTopicInfo(int position) {
         curTopicPosition = position;
+        curItemPosition = 0;
+
         TopicTimu topicTimu = mTaskData.getTaskTimu().getTopicTimus().get(position);
-        tv_topicno.setText("" + (curTopicPosition + 1));
-        tv_itemNo.setText("(" + (position + 1) + ")");
+
+        if (mListeners != null) {
+            // Notify the listeners. Do that from the end of the list so that if a listener
+            // removes itself as the result of being called, it won't mess up with our iteration
+            int listenerCount = mListeners.size();
+            for (int i = listenerCount - 1; i >= 0; i--) {
+                mListeners.get(i).onTimuChanged(curTopicPosition, curItemPosition);
+            }
+        }
 
         if (mItemAdapter != null) {
             vp_item.setAdapter(mItemAdapter);
@@ -148,12 +157,24 @@ public class TaskView extends LinearLayout {
                 @Override
                 public void onPageSelected(int position) {
                     super.onPageSelected(position);
+                    curItemPosition = position;
                     tv_itemNo.setText("(" + (position + 1) + ")");
+                    if (mListeners != null) {
+                        // Notify the listeners. Do that from the end of the list so that if a listener
+                        // removes itself as the result of being called, it won't mess up with our iteration
+                        int listenerCount = mListeners.size();
+                        for (int i = listenerCount - 1; i >= 0; i--) {
+                            mListeners.get(i).onTimuChanged(curTopicPosition, curItemPosition);
+                        }
+                    }
                 }
             });
         }
+
+        tv_topicno.setText("" + (curTopicPosition + 1));
+        tv_itemNo.setText("(" + (curItemPosition + 1) + ")");
         tv_itemCount.setText("/(" + topicTimu.getItemTimus().size() + ")");
-        tv_type.setText("(" + topicTimu.getTypeName() + ")");
+        tv_type.setText("(大题总分：" + topicTimu.getScore() + "分)" + topicTimu.getTypeName());
         if (TextUtils.isEmpty(topicTimu.getContent()) && TextUtils.isEmpty(topicTimu.getAudioUrl())) {
             mSplitView.setSplitRatio(0);
         } else {
@@ -209,7 +230,7 @@ public class TaskView extends LinearLayout {
 
         void onTaskRenderFinished();
 
-        void onItemChanged(int topicPosition, int itemPosition, String oldAnswer, String newAnswer);
+        void onTimuChanged(int topicPosition, int itemPosition);
     }
 
     public abstract static class SimpleTaskListener implements TaskListener {
@@ -218,8 +239,7 @@ public class TaskView extends LinearLayout {
         }
 
         @Override
-        public void onItemChanged(int topicPosition, int itemPosition, String oldAnswer, String newAnswer) {
-
+        public void onTimuChanged(int topicPosition, int itemPosition) {
         }
     }
 }

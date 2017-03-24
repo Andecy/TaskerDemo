@@ -25,7 +25,7 @@ public class KSTopicTimu implements TopicTimu {
 
     @Override
     public String getTypeName() {
-        return "高端题目";
+        return "高端大题";
     }
 
     @Override
@@ -36,5 +36,10 @@ public class KSTopicTimu implements TopicTimu {
     @Override
     public String getAudioUrl() {
         return null;
+    }
+
+    @Override
+    public float getScore() {
+        return 2f;
     }
 }

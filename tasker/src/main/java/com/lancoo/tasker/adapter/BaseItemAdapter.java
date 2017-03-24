@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.lancoo.tasker.module.TaskData;
+import com.lancoo.tasker.module.answer.ItemAnswer;
+import com.lancoo.tasker.module.timu.ItemTimu;
 import com.lancoo.tasker.ui.BaseItemFragment;
 
 /**
@@ -31,10 +33,12 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return getItemByType(mData, curTopicPosition, position);
+        return getItemByType(
+                mData.getTaskTimu().getTopicTimus().get(curTopicPosition).getItemTimus().get(position),
+                mData.getTaskAnswer().geTopicAnswers().get(curTopicPosition).getItemAnswers().get(position));
     }
 
-    protected abstract BaseItemFragment getItemByType(TaskData data, int topicPosition, int itemPosition);
+    protected abstract BaseItemFragment getItemByType(ItemTimu itemTimu, ItemAnswer itemAnswer);
 
     @Override
     public int getCount() {
@@ -45,4 +49,6 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         return "" + (position + 1);
     }
+
+
 }

@@ -5,16 +5,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <TextView
-        android:id="@+id/tv_item_topic_answer"
+        android:id="@+id/tv_tasker_item_answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/tv_item_topic_result"
+        android:id="@+id/tv_tasker_item_result"
         style="@style/TopicTypeStyle.TV_standard" />
 
     <TextView
-        android:id="@+id/tv_item_topic_analysis"
+        android:id="@+id/tv_tasker_item_analysis"
         style="@style/TopicTypeStyle.TV_standard" />
 
 </LinearLayout>

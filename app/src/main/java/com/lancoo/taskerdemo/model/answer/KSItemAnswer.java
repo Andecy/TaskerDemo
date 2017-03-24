@@ -10,4 +10,15 @@ import com.lancoo.tasker.module.answer.ItemAnswer;
  */
 
 public class KSItemAnswer implements ItemAnswer {
+    String answer;
+
+    @Override
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    @Override
+    public String getAnswer() {
+        return answer;
+    }
 }

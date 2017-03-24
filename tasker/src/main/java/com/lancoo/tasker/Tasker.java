@@ -13,7 +13,6 @@ import com.blankj.utilcode.utils.Utils;
 
 public class Tasker {
 
-
     public static void init(Application application) {
         Utils.init(application);
     }

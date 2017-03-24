@@ -18,4 +18,6 @@ public interface TopicTimu {
     String getContent();
 
     String getAudioUrl();
+
+    float getScore();
 }

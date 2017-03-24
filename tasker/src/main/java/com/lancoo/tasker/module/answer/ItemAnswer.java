@@ -9,5 +9,9 @@ import java.io.Serializable;
  * Description: TODO
  */
 
-public interface ItemAnswer  extends Serializable {
+public interface ItemAnswer extends Serializable {
+
+    void setAnswer(String answer);
+
+    String getAnswer();
 }

@@ -8,10 +8,7 @@ package com.lancoo.tasker.ui;
  */
 
 public class DefaultWritingFragment extends BaseItemFragment {
-    @Override
-    protected void findViews() {
 
-    }
 
 
     @Override

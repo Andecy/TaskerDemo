@@ -24,7 +24,7 @@ public class KSTaskTimu implements TaskTimu {
     }
 
     @Override
-    public float getTaskScore() {
+    public float getScore() {
         return 10f;
     }
 
