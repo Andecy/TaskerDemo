@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lancoo.tasker.R;
-import com.lancoo.tasker.UITool;
+import com.lancoo.tasker.tool.UITool;
 import com.lancoo.tasker.module.answer.ItemAnswer;
 import com.lancoo.tasker.module.timu.ItemTimu;
 

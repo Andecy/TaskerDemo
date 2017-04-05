@@ -17,7 +17,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.lancoo.tasker.R;
-import com.lancoo.tasker.UITool;
+import com.lancoo.tasker.tool.UITool;
 import com.lancoo.tasker.adapter.BaseItemAdapter;
 import com.lancoo.tasker.module.TaskData;
 import com.lancoo.tasker.module.answer.TaskAnswer;

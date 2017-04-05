@@ -1,4 +1,4 @@
-package com.lancoo.tasker;
+package com.lancoo.tasker.tool;
 
 import android.text.TextUtils;
 import android.widget.TextView;
