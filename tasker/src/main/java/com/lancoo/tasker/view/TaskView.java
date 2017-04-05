@@ -2,6 +2,7 @@ package com.lancoo.tasker.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.media.MediaPlayer;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,12 +18,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.lancoo.tasker.R;
-import com.lancoo.tasker.tool.UITool;
 import com.lancoo.tasker.adapter.BaseItemAdapter;
+import com.lancoo.tasker.audio.AudioPlayListener;
+import com.lancoo.tasker.audio.AudioPlayer;
 import com.lancoo.tasker.module.TaskData;
 import com.lancoo.tasker.module.answer.TaskAnswer;
 import com.lancoo.tasker.module.timu.TaskTimu;
 import com.lancoo.tasker.module.timu.TopicTimu;
+import com.lancoo.tasker.tool.UITool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +37,7 @@ import java.util.List;
  * Description: TODO
  */
 
-public class TaskView extends LinearLayout {
+public class TaskView extends LinearLayout implements AudioPlayListener {
 
     //header of task
     private TextView tv_score;
@@ -47,7 +50,7 @@ public class TaskView extends LinearLayout {
     private TextView tv_player;
     private SeekBar sb_player;
     private AppCompatImageView btn_player;
-//    private AudioPlayer mAudioPlayer;
+    private AudioPlayer mAudioPlayer;
 
     //大题内容
     private TextView tv_content;
@@ -150,8 +153,6 @@ public class TaskView extends LinearLayout {
 
         setItemInfo(0);
 
-        Log.w("TaskView", "curTopicPosition-->" + curTopicPosition);
-
         TopicTimu topicTimu = mTaskData.getTaskTimu().getTopicTimus().get(position);
 
         if (mListeners != null) {
@@ -177,6 +178,10 @@ public class TaskView extends LinearLayout {
             mSplitView.setSplitRatio(0.3f);
             UITool.setRichTitle(topicTimu.getContent(), tv_content);
         }
+
+        //---player--------
+
+        initPlayer(topicTimu.getAudioUrl());
     }
 
 
@@ -273,16 +278,86 @@ public class TaskView extends LinearLayout {
         invalidate();
     }
 
+    //===============================听力=====================
+
+    private void initPlayer(String url) {
+        if (mAudioPlayer == null) {
+            mAudioPlayer = new AudioPlayer();
+        }
+        mAudioPlayer.bindSeekBar(sb_player);
+        mAudioPlayer.bindTimer(tv_player);
+        mAudioPlayer.setAudioPlayListener(this);
+        mAudioPlayer.setAutoPlay(true);
+        mAudioPlayer.loadUri(url);
+    }
+
+    @Override
+    public void onAudioPlayPrepare() {
+    }
+
+    @Override
+    public void onAudioPlayPrepared(MediaPlayer mp) {
+        sb_player.setEnabled(true);
+    }
+
+    @Override
+    public void onAudioPlayBufferingUpdate(MediaPlayer mp, int percent) {
+
+    }
+
+    @Override
+    public void onAudioPlayUpdate(MediaPlayer mp) {
+
+    }
+
+    @Override
+    public void onAudioPlayStart() {
+        btn_player.setImageResource(R.drawable.slct_btn_pause);
+    }
+
+    @Override
+    public void onAudioPlayPause() {
+        btn_player.setImageResource(R.drawable.slct_btn_player);
+
+    }
+
+    @Override
+    public void onAudioPlayStop() {
+    }
+
+    @Override
+    public void onAudioPlayCompletion() {
+        btn_player.setImageResource(R.drawable.slct_btn_player);
+    }
+
+    @Override
+    public void onAudioPlayError(MediaPlayer mp, int what, int extra) {
+        btn_player.setImageResource(R.drawable.slct_btn_player);
+        if (mListeners != null) {
+            int listenerCount = mListeners.size();
+            for (int i = listenerCount - 1; i >= 0; i--) {
+                mListeners.get(i).onAudioPlayError(mp, what, extra);
+            }
+        }
+    }
+
     public interface TaskListener {
 
         void onTaskRenderFinished();
 
         void onTimuChanged(int topicPosition, int itemPosition);
+
+        void onAudioPlayError(MediaPlayer mp, int what, int extra);
     }
 
     public abstract static class SimpleTaskListener implements TaskListener {
         @Override
         public void onTaskRenderFinished() {
+        }
+
+        @Override
+        public void onAudioPlayError(MediaPlayer mp, int what, int extra) {
+
         }
 
         @Override
