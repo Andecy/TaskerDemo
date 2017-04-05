@@ -18,9 +18,15 @@ public class KSTopicTimu implements TopicTimu {
     public List<ItemTimu> getItemTimus() {
         List<ItemTimu> itemTimus = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            itemTimus.add(new KSItemTimu());
+            itemTimus.add(new KSItemTimu(content + "的小题" + i));
         }
         return itemTimus;
+    }
+
+    private String content;
+
+    public KSTopicTimu(String content) {
+        this.content = content;
     }
 
     @Override
@@ -30,7 +36,7 @@ public class KSTopicTimu implements TopicTimu {
 
     @Override
     public String getContent() {
-        return "呵呵哒";
+        return content;
     }
 
     @Override

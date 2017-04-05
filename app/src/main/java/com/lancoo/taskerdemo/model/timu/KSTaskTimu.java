@@ -18,7 +18,7 @@ public class KSTaskTimu implements TaskTimu {
     public List<TopicTimu> getTopicTimus() {
         List<TopicTimu> topicTimus = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            topicTimus.add(new KSTopicTimu());
+            topicTimus.add(new KSTopicTimu("大题题干" + i));
         }
         return topicTimus;
     }

@@ -10,6 +10,12 @@ import com.lancoo.tasker.module.timu.ItemTimu;
  */
 
 public class KSItemTimu implements ItemTimu {
+    private String optionAsk;
+
+    public KSItemTimu(String optionAsk) {
+        this.optionAsk = optionAsk;
+    }
+
     @Override
     public float getScore() {
         return .8f;
@@ -17,7 +23,7 @@ public class KSItemTimu implements ItemTimu {
 
     @Override
     public String getOptionAsk() {
-        return "asfagsdfgfgsdfgsdgf";
+        return optionAsk;
     }
 
     @Override

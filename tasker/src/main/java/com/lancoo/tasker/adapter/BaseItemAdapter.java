@@ -1,8 +1,8 @@
 package com.lancoo.tasker.adapter;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 import com.lancoo.tasker.module.TaskData;
 import com.lancoo.tasker.module.answer.ItemAnswer;
@@ -37,7 +37,13 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
+    @Override
+    public BaseItemFragment getItem(int position) {
+        Log.w("Adapter", "topic-->" + curTopicPosition + ",item-->" + position);
         return getItemByType(
                 mData.getTaskTimu().getTopicTimus().get(curTopicPosition).getItemTimus().get(position),
                 mData.getTaskAnswer().geTopicAnswers().get(curTopicPosition).getItemAnswers().get(position));
@@ -49,11 +55,4 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return mData.getTaskTimu().getTopicTimus().get(curTopicPosition).getItemTimus().size();
     }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return "" + (position + 1);
-    }
-
-
 }

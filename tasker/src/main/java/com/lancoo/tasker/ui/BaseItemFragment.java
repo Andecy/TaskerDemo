@@ -39,10 +39,6 @@ public abstract class BaseItemFragment extends TBaseFragment {
 
     @Override
     protected void initView(View view, @Nullable Bundle savedInstanceState) {
-//        mItemAnswer = (ItemAnswer) getArguments().getSerializable("answer");
-//        mItemTimu = (ItemTimu) getArguments().getSerializable("timu");
-//        mAnswerable = getArguments().getBoolean("answerable");
-
         UITool.setRichTitle(
                 mItemTimu.getIndex() + "." +
                         (mItemTimu.getOptionAsk() == null ? "" : mItemTimu.getOptionAsk()) +

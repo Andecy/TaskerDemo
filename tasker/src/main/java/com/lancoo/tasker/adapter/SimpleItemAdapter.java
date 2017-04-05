@@ -1,6 +1,7 @@
 package com.lancoo.tasker.adapter;
 
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 
 import com.lancoo.tasker.module.TaskData;
 import com.lancoo.tasker.module.answer.ItemAnswer;
@@ -24,6 +25,7 @@ public class SimpleItemAdapter extends BaseItemAdapter {
 
     @Override
     protected BaseItemFragment getItemByType(ItemTimu itemTimu, ItemAnswer itemAnswer) {
+
         return DefaultFillBlankFragment.newInstance(true, itemTimu, itemAnswer);
     }
 
