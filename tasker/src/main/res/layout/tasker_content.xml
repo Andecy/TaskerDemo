@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/header_tasker"/>
+    <include layout="@layout/tasker_header"/>
 
     <View
         android:id="@+id/v_dotask_divider"
@@ -24,11 +24,11 @@
         app:minSplitTop="8dp"
         app:splitRatio="0.382">
 
-        <include layout="@layout/content_tasker_topic"/>
+        <include layout="@layout/tasker_content_topic"/>
 
-        <include layout="@layout/module_tasker_handle"/>
+        <include layout="@layout/tasker_module_handle"/>
 
-        <include layout="@layout/content_tasker_item"/>
+        <include layout="@layout/tasker_content_item"/>
 
     </com.lancoo.tasker.view.SplitView>
 </LinearLayout>

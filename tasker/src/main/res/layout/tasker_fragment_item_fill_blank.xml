@@ -4,29 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
-        android:id="@+id/ll_item_topic_xuanze"
+        android:id="@+id/ll_item_topic_tiankong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:descendantFocusability="blocksDescendants"
         android:orientation="vertical"
         android:paddingLeft="@dimen/padding_screen"
         android:paddingRight="@dimen/padding_screen"
         android:paddingTop="@dimen/padding_screen">
-        <include
-            layout="@layout/module_tasker_item_que"/>
 
-        <RadioGroup
-            android:id="@+id/rg_tasker_item_answer"
+        <include layout="@layout/tasker_module_item_que"/>
+
+        <com.lancoo.tasker.view.WritableEditText
+            android:id="@+id/et_tasker_item_answer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/padding_tv_ic_drawable">
-        </RadioGroup>
-
+            android:layout_height="wrap_content"
+            android:lines="6"
+            android:gravity="top"
+            android:paddingTop="@dimen/padding_tv_ic_drawable"
+            android:scrollbars="vertical"
+            android:textSize="14sp"/>
         <include
-            layout="@layout/module_tasker_item_standard"
+            layout="@layout/tasker_module_item_standard"
             android:paddingTop="@dimen/padding_tv_ic_drawable"/>
-
     </LinearLayout>
 </ScrollView>

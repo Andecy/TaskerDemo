@@ -75,7 +75,7 @@ public class TaskView extends LinearLayout {
     public TaskView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.content_tasker, this);
+        inflater.inflate(R.layout.tasker_content, this);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TaskView);
         a.recycle();

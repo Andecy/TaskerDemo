@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 
 import com.lancoo.tasker.R;
@@ -24,8 +23,6 @@ public class DefaultFillBlankFragment extends BaseItemFragment implements TextWa
     private WritableEditText et_answer;
 
     public static DefaultFillBlankFragment newInstance(boolean answerable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
-        Log.w("Fill", "newInstance-->" + itemAnswer.getAnswer());
-
         DefaultFillBlankFragment fragment = new DefaultFillBlankFragment();
         fragment.setItems(answerable, itemTimu, itemAnswer);
         return fragment;
@@ -40,15 +37,14 @@ public class DefaultFillBlankFragment extends BaseItemFragment implements TextWa
     @Override
     protected void initView(View view, @Nullable Bundle savedInstanceState) {
         super.initView(view, savedInstanceState);
-        Log.w("Fill", "initView-->" + mItemAnswer.getAnswer());
         et_answer.setText("123");
         et_answer.setSaveEnabled(false);
-//        et_answer.addTextChangedListener(this);
+        et_answer.addTextChangedListener(this);
     }
 
     @Override
     protected int getContentViewId() {
-        return R.layout.fragment_tasker_item_fill_blank;
+        return R.layout.tasker_fragment_item_fill_blank;
     }
 
     @Override

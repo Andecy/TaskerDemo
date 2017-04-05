@@ -30,4 +30,14 @@ public class KSItemTimu implements ItemTimu {
     public int getIndex() {
         return 0;
     }
+
+    @Override
+    public String[] getOptions() {
+        return new String[]{"aaaaa", "bbbbb", "ccccc", "ddddd"};
+    }
+
+    @Override
+    public String[] getOptionsKey() {
+        return new String[]{"A", "B", "C", "D"};
+    }
 }

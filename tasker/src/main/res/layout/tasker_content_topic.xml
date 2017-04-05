@@ -6,7 +6,7 @@
     android:background="@android:color/white">
 
     <include
-        layout="@layout/module_tasker_player"
+        layout="@layout/tasker_module_player"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_screen"/>
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/ll_module_player">
-        <include layout="@layout/module_tasker_topic_content"/>
+        <include layout="@layout/tasker_module_topic_content"/>
     </ScrollView>
 
 </RelativeLayout>

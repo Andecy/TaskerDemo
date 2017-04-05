@@ -8,7 +8,7 @@
     <View style="@style/DivideHorizontal"
           android:background="@android:color/darker_gray"/>
 
-    <include layout="@layout/header_tasker_topic"/>
+    <include layout="@layout/tasker_header_topic"/>
 
     <View style="@style/DivideHorizontal"
           android:background="@android:color/darker_gray"/>

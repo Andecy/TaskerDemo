@@ -16,4 +16,8 @@ public interface ItemTimu extends Serializable {
     String getOptionAsk();
 
     int getIndex();
+
+    String[] getOptions();
+
+    String[] getOptionsKey();
 }
