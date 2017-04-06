@@ -35,20 +35,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="开关："/>
-        <Button
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/sc_answerable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onAnswerableClick"
             android:text="作答"/>
-        <Button
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/sc_standardable"
+            android:layout_marginLeft="@dimen/padding_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onStandardableClick"
-            android:text="答案与解析"/>
+            android:text="答案解析"/>
     </LinearLayout>
     <com.lancoo.tasker.view.TaskView
         android:id="@+id/tasker_demo"

@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface TaskAnswer {
 
-    String getXh();
+    String getUserId();
 
     List<TopicAnswer> geTopicAnswers();
 

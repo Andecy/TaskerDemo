@@ -4,8 +4,10 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import com.lancoo.tasker.adapter.SimpleItemAdapter;
 import com.lancoo.tasker.module.TaskData;
@@ -20,7 +22,7 @@ import com.lancoo.taskerdemo.model.timu.KSTaskTimu;
  * Description: TODO
  */
 
-public class DemoActivity extends AppCompatActivity {
+public class DemoActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     private TaskView mTaskView;
 
     private int position;
@@ -29,18 +31,28 @@ public class DemoActivity extends AppCompatActivity {
 
     private SimpleItemAdapter mSimpleItemAdapter;
 
+    private SwitchCompat switch_answerable;
+    private SwitchCompat switch_standardable;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
 
         mTaskView = (TaskView) findViewById(R.id.tasker_demo);
+        switch_answerable = (SwitchCompat) findViewById(R.id.sc_answerable);
+        switch_standardable = (SwitchCompat) findViewById(R.id.sc_standardable);
+
+        switch_answerable.setOnCheckedChangeListener(this);
+        switch_standardable.setOnCheckedChangeListener(this);
 
         mSimpleItemAdapter = new SimpleItemAdapter(
                 getSupportFragmentManager(),
                 new TaskData(new KSTaskTimu(), new KSTaskAnswer()));
 
-        mSimpleItemAdapter.setAnswerable(false);
+        mSimpleItemAdapter.setAnswerable(switch_answerable.isChecked());
+        mSimpleItemAdapter.setStandardable(switch_standardable.isChecked());
 
         mTaskView.setItemAdapter(mSimpleItemAdapter);
 
@@ -96,6 +108,18 @@ public class DemoActivity extends AppCompatActivity {
     public void onStandardableClick(View view) {
         if (mSimpleItemAdapter != null) {
             mSimpleItemAdapter.setStandardable(!mSimpleItemAdapter.isStandardable());
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()) {
+            case R.id.sc_answerable:
+                mSimpleItemAdapter.setAnswerable(!isChecked);
+                break;
+            case R.id.sc_standardable:
+                mSimpleItemAdapter.setStandardable(!isChecked);
+                break;
         }
     }
 }

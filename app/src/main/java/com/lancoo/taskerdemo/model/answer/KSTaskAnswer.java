@@ -15,7 +15,7 @@ import java.util.List;
 
 public class KSTaskAnswer implements TaskAnswer {
     @Override
-    public String getXh() {
+    public String getUserId() {
         return "123123123";
     }
 
