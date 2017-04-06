@@ -22,9 +22,9 @@ public class DefaultFillBlankFragment extends BaseItemFragment implements TextWa
 
     private WritableEditText et_answer;
 
-    public static DefaultFillBlankFragment newInstance(boolean answerable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
+    public static DefaultFillBlankFragment newInstance(boolean answerable, boolean standardable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
         DefaultFillBlankFragment fragment = new DefaultFillBlankFragment();
-        fragment.setItems(answerable, itemTimu, itemAnswer);
+        fragment.setItems(answerable, standardable, itemTimu, itemAnswer);
         return fragment;
     }
 
@@ -37,9 +37,19 @@ public class DefaultFillBlankFragment extends BaseItemFragment implements TextWa
     @Override
     protected void initView(View view, @Nullable Bundle savedInstanceState) {
         super.initView(view, savedInstanceState);
-        et_answer.setText("123");
+        et_answer.setText(mItemAnswer.getAnswer());
         et_answer.setSaveEnabled(false);
         et_answer.addTextChangedListener(this);
+    }
+
+    @Override
+    public void initAnswerableView(boolean b) {
+        et_answer.setEditable(getActivity(), b);
+    }
+
+    @Override
+    public void initStandardableView(boolean b) {
+
     }
 
     @Override

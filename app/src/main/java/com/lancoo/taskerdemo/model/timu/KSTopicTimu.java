@@ -41,7 +41,7 @@ public class KSTopicTimu implements TopicTimu {
 
     @Override
     public String getAudioUrl() {
-        return null;
+        return "http://172.16.51.68:8022/lgftp/lgkyzy/kyItemAnswer/ZYFB201612022019428818057/4D2E2BB1-7C90-4E0A-89EA-CCF25E3B9ED2/sa00000893/tm201610201524012212534/tm201610201524012212534_All.wav";
     }
 
     @Override

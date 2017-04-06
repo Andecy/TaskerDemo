@@ -24,7 +24,7 @@
         android:layout_marginRight="@dimen/padding_screen"
         android:paddingRight="@dimen/padding_screen"
         android:singleLine="true"
-        tools:text="超级牛逼的作业题目哈哈123456！"/>
+        tools:text="这里是一份很长的作业/试卷的名称"/>
 
     <TextView
         android:paddingLeft="@dimen/padding_screen"

@@ -1,10 +1,7 @@
 package com.lancoo.tasker.ui;
 
-import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -28,9 +25,9 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
 
     private List<RadioButton> mRadioButtons;
 
-    public static DefaultSingleChoiceFragment newInstance(boolean answerable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
+    public static DefaultSingleChoiceFragment newInstance(boolean answerable, boolean standardable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
         DefaultSingleChoiceFragment fragment = new DefaultSingleChoiceFragment();
-        fragment.setItems(answerable, itemTimu, itemAnswer);
+        fragment.setItems(answerable, standardable, itemTimu, itemAnswer);
         return fragment;
     }
 
@@ -43,19 +40,30 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
     }
 
     @Override
-    protected void initView(View view, @Nullable Bundle savedInstanceState) {
-        super.initView(view, savedInstanceState);
-        mRadioButtons = new ArrayList<>();
-        for (int i = 0; i < Math.min(mItemTimu.getOptions().length, mItemTimu.getOptionsKey().length); i++) {
-            RadioButton radioButton = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.tasker_module_item_topic_radiobtn, null);
-            radioButton.setText(mItemTimu.getOptionsKey()[i] + "." + mItemTimu.getOptions()[i]);
-            radioButton.setChecked(mItemTimu.getOptionsKey()[i].equals(mItemAnswer.getAnswer()));
-            radioButton.setTag(mItemTimu.getOptionsKey()[i]);
-            radioButton.setId(i);
-            mRadioGroup.addView(radioButton);
-            mRadioButtons.add(radioButton);
-            radioButton.setEnabled(mAnswerable);
+    public void initAnswerableView(boolean b) {
+        if (mRadioButtons == null) {
+            mRadioButtons = new ArrayList<>();
+            for (int i = 0; i < Math.min(mItemTimu.getOptions().length, mItemTimu.getOptionsKey().length); i++) {
+                RadioButton radioButton = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.tasker_module_item_topic_radiobtn, null);
+                radioButton.setText(mItemTimu.getOptionsKey()[i] + "." + mItemTimu.getOptions()[i]);
+                radioButton.setChecked(mItemTimu.getOptionsKey()[i].equals(mItemAnswer.getAnswer()));
+                radioButton.setTag(mItemTimu.getOptionsKey()[i]);
+                radioButton.setId(i);
+                mRadioGroup.addView(radioButton);
+                mRadioButtons.add(radioButton);
+                radioButton.setEnabled(b);
+            }
+        } else {
+            for (RadioButton radioButton : mRadioButtons) {
+                radioButton.setEnabled(b);
+            }
         }
+
+    }
+
+    @Override
+    public void initStandardableView(boolean b) {
+
     }
 
     @Override

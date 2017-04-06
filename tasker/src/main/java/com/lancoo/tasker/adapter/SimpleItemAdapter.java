@@ -17,7 +17,7 @@ import com.lancoo.tasker.ui.DefaultSingleChoiceFragment;
  */
 
 public class SimpleItemAdapter extends BaseItemAdapter {
-    private boolean mAnswerable = true;
+
 
     public SimpleItemAdapter(FragmentManager fm, TaskData data) {
         super(fm, data);
@@ -28,10 +28,10 @@ public class SimpleItemAdapter extends BaseItemAdapter {
 
         switch ((int) (Math.random() * 10) % 2) {
             case 0:
-                return DefaultFillBlankFragment.newInstance(true, itemTimu, itemAnswer);
+                return DefaultFillBlankFragment.newInstance(isAnswerable(), isStandardable(), itemTimu, itemAnswer);
             default:
             case 1:
-                return DefaultSingleChoiceFragment.newInstance(true, itemTimu, itemAnswer);
+                return DefaultSingleChoiceFragment.newInstance(isAnswerable(), isStandardable(), itemTimu, itemAnswer);
         }
     }
 }

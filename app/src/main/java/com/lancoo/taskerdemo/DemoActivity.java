@@ -1,5 +1,6 @@
 package com.lancoo.taskerdemo;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,8 @@ public class DemoActivity extends AppCompatActivity {
 
         mTaskView.setItemAdapter(adapter);
 
+        mTaskView.setTaskTitleName("(试卷总分：5.0分)");
+
         mTaskView.addTaskListener(new TaskView.TaskListener() {
             @Override
             public void onTaskRenderFinished() {
@@ -48,6 +51,11 @@ public class DemoActivity extends AppCompatActivity {
             @Override
             public void onTimuChanged(int topicPosition, int itemPosition) {
                 Log.w("TAG", "topicPos-->" + topicPosition + ",itemPos-->" + itemPosition);
+            }
+
+            @Override
+            public void onAudioPlayError(MediaPlayer mp, int what, int extra) {
+
             }
 
         });

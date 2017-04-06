@@ -25,16 +25,18 @@ public abstract class BaseItemFragment extends TBaseFragment {
     protected ItemAnswer mItemAnswer;
 
     protected boolean mAnswerable;
+    protected boolean mStandardable;
 
     @Override
     protected void findViews() {
         tv_que = findView(R.id.tv_item_topic_que);
     }
 
-    public void setItems(boolean answerable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
+    public void setItems(boolean answerable, boolean standardable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
         mItemTimu = itemTimu;
         mItemAnswer = itemAnswer;
         mAnswerable = answerable;
+        mStandardable = standardable;
     }
 
     @Override
@@ -43,5 +45,15 @@ public abstract class BaseItemFragment extends TBaseFragment {
                 mItemTimu.getIndex() + "." +
                         (mItemTimu.getOptionAsk() == null ? "" : mItemTimu.getOptionAsk()) +
                         "(" + mItemTimu.getScore() + "分)", tv_que);
+
+        initAnswerableView(mAnswerable);
+
+        initStandardableView(mStandardable);
+
     }
+
+
+    public abstract void initAnswerableView(boolean enabled);
+
+    public abstract void initStandardableView(boolean enabled);
 }

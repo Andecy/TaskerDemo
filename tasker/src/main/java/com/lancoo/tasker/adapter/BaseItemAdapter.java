@@ -2,7 +2,7 @@ package com.lancoo.tasker.adapter;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.util.Log;
+import android.view.ViewGroup;
 
 import com.lancoo.tasker.module.TaskData;
 import com.lancoo.tasker.module.answer.ItemAnswer;
@@ -18,9 +18,14 @@ import com.lancoo.tasker.ui.BaseItemFragment;
 
 public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
 
+    private boolean mAnswerable = true;
+    private boolean mStandardable = true;
+
     private TaskData mData;
 
     private int curTopicPosition;
+
+    private BaseItemFragment curFragment;
 
     public BaseItemAdapter(FragmentManager fm, TaskData data) {
         super(fm);
@@ -31,6 +36,13 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
         curTopicPosition = topicPosition;
         notifyDataSetChanged();
     }
+
+    @Override
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+        curFragment = (BaseItemFragment) object;
+        super.setPrimaryItem(container, position, object);
+    }
+
 
     public TaskData getData() {
         return mData;
@@ -43,7 +55,6 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public BaseItemFragment getItem(int position) {
-        Log.w("Adapter", "topic-->" + curTopicPosition + ",item-->" + position);
         return getItemByType(
                 mData.getTaskTimu().getTopicTimus().get(curTopicPosition).getItemTimus().get(position),
                 mData.getTaskAnswer().geTopicAnswers().get(curTopicPosition).getItemAnswers().get(position));
@@ -54,5 +65,23 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return mData.getTaskTimu().getTopicTimus().get(curTopicPosition).getItemTimus().size();
+    }
+
+    public boolean isAnswerable() {
+        return mAnswerable;
+    }
+
+    public boolean isStandardable() {
+        return mStandardable;
+    }
+
+    public void setAnswerable(boolean answerable) {
+        mAnswerable = answerable;
+        curFragment.initAnswerableView(answerable);
+    }
+
+    public void setStandardable(boolean standardable) {
+        mStandardable = standardable;
+        curFragment.initStandardableView(standardable);
     }
 }

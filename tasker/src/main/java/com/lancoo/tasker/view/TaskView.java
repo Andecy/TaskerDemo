@@ -129,12 +129,22 @@ public class TaskView extends LinearLayout implements AudioPlayListener {
      * @param taskTimu 作业信息类
      */
     private void setTaskInfo(TaskTimu taskTimu) {
-        tv_score.setText("(作业总分：" + taskTimu.getScore() + ")");
+//        tv_score.setText();
         tv_name.setText(taskTimu.getTaskName());
         if (taskTimu.getTopicTimus() == null) {
             return;
         }
         tv_count.setText("/" + taskTimu.getTopicTimus().size());
+    }
+
+    /**
+     * 设置整份作业的Title
+     *
+     * @param titleName 标题名称
+     */
+    public void setTaskTitleName(String titleName) {
+        tv_score.setText(titleName);
+        invalidate();
     }
 
     /**
