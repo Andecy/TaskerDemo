@@ -76,12 +76,17 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
     }
 
     public void setAnswerable(boolean answerable) {
+        if (mAnswerable != answerable && curFragment != null) {
+            curFragment.initAnswerableView(answerable);
+        }
         mAnswerable = answerable;
-        curFragment.initAnswerableView(answerable);
     }
 
     public void setStandardable(boolean standardable) {
+        if (mStandardable != standardable && curFragment != null) {
+            curFragment.initStandardableView(standardable);
+        }
         mStandardable = standardable;
-        curFragment.initStandardableView(standardable);
+
     }
 }

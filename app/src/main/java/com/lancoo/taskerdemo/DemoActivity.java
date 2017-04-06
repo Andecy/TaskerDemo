@@ -27,6 +27,8 @@ public class DemoActivity extends AppCompatActivity {
 
     private int itemPosition;
 
+    private SimpleItemAdapter mSimpleItemAdapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +36,13 @@ public class DemoActivity extends AppCompatActivity {
 
         mTaskView = (TaskView) findViewById(R.id.tasker_demo);
 
-        SimpleItemAdapter adapter = new SimpleItemAdapter(
+        mSimpleItemAdapter = new SimpleItemAdapter(
                 getSupportFragmentManager(),
                 new TaskData(new KSTaskTimu(), new KSTaskAnswer()));
 
-        mTaskView.setItemAdapter(adapter);
+        mSimpleItemAdapter.setAnswerable(false);
+
+        mTaskView.setItemAdapter(mSimpleItemAdapter);
 
         mTaskView.setTaskTitleName("(试卷总分：5.0分)");
 
@@ -81,5 +85,17 @@ public class DemoActivity extends AppCompatActivity {
     public void onBackWorkItemClick(View view) {
         mTaskView.changeItemPosition(++itemPosition);
         Log.w("Demo", "itemPos-->" + itemPosition);
+    }
+
+    public void onAnswerableClick(View view) {
+        if (mSimpleItemAdapter != null) {
+            mSimpleItemAdapter.setAnswerable(!mSimpleItemAdapter.isAnswerable());
+        }
+    }
+
+    public void onStandardableClick(View view) {
+        if (mSimpleItemAdapter != null) {
+            mSimpleItemAdapter.setStandardable(!mSimpleItemAdapter.isStandardable());
+        }
     }
 }

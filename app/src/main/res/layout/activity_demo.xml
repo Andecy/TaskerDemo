@@ -10,25 +10,45 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
-            android:onClick="onForwardClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onForwardClick"
             android:text="上大题"/>
         <Button
-            android:onClick="onBackWorkClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onBackWorkClick"
             android:text="下大题"/>
         <Button
-            android:onClick="onForwardItemClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onForwardItemClick"
             android:text="上小题"/>
         <Button
-            android:onClick="onBackWorkItemClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onBackWorkItemClick"
             android:text="下小题"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开关："/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onAnswerableClick"
+            android:text="作答"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onStandardableClick"
+            android:text="答案与解析"/>
     </LinearLayout>
     <com.lancoo.tasker.view.TaskView
         android:id="@+id/tasker_demo"
