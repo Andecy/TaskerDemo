@@ -1,5 +1,7 @@
-<manifest package="com.lancoo.tasker">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lancoo.tasker">
 
-    <application/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

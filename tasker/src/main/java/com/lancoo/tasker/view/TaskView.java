@@ -37,7 +37,9 @@ import java.util.List;
  * Description: TODO
  */
 
-public class TaskView extends LinearLayout implements AudioPlayListener {
+public class TaskView extends LinearLayout implements AudioPlayListener, View.OnClickListener {
+
+    private static final String TAG = "TaskView";
 
     //header of task
     private TextView tv_score;
@@ -94,6 +96,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener {
         tv_player = findView(R.id.tv_player_time);
         sb_player = findView(R.id.sb_player_progress);
         btn_player = findView(R.id.btn_player_start);
+        btn_player.setOnClickListener(this);
 
         //大题内容
         tv_content = findView(R.id.tv_tasker_topic_content);
@@ -205,7 +208,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener {
 
         curItemPosition = position;
 
-        Log.w("TaskView", "curItemPosition-->" + curItemPosition);
+        Log.w(TAG, "curItemPosition-->" + curItemPosition);
 
         vp_item.setCurrentItem(curItemPosition);
         tv_itemNo.setText("(" + (curItemPosition + 1) + ")");
@@ -293,11 +296,10 @@ public class TaskView extends LinearLayout implements AudioPlayListener {
     private void initPlayer(String url) {
         if (mAudioPlayer == null) {
             mAudioPlayer = new AudioPlayer();
+            mAudioPlayer.setAudioPlayListener(this);
+            mAudioPlayer.bindSeekBar(sb_player);
+            mAudioPlayer.bindTimer(tv_player);
         }
-        mAudioPlayer.bindSeekBar(sb_player);
-        mAudioPlayer.bindTimer(tv_player);
-        mAudioPlayer.setAudioPlayListener(this);
-        mAudioPlayer.setAutoPlay(true);
         mAudioPlayer.loadUri(url);
     }
 
@@ -349,6 +351,14 @@ public class TaskView extends LinearLayout implements AudioPlayListener {
                 mListeners.get(i).onAudioPlayError(mp, what, extra);
             }
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (mAudioPlayer == null || !mAudioPlayer.isPrepared()) {
+            return;
+        }
+        mAudioPlayer.pauseOrStart();
     }
 
     public interface TaskListener {
