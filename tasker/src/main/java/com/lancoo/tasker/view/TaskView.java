@@ -7,13 +7,14 @@ import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -48,10 +49,10 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     private TextView tv_topicno;
 
     //player
-    private LinearLayout ll_player;
+    private RelativeLayout rl_player;
     private TextView tv_player;
     private SeekBar sb_player;
-    private AppCompatImageView btn_player;
+    private ImageView btn_player;
     private AudioPlayer mAudioPlayer;
 
     //大题内容
@@ -92,7 +93,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         tv_topicno = findView(R.id.tv_tasker_topicno);
 
         //player
-        ll_player = findView(R.id.ll_module_player);
+        rl_player = findView(R.id.rl_module_player);
         tv_player = findView(R.id.tv_player_time);
         sb_player = findView(R.id.sb_player_progress);
         btn_player = findView(R.id.btn_player_start);
@@ -294,6 +295,9 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     //===============================听力=====================
 
     private void initPlayer(String url) {
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
         if (mAudioPlayer == null) {
             mAudioPlayer = new AudioPlayer();
             mAudioPlayer.setAudioPlayListener(this);
@@ -324,12 +328,12 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     @Override
     public void onAudioPlayStart() {
-        btn_player.setImageResource(R.drawable.slct_btn_pause);
+        btn_player.setImageResource(R.mipmap.ic_player_pause2);
     }
 
     @Override
     public void onAudioPlayPause() {
-        btn_player.setImageResource(R.drawable.slct_btn_player);
+        btn_player.setImageResource(R.mipmap.ic_player_start2);
 
     }
 
@@ -339,12 +343,12 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     @Override
     public void onAudioPlayCompletion() {
-        btn_player.setImageResource(R.drawable.slct_btn_player);
+        btn_player.setImageResource(R.mipmap.ic_player_start2);
     }
 
     @Override
     public void onAudioPlayError(MediaPlayer mp, int what, int extra) {
-        btn_player.setImageResource(R.drawable.slct_btn_player);
+        btn_player.setImageResource(R.mipmap.ic_player_start2);
         if (mListeners != null) {
             int listenerCount = mListeners.size();
             for (int i = listenerCount - 1; i >= 0; i--) {

@@ -75,6 +75,12 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
         return mStandardable;
     }
 
+
+    /**
+     * 设置是否展示标准答案和解析
+     * true==
+     * @param answerable
+     */
     public void setAnswerable(boolean answerable) {
         if (mAnswerable != answerable) {
             mAnswerable = answerable;

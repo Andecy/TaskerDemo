@@ -5,5 +5,5 @@
     <dimen name="height_divider">1px</dimen>
     <dimen name="size_player">37dp</dimen>
     <dimen name="marginleft_tv_ic_tv">6dp</dimen>
-    <dimen name="height_tab">48dp</dimen>
+    <dimen name="height_player">69dp</dimen>
 </resources>
