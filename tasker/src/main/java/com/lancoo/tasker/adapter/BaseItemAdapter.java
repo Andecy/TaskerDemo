@@ -79,7 +79,7 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
 
     }
 
-    public void setStandardable(boolean standardable) {
+    public void setAnalysisable(boolean standardable) {
         if (mStandardable != standardable) {
             mStandardable = standardable;
             notifyDataSetChanged();

@@ -10,7 +10,7 @@ import com.lancoo.tasker.module.answer.ItemAnswer;
  */
 
 public class KSItemAnswer implements ItemAnswer {
-    String answer;
+    private String answer;
 
     @Override
     public void setAnswer(String answer) {

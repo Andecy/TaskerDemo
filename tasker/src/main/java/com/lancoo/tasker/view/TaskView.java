@@ -8,6 +8,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -21,6 +25,7 @@ import android.widget.TextView;
 
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.adapter.BaseItemAdapter;
+import com.lancoo.tasker.adapter.PlayerListAdapter;
 import com.lancoo.tasker.audio.AudioPlayListener;
 import com.lancoo.tasker.audio.AudioPlayer;
 import com.lancoo.tasker.module.TaskData;
@@ -58,6 +63,13 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     private ImageView iv_player_start;
     private ImageView iv_player_list;
     private AudioPlayer mAudioPlayer;
+
+    //player list
+    private TextView tv_player_count;
+    private RecyclerView rv_player_list;
+    private PlayerListAdapter mPlayerListAdapter;
+    private BottomSheetDialog mPlayerListDialog;
+    private List<AudioInfo> mAudioInfos;
 
     //大题内容
     private TextView tv_content;
@@ -202,8 +214,8 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         }
 
         //---player--------
-
-        initPlayer(topicTimu.getAudioInfos().get(0));
+        mAudioInfos = topicTimu.getAudioInfos();
+        setPlayer(topicTimu.getAudioInfos().get(0));
     }
 
 
@@ -302,7 +314,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     //===============================听力=====================
 
-    private void initPlayer(AudioInfo info) {
+    private void setPlayer(AudioInfo info) {
         if (TextUtils.isEmpty(info.getAudioUrl())) {
             rl_player.setVisibility(GONE);
             return;
@@ -377,16 +389,26 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
             }
             mAudioPlayer.pauseOrStart();
         } else if (id == R.id.iv_player_list) {
-            BottomSheetDialog dialog = new BottomSheetDialog(getContext());
-            dialog.setContentView(R.layout.tasker_header);
-            dialog.show();
+            if (mPlayerListDialog == null) {
+                mPlayerListDialog = new BottomSheetDialog(getContext());
+                mPlayerListDialog.setContentView(R.layout.tasker_player_list);
+                rv_player_list = (RecyclerView) mPlayerListDialog.findViewById(R.id.rv_player_list);
+                tv_player_count = (TextView) mPlayerListDialog.findViewById(R.id.tv_player_count);
+
+                rv_player_list.setLayoutManager(new LinearLayoutManager(getContext()));
+                rv_player_list.setItemAnimator(new DefaultItemAnimator());
+                rv_player_list.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
+                mPlayerListAdapter = new PlayerListAdapter();
+                rv_player_list.setAdapter(mPlayerListAdapter);
+            }
+            tv_player_count.setText("播放列表(" + mAudioInfos.size() + ")");
+            mPlayerListAdapter.notifyDataSetChanged();
+            mPlayerListDialog.show();
         }
 
     }
 
     public interface TaskListener {
-
-        void onTaskRenderFinished();
 
         void onTimuChanged(int topicPosition, int itemPosition);
 
@@ -394,9 +416,6 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     }
 
     public abstract static class SimpleTaskListener implements TaskListener {
-        @Override
-        public void onTaskRenderFinished() {
-        }
 
         @Override
         public void onAudioPlayError(MediaPlayer mp, int what, int extra) {

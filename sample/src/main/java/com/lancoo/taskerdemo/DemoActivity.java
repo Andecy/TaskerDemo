@@ -35,6 +35,11 @@ public class DemoActivity extends AppCompatActivity implements CompoundButton.On
     private SwitchCompat switch_answerable;
     private SwitchCompat switch_standardable;
 
+    private KSTaskTimu mKSTaskTimu;
+    private KSTaskAnswer mKSTaskAnswer;
+
+    private TaskData mTaskData;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,22 +53,21 @@ public class DemoActivity extends AppCompatActivity implements CompoundButton.On
         switch_answerable.setOnCheckedChangeListener(this);
         switch_standardable.setOnCheckedChangeListener(this);
 
-        mSimpleItemAdapter = new SimpleItemAdapter(
-                getSupportFragmentManager(),
-                new TaskData(new KSTaskTimu(), new KSTaskAnswer()));
+        mKSTaskTimu = new KSTaskTimu();
+        mKSTaskAnswer = new KSTaskAnswer();
+
+        mTaskData = new TaskData(new KSTaskTimu(), new KSTaskAnswer());
+
+        mSimpleItemAdapter = new SimpleItemAdapter(getSupportFragmentManager(), mTaskData);
 
         mSimpleItemAdapter.setAnswerable(switch_answerable.isChecked());
-        mSimpleItemAdapter.setStandardable(switch_standardable.isChecked());
+        mSimpleItemAdapter.setAnalysisable(switch_standardable.isChecked());
 
         mTaskView.setItemAdapter(mSimpleItemAdapter);
 
         mTaskView.setTaskTitleName("(试卷总分：5.0分)");
 
         mTaskView.addTaskListener(new TaskView.TaskListener() {
-            @Override
-            public void onTaskRenderFinished() {
-
-            }
 
             @Override
             public void onTimuChanged(int topicPosition, int itemPosition) {
@@ -108,7 +112,7 @@ public class DemoActivity extends AppCompatActivity implements CompoundButton.On
 
     public void onStandardableClick(View view) {
         if (mSimpleItemAdapter != null) {
-            mSimpleItemAdapter.setStandardable(!mSimpleItemAdapter.isStandardable());
+            mSimpleItemAdapter.setAnalysisable(!mSimpleItemAdapter.isStandardable());
         }
     }
 
@@ -119,7 +123,7 @@ public class DemoActivity extends AppCompatActivity implements CompoundButton.On
                 mSimpleItemAdapter.setAnswerable(!isChecked);
                 break;
             case R.id.sc_standardable:
-                mSimpleItemAdapter.setStandardable(!isChecked);
+                mSimpleItemAdapter.setAnalysisable(!isChecked);
                 break;
         }
     }
