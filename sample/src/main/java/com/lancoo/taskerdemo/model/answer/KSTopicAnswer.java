@@ -14,12 +14,17 @@ import java.util.List;
  */
 
 public class KSTopicAnswer implements TopicAnswer {
+    private List<ItemAnswer> mItemAnswers;
+
     @Override
     public List<ItemAnswer> getItemAnswers() {
-        List<ItemAnswer> itemAnswers = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            itemAnswers.add(new KSItemAnswer());
+        if (mItemAnswers == null) {
+            mItemAnswers = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                mItemAnswers.add(new KSItemAnswer());
+            }
         }
-        return itemAnswers;
+
+        return mItemAnswers;
     }
 }

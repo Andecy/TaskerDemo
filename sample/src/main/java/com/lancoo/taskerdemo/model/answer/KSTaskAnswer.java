@@ -14,6 +14,8 @@ import java.util.List;
  */
 
 public class KSTaskAnswer implements TaskAnswer {
+    private List<TopicAnswer> mKSTopicAnswers;
+
     @Override
     public String getUserId() {
         return "123123123";
@@ -21,10 +23,13 @@ public class KSTaskAnswer implements TaskAnswer {
 
     @Override
     public List<TopicAnswer> geTopicAnswers() {
-        List<TopicAnswer> topicAnswers = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            topicAnswers.add(new KSTopicAnswer());
+        if (mKSTopicAnswers==null){
+            mKSTopicAnswers = new ArrayList<>();
+            for (int i = 0; i < 5; i++) {
+                mKSTopicAnswers.add(new KSTopicAnswer());
+            }
         }
-        return topicAnswers;
+
+        return mKSTopicAnswers;
     }
 }

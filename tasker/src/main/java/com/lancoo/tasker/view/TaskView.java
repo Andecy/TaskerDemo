@@ -14,7 +14,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -228,8 +227,6 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         }
 
         curItemPosition = position;
-
-        Log.w(TAG, "curItemPosition-->" + curItemPosition);
 
         vp_item.setCurrentItem(curItemPosition);
         tv_itemNo.setText("(" + (curItemPosition + 1) + ")");

@@ -1,7 +1,6 @@
 package com.lancoo.tasker.ui;
 
 import android.support.annotation.IdRes;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -42,7 +41,6 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
 
     @Override
     public void initAnswerableView(boolean b) {
-        Log.w("Xuanze", "answer->" + mItemAnswer.getAnswer());
         if (mRadioButtons == null) {
             mRadioButtons = new ArrayList<>();
             for (int i = 0; i < Math.min(mItemTimu.getOptions().length, mItemTimu.getOptionsKey().length); i++) {
@@ -73,7 +71,6 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
         RadioButton rb = (RadioButton) group.findViewById(checkedId);
         if (rb != null && rb.getTag() != null) {
             mItemAnswer.setAnswer(String.valueOf(rb.getTag()));
-            Log.w("Xuanze", "tag-->" + mItemAnswer.getAnswer());
         }
     }
 }

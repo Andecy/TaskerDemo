@@ -56,7 +56,7 @@ public class DemoActivity extends AppCompatActivity implements CompoundButton.On
         mKSTaskTimu = new KSTaskTimu();
         mKSTaskAnswer = new KSTaskAnswer();
 
-        mTaskData = new TaskData(new KSTaskTimu(), new KSTaskAnswer());
+        mTaskData = new TaskData(mKSTaskTimu, mKSTaskAnswer);
 
         mSimpleItemAdapter = new SimpleItemAdapter(getSupportFragmentManager(), mTaskData);
 
