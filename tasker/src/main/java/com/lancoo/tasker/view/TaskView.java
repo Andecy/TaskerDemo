@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -54,7 +55,8 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     private TextView tv_player_time;
     private TextView tv_player_title;
     private SeekBar sb_player;
-    private ImageView btn_player;
+    private ImageView iv_player_start;
+    private ImageView iv_player_list;
     private AudioPlayer mAudioPlayer;
 
     //大题内容
@@ -99,8 +101,11 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         tv_player_time = findView(R.id.tv_player_time);
         tv_player_title = findView(R.id.tv_player_title);
         sb_player = findView(R.id.sb_player_progress);
-        btn_player = findView(R.id.btn_player_start);
-        btn_player.setOnClickListener(this);
+        iv_player_start = findView(R.id.iv_player_start);
+        iv_player_list = findView(R.id.iv_player_list);
+        iv_player_start.setOnClickListener(this);
+        iv_player_list.setOnClickListener(this);
+
 
         //大题内容
         tv_content = findView(R.id.tv_tasker_topic_content);
@@ -334,12 +339,12 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     @Override
     public void onAudioPlayStart() {
-        btn_player.setImageResource(R.mipmap.ic_player_pause2);
+        iv_player_start.setImageResource(R.mipmap.ic_player_pause2);
     }
 
     @Override
     public void onAudioPlayPause() {
-        btn_player.setImageResource(R.mipmap.ic_player_start2);
+        iv_player_start.setImageResource(R.mipmap.ic_player_start2);
 
     }
 
@@ -349,12 +354,12 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     @Override
     public void onAudioPlayCompletion() {
-        btn_player.setImageResource(R.mipmap.ic_player_start2);
+        iv_player_start.setImageResource(R.mipmap.ic_player_start2);
     }
 
     @Override
     public void onAudioPlayError(MediaPlayer mp, int what, int extra) {
-        btn_player.setImageResource(R.mipmap.ic_player_start2);
+        iv_player_start.setImageResource(R.mipmap.ic_player_start2);
         if (mListeners != null) {
             int listenerCount = mListeners.size();
             for (int i = listenerCount - 1; i >= 0; i--) {
@@ -365,10 +370,18 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     @Override
     public void onClick(View v) {
-        if (mAudioPlayer == null || !mAudioPlayer.isPrepared()) {
-            return;
+        int id = v.getId();
+        if (id == R.id.iv_player_start) {
+            if (mAudioPlayer == null || !mAudioPlayer.isPrepared()) {
+                return;
+            }
+            mAudioPlayer.pauseOrStart();
+        } else if (id == R.id.iv_player_list) {
+            BottomSheetDialog dialog = new BottomSheetDialog(getContext());
+            dialog.setContentView(R.layout.tasker_header);
+            dialog.show();
         }
-        mAudioPlayer.pauseOrStart();
+
     }
 
     public interface TaskListener {
