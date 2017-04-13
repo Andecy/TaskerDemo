@@ -47,10 +47,6 @@ public class DefaultFillBlankFragment extends BaseItemFragment implements TextWa
         et_answer.setEditable(getActivity(), b);
     }
 
-    @Override
-    public void initStandardableView(boolean b) {
-
-    }
 
     @Override
     protected int getContentViewId() {

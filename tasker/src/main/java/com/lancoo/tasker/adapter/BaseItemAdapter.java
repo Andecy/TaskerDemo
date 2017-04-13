@@ -2,7 +2,6 @@ package com.lancoo.tasker.adapter;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.view.ViewGroup;
 
 import com.lancoo.tasker.module.TaskData;
 import com.lancoo.tasker.module.answer.ItemAnswer;
@@ -25,8 +24,6 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
 
     private int curTopicPosition;
 
-    private BaseItemFragment curFragment;
-
     public BaseItemAdapter(FragmentManager fm, TaskData data) {
         super(fm);
         mData = data;
@@ -36,13 +33,6 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
         curTopicPosition = topicPosition;
         notifyDataSetChanged();
     }
-
-    @Override
-    public void setPrimaryItem(ViewGroup container, int position, Object object) {
-        curFragment = (BaseItemFragment) object;
-        super.setPrimaryItem(container, position, object);
-    }
-
 
     public TaskData getData() {
         return mData;

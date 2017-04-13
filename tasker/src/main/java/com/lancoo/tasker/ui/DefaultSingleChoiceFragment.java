@@ -63,11 +63,6 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
     }
 
     @Override
-    public void initStandardableView(boolean b) {
-
-    }
-
-    @Override
     protected int getContentViewId() {
         return R.layout.tasker_fragment_item_single_choice;
     }

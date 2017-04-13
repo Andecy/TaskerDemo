@@ -40,4 +40,14 @@ public class KSItemTimu implements ItemTimu {
     public String[] getOptionsKey() {
         return new String[]{"A", "B", "C", "D"};
     }
+
+    @Override
+    public String getStandardAnswer() {
+        return "我是标准答案";
+    }
+
+    @Override
+    public String getAnalysis() {
+        return "我是答案解析";
+    }
 }

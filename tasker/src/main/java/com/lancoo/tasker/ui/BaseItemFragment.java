@@ -2,6 +2,7 @@ package com.lancoo.tasker.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ import com.lancoo.tasker.module.timu.ItemTimu;
 public abstract class BaseItemFragment extends TBaseFragment {
 
     protected TextView tv_que;
+    private TextView tv_answer;
+    private TextView tv_analysis;
 
     protected ItemTimu mItemTimu;
     protected ItemAnswer mItemAnswer;
@@ -30,6 +33,8 @@ public abstract class BaseItemFragment extends TBaseFragment {
     @Override
     protected void findViews() {
         tv_que = findView(R.id.tv_item_topic_que);
+        tv_answer = findView(R.id.tv_tasker_item_result);
+        tv_analysis = findView(R.id.tv_tasker_item_analysis);
     }
 
     public void setItems(boolean answerable, boolean standardable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
@@ -55,5 +60,26 @@ public abstract class BaseItemFragment extends TBaseFragment {
 
     public abstract void initAnswerableView(boolean enabled);
 
-    public abstract void initStandardableView(boolean enabled);
+    public void initStandardableView(boolean enabled) {
+        if (tv_answer != null) {
+            tv_answer.setText("标准答案：" + mItemTimu.getStandardAnswer());
+
+            if (!TextUtils.isEmpty(mItemTimu.getStandardAnswer()) && enabled) {
+                tv_answer.setVisibility(View.VISIBLE);
+            } else {
+                tv_answer.setVisibility(View.GONE);
+            }
+        }
+
+        if (tv_analysis != null) {
+            tv_analysis.setText("答案解析：" + mItemTimu.getAnalysis());
+
+            if (!TextUtils.isEmpty(mItemTimu.getAnalysis()) && enabled) {
+                tv_analysis.setVisibility(View.VISIBLE);
+            } else {
+                tv_analysis.setVisibility(View.GONE);
+            }
+        }
+
+    }
 }
