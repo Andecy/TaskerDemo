@@ -9,14 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/padding_tv_ic_drawable"
-        android:background="@drawable/bg_player_shape"/>
+        android:background="@drawable/tasker_bg_player_shape"/>
 
     <ImageView
         android:id="@+id/iv_player_cd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/padding_screen"
-        android:src="@mipmap/ic_player_cd"/>
+        android:src="@mipmap/tasker_ic_player_cd"/>
 
     <SeekBar
         android:id="@+id/sb_player_progress"
@@ -61,7 +61,7 @@
         android:layout_marginLeft="@dimen/padding_screen"
         android:layout_marginRight="@dimen/padding_screen"
         android:paddingBottom="@dimen/padding_screen"
-        android:src="@mipmap/ic_player_list"/>
+        android:src="@mipmap/tasker_ic_player_list"/>
 
     <ImageView
         android:id="@+id/iv_player_start"
@@ -71,6 +71,6 @@
         android:layout_marginRight="@dimen/padding_screen"
         android:layout_toLeftOf="@+id/iv_player_list"
         android:paddingBottom="@dimen/padding_screen"
-        android:src="@mipmap/ic_player_start2"/>
+        android:src="@mipmap/tasker_ic_player_start2"/>
 
 </RelativeLayout>

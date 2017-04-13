@@ -15,7 +15,7 @@
         <item name="android:paddingLeft">@dimen/padding_tv_ic_drawable</item>
         <item name="android:paddingTop">@dimen/marginleft_tv_ic_tv</item>
         <item name="android:paddingBottom">@dimen/marginleft_tv_ic_tv</item>
-        <item name="android:button">@drawable/slct_btn_xuanze</item>
+        <item name="android:button">@drawable/tasker_slct_btn_xuanze</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">center_vertical</item>

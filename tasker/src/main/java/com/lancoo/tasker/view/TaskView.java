@@ -339,12 +339,12 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     @Override
     public void onAudioPlayStart() {
-        iv_player_start.setImageResource(R.mipmap.ic_player_pause2);
+        iv_player_start.setImageResource(R.mipmap.tasker_ic_player_pause2);
     }
 
     @Override
     public void onAudioPlayPause() {
-        iv_player_start.setImageResource(R.mipmap.ic_player_start2);
+        iv_player_start.setImageResource(R.mipmap.tasker_ic_player_start2);
 
     }
 
@@ -354,12 +354,12 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     @Override
     public void onAudioPlayCompletion() {
-        iv_player_start.setImageResource(R.mipmap.ic_player_start2);
+        iv_player_start.setImageResource(R.mipmap.tasker_ic_player_start2);
     }
 
     @Override
     public void onAudioPlayError(MediaPlayer mp, int what, int extra) {
-        iv_player_start.setImageResource(R.mipmap.ic_player_start2);
+        iv_player_start.setImageResource(R.mipmap.tasker_ic_player_start2);
         if (mListeners != null) {
             int listenerCount = mListeners.size();
             for (int i = listenerCount - 1; i >= 0; i--) {

@@ -2,12 +2,12 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true"
           android:state_enabled="false"
-          android:drawable="@mipmap/btn_xuanze_disable"/>
+          android:drawable="@mipmap/tasker_btn_xuanze_disable"/>
 
-    <item android:drawable="@mipmap/btn_xuanze_checked"
+    <item android:drawable="@mipmap/tasker_btn_xuanze_checked"
           android:state_checked="true"/>
 
-    <item android:drawable="@mipmap/btn_xuanze_uncheck"
+    <item android:drawable="@mipmap/tasker_btn_xuanze_uncheck"
           android:state_checked="false"/>
 
 
