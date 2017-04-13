@@ -24,6 +24,7 @@ import com.lancoo.tasker.audio.AudioPlayListener;
 import com.lancoo.tasker.audio.AudioPlayer;
 import com.lancoo.tasker.module.TaskData;
 import com.lancoo.tasker.module.answer.TaskAnswer;
+import com.lancoo.tasker.module.timu.AudioInfo;
 import com.lancoo.tasker.module.timu.TaskTimu;
 import com.lancoo.tasker.module.timu.TopicTimu;
 import com.lancoo.tasker.tool.UITool;
@@ -50,7 +51,8 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     //player
     private RelativeLayout rl_player;
-    private TextView tv_player;
+    private TextView tv_player_time;
+    private TextView tv_player_title;
     private SeekBar sb_player;
     private ImageView btn_player;
     private AudioPlayer mAudioPlayer;
@@ -94,7 +96,8 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
         //player
         rl_player = findView(R.id.rl_module_player);
-        tv_player = findView(R.id.tv_player_time);
+        tv_player_time = findView(R.id.tv_player_time);
+        tv_player_title = findView(R.id.tv_player_title);
         sb_player = findView(R.id.sb_player_progress);
         btn_player = findView(R.id.btn_player_start);
         btn_player.setOnClickListener(this);
@@ -186,7 +189,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
         tv_itemCount.setText("/(" + topicTimu.getItemTimus().size() + ")");
         tv_type.setText("(大题总分：" + topicTimu.getScore() + "分)" + topicTimu.getTypeName());
-        if (TextUtils.isEmpty(topicTimu.getContent()) && TextUtils.isEmpty(topicTimu.getAudioUrl())) {
+        if (TextUtils.isEmpty(topicTimu.getContent()) && topicTimu.getAudioInfos() == null) {
             mSplitView.setSplitRatio(0);
         } else {
             mSplitView.setSplitRatio(0.3f);
@@ -195,7 +198,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
         //---player--------
 
-        initPlayer(topicTimu.getAudioUrl());
+        initPlayer(topicTimu.getAudioInfos().get(0));
     }
 
 
@@ -294,17 +297,20 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     //===============================听力=====================
 
-    private void initPlayer(String url) {
-        if (TextUtils.isEmpty(url)) {
+    private void initPlayer(AudioInfo info) {
+        if (TextUtils.isEmpty(info.getAudioUrl())) {
+            rl_player.setVisibility(GONE);
             return;
         }
+        rl_player.setVisibility(VISIBLE);
         if (mAudioPlayer == null) {
             mAudioPlayer = new AudioPlayer();
             mAudioPlayer.setAudioPlayListener(this);
             mAudioPlayer.bindSeekBar(sb_player);
-            mAudioPlayer.bindTimer(tv_player);
+            mAudioPlayer.bindTimer(tv_player_time);
         }
-        mAudioPlayer.loadUri(url);
+        tv_player_title.setText(info.getAudioTitle());
+        mAudioPlayer.loadUri(info.getAudioUrl());
     }
 
     @Override

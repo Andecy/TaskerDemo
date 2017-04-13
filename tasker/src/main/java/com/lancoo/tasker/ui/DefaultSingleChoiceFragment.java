@@ -52,6 +52,7 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
                 mRadioGroup.addView(radioButton);
                 mRadioButtons.add(radioButton);
                 radioButton.setEnabled(b);
+                radioButton.setSaveEnabled(false);
             }
         } else {
             for (RadioButton radioButton : mRadioButtons) {

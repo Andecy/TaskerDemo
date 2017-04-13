@@ -17,7 +17,7 @@ public interface TopicTimu {
 
     String getContent();
 
-    String getAudioUrl();
+    List<AudioInfo> getAudioInfos();
 
     float getScore();
 }

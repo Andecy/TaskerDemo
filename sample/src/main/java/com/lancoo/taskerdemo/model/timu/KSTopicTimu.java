@@ -1,5 +1,6 @@
 package com.lancoo.taskerdemo.model.timu;
 
+import com.lancoo.tasker.module.timu.AudioInfo;
 import com.lancoo.tasker.module.timu.ItemTimu;
 import com.lancoo.tasker.module.timu.TopicTimu;
 
@@ -40,8 +41,24 @@ public class KSTopicTimu implements TopicTimu {
     }
 
     @Override
-    public String getAudioUrl() {
-        return "http://172.16.51.68:8022/lgftp/lgkyzy/kyItemAnswer/ZYFB201612022019428818057/4D2E2BB1-7C90-4E0A-89EA-CCF25E3B9ED2/sa00000893/tm201610201524012212534/tm201610201524012212534_All.wav";
+    public List<AudioInfo> getAudioInfos() {
+        List<AudioInfo> audioInfos = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            AudioInfo info = new AudioInfo() {
+                @Override
+                public String getAudioTitle() {
+                    return "info:" + System.currentTimeMillis();
+                }
+
+                @Override
+                public String getAudioUrl() {
+                    return "http://www.baidu.com/baidu.mp3";
+                }
+            };
+            audioInfos.add(info);
+        }
+
+        return audioInfos;
     }
 
     @Override
