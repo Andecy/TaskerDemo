@@ -38,7 +38,6 @@ public class DefaultFillBlankFragment extends BaseItemFragment implements TextWa
     protected void initView(View view, @Nullable Bundle savedInstanceState) {
         super.initView(view, savedInstanceState);
         et_answer.setText(mItemAnswer.getAnswer());
-        et_answer.setSaveEnabled(false);
         et_answer.addTextChangedListener(this);
     }
 

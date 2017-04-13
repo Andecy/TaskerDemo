@@ -16,6 +16,7 @@
         <include layout="@layout/tasker_module_item_que"/>
 
         <com.lancoo.tasker.view.WritableEditText
+            android:saveEnabled="false"
             android:id="@+id/et_tasker_item_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
