@@ -214,7 +214,13 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
         //---player--------
         mAudioInfos = topicTimu.getAudioInfos();
-        setPlayer(topicTimu.getAudioInfos().get(0));
+        if (topicTimu.getAudioInfos() == null || topicTimu.getAudioInfos().isEmpty()) {
+            rl_player.setVisibility(GONE);
+        } else {
+            rl_player.setVisibility(VISIBLE);
+            setPlayer(topicTimu.getAudioInfos().get(0));
+
+        }
     }
 
 
@@ -312,11 +318,6 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     //===============================听力=====================
 
     private void setPlayer(AudioInfo info) {
-        if (TextUtils.isEmpty(info.getAudioUrl())) {
-            rl_player.setVisibility(GONE);
-            return;
-        }
-        rl_player.setVisibility(VISIBLE);
         if (mAudioPlayer == null) {
             mAudioPlayer = new AudioPlayer();
             mAudioPlayer.setAudioPlayListener(this);
@@ -395,7 +396,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
                 rv_player_list.setLayoutManager(new LinearLayoutManager(getContext()));
                 rv_player_list.setItemAnimator(new DefaultItemAnimator());
                 rv_player_list.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
-                mPlayerListAdapter = new PlayerListAdapter();
+                mPlayerListAdapter = new PlayerListAdapter(mAudioInfos);
                 rv_player_list.setAdapter(mPlayerListAdapter);
             }
             tv_player_count.setText("播放列表(" + mAudioInfos.size() + ")");

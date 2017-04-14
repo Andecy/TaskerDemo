@@ -3,6 +3,10 @@ package com.lancoo.tasker.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
+import com.lancoo.tasker.module.timu.AudioInfo;
+
+import java.util.List;
+
 /**
  * Author: Andecy
  * Time: 2017/4/13
@@ -10,19 +14,26 @@ import android.view.ViewGroup;
  * Description: TODO
  */
 
-public class PlayerListAdapter extends RecyclerView.Adapter {
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListVH> {
+    private List<AudioInfo> mAudioInfos;
+
+    public PlayerListAdapter(List<AudioInfo> audioInfos) {
+        mAudioInfos = audioInfos;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+    public PlayerListVH onCreateViewHolder(ViewGroup parent, int viewType) {
+        return PlayerListVH.getInstance(parent);
     }
+
+    @Override
+    public void onBindViewHolder(PlayerListVH holder, int position) {
+        holder.handleData(mAudioInfos.get(position));
+    }
+
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mAudioInfos.size();
     }
 }

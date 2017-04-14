@@ -1,6 +1,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rl_module_player"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_player">
@@ -18,7 +19,8 @@
         android:layout_marginLeft="@dimen/padding_screen"
         android:src="@mipmap/tasker_ic_player_cd"/>
 
-    <SeekBar
+    <android.support.v7.widget.AppCompatSeekBar
+        app:theme="@style/Base.Widget.AppCompat.SeekBar"
         android:id="@+id/sb_player_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
