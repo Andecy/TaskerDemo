@@ -205,7 +205,8 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
         tv_itemCount.setText("/(" + topicTimu.getItemTimus().size() + ")");
         tv_type.setText("(大题总分：" + topicTimu.getScore() + "分)" + topicTimu.getTypeName());
-        if (TextUtils.isEmpty(topicTimu.getContent()) && topicTimu.getAudioInfos() == null) {
+        if (TextUtils.isEmpty(topicTimu.getContent()) &&
+                (topicTimu.getAudioInfos() == null || topicTimu.getAudioInfos().isEmpty())) {
             mSplitView.setSplitRatio(0);
         } else {
             mSplitView.setSplitRatio(0.3f);
