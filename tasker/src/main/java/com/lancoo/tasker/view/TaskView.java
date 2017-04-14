@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.AppCompatSeekBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +20,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.lancoo.tasker.R;
@@ -58,7 +58,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     private RelativeLayout rl_player;
     private TextView tv_player_time;
     private TextView tv_player_title;
-    private SeekBar sb_player;
+    private AppCompatSeekBar sb_player;
     private ImageView iv_player_start;
     private ImageView iv_player_list;
     private AudioPlayer mAudioPlayer;
@@ -317,6 +317,10 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     }
 
     //===============================听力=====================
+
+    public AudioPlayer getAudioPlayer() {
+        return mAudioPlayer;
+    }
 
     private void setPlayer(AudioInfo info) {
         if (mAudioPlayer == null) {
