@@ -19,7 +19,7 @@ import com.lancoo.tasker.module.timu.AudioInfo;
  * Description: TODO
  */
 
-public class PlayerListVH extends RecyclerView.ViewHolder {
+public class PlayerListVH extends RecyclerView.ViewHolder implements View.OnClickListener{
     private Context mContext;
 
     private TextView tv_name;
@@ -38,6 +38,8 @@ public class PlayerListVH extends RecyclerView.ViewHolder {
         tv_name = (TextView) itemView.findViewById(R.id.tv_item_player_name);
         tv_time = (TextView) itemView.findViewById(R.id.tv_item_player_time);
         iv_status = (ImageView) itemView.findViewById(R.id.iv_item_player_status);
+        iv_status.setOnClickListener(this);
+
     }
 
     public void handleData(AudioInfo info) {
@@ -57,5 +59,9 @@ public class PlayerListVH extends RecyclerView.ViewHolder {
     public static PlayerListVH getInstance(ViewGroup parent, AudioPlayer audioPlayer) {
         return new PlayerListVH(LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.tasker_item_player_list, parent, false), audioPlayer);
+    }
+
+    @Override
+    public void onClick(View v) {
     }
 }

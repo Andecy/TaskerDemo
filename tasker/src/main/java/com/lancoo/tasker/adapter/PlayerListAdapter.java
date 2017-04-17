@@ -19,14 +19,14 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListVH> {
     private List<AudioInfo> mAudioInfos;
     private AudioPlayer mAudioPlayer;
 
-    public PlayerListAdapter(AudioPlayer audioPlayer,List<AudioInfo> audioInfos) {
+    public PlayerListAdapter(AudioPlayer audioPlayer, List<AudioInfo> audioInfos) {
         mAudioInfos = audioInfos;
         mAudioPlayer = audioPlayer;
     }
 
     @Override
     public PlayerListVH onCreateViewHolder(ViewGroup parent, int viewType) {
-        return PlayerListVH.getInstance(parent,mAudioPlayer);
+        return PlayerListVH.getInstance(parent, mAudioPlayer);
     }
 
     @Override

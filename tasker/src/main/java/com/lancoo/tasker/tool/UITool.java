@@ -3,7 +3,7 @@ package com.lancoo.tasker.tool;
 import android.text.TextUtils;
 import android.widget.TextView;
 
-import com.blankj.utilcode.utils.ScreenUtils;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.zzhoujay.richtext.CacheType;
 import com.zzhoujay.richtext.ImageHolder;
 import com.zzhoujay.richtext.RichText;

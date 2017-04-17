@@ -1,6 +1,7 @@
 package com.lancoo.tasker.view;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.media.MediaPlayer;
 import android.support.annotation.IdRes;
@@ -9,11 +10,11 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -400,13 +401,19 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
                 rv_player_list.setLayoutManager(new LinearLayoutManager(getContext()));
                 rv_player_list.setItemAnimator(new DefaultItemAnimator());
-                rv_player_list.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
+//                rv_player_list.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
                 mPlayerListAdapter = new PlayerListAdapter(mAudioPlayer, mAudioInfos);
                 rv_player_list.setAdapter(mPlayerListAdapter);
             }
-            tv_player_count.setText("所有录音(" + mAudioInfos.size() + ")");
+            tv_player_count.setText("音频列表(" + mAudioInfos.size() + ")");
             mPlayerListAdapter.notifyDataSetChanged();
             mPlayerListDialog.show();
+            mPlayerListDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    Log.w(TAG,"onDismiss");
+                }
+            });
         }
 
     }

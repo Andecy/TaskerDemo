@@ -5,7 +5,7 @@ import android.content.Context;
 import android.text.method.KeyListener;
 import android.util.AttributeSet;
 
-import com.blankj.utilcode.utils.KeyboardUtils;
+import com.blankj.utilcode.util.KeyboardUtils;
 
 /**
  * 作者(Author): Andecy on 2016/2/21.

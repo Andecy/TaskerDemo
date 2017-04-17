@@ -6,8 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
-import com.blankj.utilcode.utils.ToastUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.lancoo.tasker.adapter.SimpleItemAdapter;
 import com.lancoo.tasker.module.TaskData;
 import com.lancoo.tasker.view.TaskView;
@@ -22,7 +24,7 @@ import com.lancoo.taskerdemo.model.timu.KSTaskTimu;
  */
 
 public class DemoActivity extends FragmentActivity
-//        implements CompoundButton.OnCheckedChangeListener
+        implements CompoundButton.OnCheckedChangeListener
 {
     private TaskView mTaskView;
 
@@ -32,8 +34,8 @@ public class DemoActivity extends FragmentActivity
 
     private SimpleItemAdapter mSimpleItemAdapter;
 
-//    private SwitchCompat switch_answerable;
-//    private SwitchCompat switch_standardable;
+    private ToggleButton switch_answerable;
+    private ToggleButton switch_standardable;
 
     private KSTaskTimu mKSTaskTimu;
     private KSTaskAnswer mKSTaskAnswer;
@@ -47,11 +49,11 @@ public class DemoActivity extends FragmentActivity
         setContentView(R.layout.activity_demo);
 
         mTaskView = (TaskView) findViewById(R.id.tasker_demo);
-//        switch_answerable = (SwitchCompat) findViewById(R.id.sc_answerable);
-//        switch_standardable = (SwitchCompat) findViewById(R.id.sc_standardable);
-//
-//        switch_answerable.setOnCheckedChangeListener(this);
-//        switch_standardable.setOnCheckedChangeListener(this);
+        switch_answerable = (ToggleButton) findViewById(R.id.sc_answerable);
+        switch_standardable = (ToggleButton) findViewById(R.id.sc_standardable);
+
+        switch_answerable.setOnCheckedChangeListener(this);
+        switch_standardable.setOnCheckedChangeListener(this);
 
         mKSTaskTimu = new KSTaskTimu();
         mKSTaskAnswer = new KSTaskAnswer();
@@ -60,8 +62,8 @@ public class DemoActivity extends FragmentActivity
 
         mSimpleItemAdapter = new SimpleItemAdapter(getSupportFragmentManager(), mTaskData);
 
-//        mSimpleItemAdapter.setAnswerable(switch_answerable.isChecked());
-//        mSimpleItemAdapter.setAnalysisable(switch_standardable.isChecked());
+        mSimpleItemAdapter.setAnswerable(switch_answerable.isChecked());
+        mSimpleItemAdapter.setAnalysisable(switch_standardable.isChecked());
 
         mTaskView.setItemAdapter(mSimpleItemAdapter);
 
@@ -116,15 +118,15 @@ public class DemoActivity extends FragmentActivity
         }
     }
 
-//    @Override
-//    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//        switch (buttonView.getId()) {
-//            case R.id.sc_answerable:
-//                mSimpleItemAdapter.setAnswerable(!isChecked);
-//                break;
-//            case R.id.sc_standardable:
-//                mSimpleItemAdapter.setAnalysisable(!isChecked);
-//                break;
-//        }
-//    }
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()) {
+            case R.id.sc_answerable:
+                mSimpleItemAdapter.setAnswerable(!isChecked);
+                break;
+            case R.id.sc_standardable:
+                mSimpleItemAdapter.setAnalysisable(!isChecked);
+                break;
+        }
+    }
 }

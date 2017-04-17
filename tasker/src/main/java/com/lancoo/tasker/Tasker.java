@@ -2,7 +2,8 @@ package com.lancoo.tasker;
 
 import android.app.Application;
 
-import com.blankj.utilcode.utils.Utils;
+import com.blankj.utilcode.util.Utils;
+
 
 /**
  * Author: Andecy
