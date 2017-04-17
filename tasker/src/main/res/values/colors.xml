@@ -16,4 +16,10 @@
     <color name="divider_dark">#bebebe</color>
     <color name="default_background">#E8E8E7</color>
 
+    <!--RB选项颜色-->
+    <color name="pcs_txt_grey">#939393</color>
+    <color name="pcs_txt_black1">#333333</color>
+    <color name="pcs_green_bg4">#00B26F</color>
+    <color name="pcs_txt_black3">#272727</color>
+
 </resources>

@@ -3,11 +3,9 @@ package com.lancoo.taskerdemo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SwitchCompat;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
 
 import com.blankj.utilcode.utils.ToastUtils;
 import com.lancoo.tasker.adapter.SimpleItemAdapter;
@@ -23,7 +21,9 @@ import com.lancoo.taskerdemo.model.timu.KSTaskTimu;
  * Description: TODO
  */
 
-public class DemoActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+public class DemoActivity extends FragmentActivity
+//        implements CompoundButton.OnCheckedChangeListener
+{
     private TaskView mTaskView;
 
     private int position;
@@ -32,8 +32,8 @@ public class DemoActivity extends AppCompatActivity implements CompoundButton.On
 
     private SimpleItemAdapter mSimpleItemAdapter;
 
-    private SwitchCompat switch_answerable;
-    private SwitchCompat switch_standardable;
+//    private SwitchCompat switch_answerable;
+//    private SwitchCompat switch_standardable;
 
     private KSTaskTimu mKSTaskTimu;
     private KSTaskAnswer mKSTaskAnswer;
@@ -47,11 +47,11 @@ public class DemoActivity extends AppCompatActivity implements CompoundButton.On
         setContentView(R.layout.activity_demo);
 
         mTaskView = (TaskView) findViewById(R.id.tasker_demo);
-        switch_answerable = (SwitchCompat) findViewById(R.id.sc_answerable);
-        switch_standardable = (SwitchCompat) findViewById(R.id.sc_standardable);
-
-        switch_answerable.setOnCheckedChangeListener(this);
-        switch_standardable.setOnCheckedChangeListener(this);
+//        switch_answerable = (SwitchCompat) findViewById(R.id.sc_answerable);
+//        switch_standardable = (SwitchCompat) findViewById(R.id.sc_standardable);
+//
+//        switch_answerable.setOnCheckedChangeListener(this);
+//        switch_standardable.setOnCheckedChangeListener(this);
 
         mKSTaskTimu = new KSTaskTimu();
         mKSTaskAnswer = new KSTaskAnswer();
@@ -60,8 +60,8 @@ public class DemoActivity extends AppCompatActivity implements CompoundButton.On
 
         mSimpleItemAdapter = new SimpleItemAdapter(getSupportFragmentManager(), mTaskData);
 
-        mSimpleItemAdapter.setAnswerable(switch_answerable.isChecked());
-        mSimpleItemAdapter.setAnalysisable(switch_standardable.isChecked());
+//        mSimpleItemAdapter.setAnswerable(switch_answerable.isChecked());
+//        mSimpleItemAdapter.setAnalysisable(switch_standardable.isChecked());
 
         mTaskView.setItemAdapter(mSimpleItemAdapter);
 
@@ -116,15 +116,15 @@ public class DemoActivity extends AppCompatActivity implements CompoundButton.On
         }
     }
 
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()) {
-            case R.id.sc_answerable:
-                mSimpleItemAdapter.setAnswerable(!isChecked);
-                break;
-            case R.id.sc_standardable:
-                mSimpleItemAdapter.setAnalysisable(!isChecked);
-                break;
-        }
-    }
+//    @Override
+//    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//        switch (buttonView.getId()) {
+//            case R.id.sc_answerable:
+//                mSimpleItemAdapter.setAnswerable(!isChecked);
+//                break;
+//            case R.id.sc_standardable:
+//                mSimpleItemAdapter.setAnalysisable(!isChecked);
+//                break;
+//        }
+//    }
 }

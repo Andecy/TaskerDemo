@@ -1,16 +1,21 @@
 package com.lancoo.tasker.ui;
 
+import android.os.Build;
 import android.support.annotation.IdRes;
-import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.blankj.utilcode.utils.SizeUtils;
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.module.answer.ItemAnswer;
 import com.lancoo.tasker.module.timu.ItemTimu;
+import com.lancoo.tasker.tool.LocalUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Author: Andecy
@@ -44,14 +49,31 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
         if (mRadioButtons == null) {
             mRadioButtons = new ArrayList<>();
             for (int i = 0; i < Math.min(mItemTimu.getOptions().length, mItemTimu.getOptionsKey().length); i++) {
-                RadioButton radioButton = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.tasker_module_item_topic_radiobtn, null);
-                radioButton.setText(mItemTimu.getOptionsKey()[i] + "." + mItemTimu.getOptions()[i]);
+//                RadioButton radioButton = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.tasker_module_item_topic_radiobtn, null);
+
+                RadioButton radioButton = new RadioButton(getActivity());
+                radioButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                radioButton.setText(mItemTimu.getOptions()[i]);
                 radioButton.setChecked(mItemTimu.getOptionsKey()[i].equals(mItemAnswer.getAnswer()));
                 radioButton.setTag(mItemTimu.getOptionsKey()[i]);
                 radioButton.setId(i);
                 mRadioGroup.addView(radioButton);
                 mRadioButtons.add(radioButton);
                 radioButton.setEnabled(b);
+
+                Pattern optionCodePattern = Pattern.compile("^[A-Z]");
+                Matcher matcher = optionCodePattern.matcher(mItemTimu.getOptionsKey()[i]);
+
+                while (matcher.find()) {
+                    radioButton.setButtonDrawable(LocalUtils.generateChoiceOptionDrawble(getActivity(), matcher.group().replace("、","")));
+                }
+
+                int leftPaddingPx = Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN ? SizeUtils.dp2px(6) : SizeUtils.dp2px(40);
+                radioButton.setPadding(leftPaddingPx, SizeUtils.dp2px(18), SizeUtils.dp2px(6), SizeUtils.dp2px(18));
+                radioButton.setTextColor(getResources().getColorStateList(R.color.pcs_exercise_option_color));
+                radioButton.setTextSize(15);
+
             }
         } else {
             for (RadioButton radioButton : mRadioButtons) {

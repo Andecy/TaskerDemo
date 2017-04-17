@@ -7,7 +7,7 @@
     android:background="@android:color/white">
 
     <include
-        layout="@layout/tasker_module_player2"
+        layout="@layout/tasker_module_player"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_player"
         android:layout_margin="@dimen/padding_screen"/>
