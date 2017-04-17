@@ -401,10 +401,10 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
                 rv_player_list.setLayoutManager(new LinearLayoutManager(getContext()));
                 rv_player_list.setItemAnimator(new DefaultItemAnimator());
                 rv_player_list.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
-                mPlayerListAdapter = new PlayerListAdapter(mAudioInfos);
+                mPlayerListAdapter = new PlayerListAdapter(mAudioPlayer, mAudioInfos);
                 rv_player_list.setAdapter(mPlayerListAdapter);
             }
-            tv_player_count.setText("播放列表(" + mAudioInfos.size() + ")");
+            tv_player_count.setText("所有录音(" + mAudioInfos.size() + ")");
             mPlayerListAdapter.notifyDataSetChanged();
             mPlayerListDialog.show();
         }

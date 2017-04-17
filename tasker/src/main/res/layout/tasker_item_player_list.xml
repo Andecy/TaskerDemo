@@ -1,14 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:padding="@dimen/padding_screen"
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:paddingLeft="@dimen/padding_screen">
+
+
+    <ImageView
+        android:id="@+id/iv_item_player_cd"
+        android:layout_width="@dimen/size_player_item_cd"
+        android:layout_height="@dimen/size_player_item_cd"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/tasker_ic_player_cd"/>
 
     <TextView
-        android:id="@+id/tv_item_player_name"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/size_player_item_cd"
+        android:layout_height="@dimen/size_player_item_cd"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        tools:text="02"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/padding_screen"
+        android:layout_toRightOf="@+id/iv_item_player_cd"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_item_player_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            tools:text="录音：春风十里"/>
+        <TextView
+            android:id="@+id/tv_item_player_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            tools:text="3分12秒"/>
+
+    </LinearLayout>
+    <View
+        style="@style/DivideHorizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/padding_screen"
+        android:layout_toRightOf="@+id/iv_item_player_cd"/>
+
+    <ImageView
+        android:id="@+id/iv_item_player_status"
+        android:layout_marginRight="@dimen/padding_screen"
+        android:src="@mipmap/tasker_ic_player_list_undo"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-</LinearLayout>
+</RelativeLayout>

@@ -11,4 +11,10 @@ public interface AudioInfo {
     String getAudioTitle();
 
     String getAudioUrl();
+
+    /**
+     *
+     * @return 单位：秒
+     */
+    int getPlayTime();
 }

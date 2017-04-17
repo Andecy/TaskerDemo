@@ -6,4 +6,6 @@
     <dimen name="size_player">37dp</dimen>
     <dimen name="marginleft_tv_ic_tv">6dp</dimen>
     <dimen name="height_player">69dp</dimen>
+
+    <dimen name="size_player_item_cd">26dp</dimen>
 </resources>

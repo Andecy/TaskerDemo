@@ -54,6 +54,11 @@ public class KSTopicTimu implements TopicTimu {
                 public String getAudioUrl() {
                     return "http://www.baidu.com/baidu.mp3";
                 }
+
+                @Override
+                public int getPlayTime() {
+                    return 321;
+                }
             };
             audioInfos.add(info);
         }

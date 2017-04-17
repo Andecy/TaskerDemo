@@ -3,6 +3,7 @@ package com.lancoo.tasker.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
+import com.lancoo.tasker.audio.AudioPlayer;
 import com.lancoo.tasker.module.timu.AudioInfo;
 
 import java.util.List;
@@ -16,14 +17,16 @@ import java.util.List;
 
 public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListVH> {
     private List<AudioInfo> mAudioInfos;
+    private AudioPlayer mAudioPlayer;
 
-    public PlayerListAdapter(List<AudioInfo> audioInfos) {
+    public PlayerListAdapter(AudioPlayer audioPlayer,List<AudioInfo> audioInfos) {
         mAudioInfos = audioInfos;
+        mAudioPlayer = audioPlayer;
     }
 
     @Override
     public PlayerListVH onCreateViewHolder(ViewGroup parent, int viewType) {
-        return PlayerListVH.getInstance(parent);
+        return PlayerListVH.getInstance(parent,mAudioPlayer);
     }
 
     @Override
