@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.blankj.utilcode.util.SizeUtils;
+import com.blankj.utilcode.utils.SizeUtils;
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.module.answer.ItemAnswer;
 import com.lancoo.tasker.module.timu.ItemTimu;

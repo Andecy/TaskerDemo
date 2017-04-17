@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
-import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.utils.ToastUtils;
 import com.lancoo.tasker.adapter.SimpleItemAdapter;
 import com.lancoo.tasker.module.TaskData;
 import com.lancoo.tasker.view.TaskView;

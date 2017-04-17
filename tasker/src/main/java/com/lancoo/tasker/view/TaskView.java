@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.adapter.BaseItemAdapter;
+import com.lancoo.tasker.adapter.SingleItemClickListener;
 import com.lancoo.tasker.adapter.PlayerListAdapter;
 import com.lancoo.tasker.audio.AudioPlayListener;
 import com.lancoo.tasker.audio.AudioPlayer;
@@ -408,6 +409,17 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
             tv_player_count.setText("音频列表(" + mAudioInfos.size() + ")");
             mPlayerListAdapter.notifyDataSetChanged();
             mPlayerListDialog.show();
+            rv_player_list.addOnItemTouchListener(new SingleItemClickListener(rv_player_list, new SingleItemClickListener.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Log.w(TAG,"onItemClick");
+                }
+
+                @Override
+                public void onItemLongClick(View view, int position) {
+                    Log.w(TAG,"onItemLongClick");
+                }
+            }));
             mPlayerListDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {

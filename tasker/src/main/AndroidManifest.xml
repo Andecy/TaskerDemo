@@ -1,9 +1,5 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.lancoo.tasker">
-
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-sdk tools:overrideLibrary="com.blankj.utilcode"/>
-
 </manifest>
