@@ -49,8 +49,8 @@ public class DemoActivity extends FragmentActivity
         setContentView(R.layout.activity_demo);
 
         mTaskView = (TaskView) findViewById(R.id.tasker_demo);
-        switch_answerable = (ToggleButton) findViewById(R.id.sc_answerable);
-        switch_standardable = (ToggleButton) findViewById(R.id.sc_standardable);
+        switch_answerable = (ToggleButton) findViewById(R.id.tbtn_answerable);
+        switch_standardable = (ToggleButton) findViewById(R.id.tbtn_standardable);
 
         switch_answerable.setOnCheckedChangeListener(this);
         switch_standardable.setOnCheckedChangeListener(this);
@@ -106,26 +106,14 @@ public class DemoActivity extends FragmentActivity
         Log.w("Demo", "itemPos-->" + itemPosition);
     }
 
-    public void onAnswerableClick(View view) {
-        if (mSimpleItemAdapter != null) {
-            mSimpleItemAdapter.setAnswerable(!mSimpleItemAdapter.isAnswerable());
-        }
-    }
-
-    public void onStandardableClick(View view) {
-        if (mSimpleItemAdapter != null) {
-            mSimpleItemAdapter.setAnalysisable(!mSimpleItemAdapter.isStandardable());
-        }
-    }
-
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
-            case R.id.sc_answerable:
-                mSimpleItemAdapter.setAnswerable(!isChecked);
+            case R.id.tbtn_answerable:
+                mSimpleItemAdapter.setAnswerable(isChecked);
                 break;
-            case R.id.sc_standardable:
-                mSimpleItemAdapter.setAnalysisable(!isChecked);
+            case R.id.tbtn_standardable:
+                mSimpleItemAdapter.setAnalysisable(isChecked);
                 break;
         }
     }

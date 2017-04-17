@@ -36,18 +36,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ToggleButton
-            android:id="@+id/sc_answerable"
+            android:id="@+id/tbtn_answerable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onAnswerableClick"
-            android:text="作答"/>
-        <Switch
-            android:id="@+id/sc_standardable"
+            android:textOff="作答关"
+            android:textOn="作答开"/>
+        <ToggleButton
+            android:id="@+id/tbtn_standardable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/padding_screen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onStandardableClick"
-            android:text="答案解析"/>
+            android:textOff="解析关"
+            android:textOn="解析开"/>
     </LinearLayout>
     <com.lancoo.tasker.view.TaskView
         android:id="@+id/tasker_demo"
