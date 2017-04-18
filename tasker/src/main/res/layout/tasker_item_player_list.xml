@@ -15,6 +15,7 @@
         android:src="@mipmap/tasker_ic_player_cd"/>
 
     <TextView
+        android:id="@+id/tv_item_player_no"
         android:layout_width="@dimen/size_player_item_cd"
         android:layout_height="@dimen/size_player_item_cd"
         android:layout_centerVertical="true"

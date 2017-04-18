@@ -2,8 +2,6 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.lancoo.taskerdemo">
 
-    <uses-sdk tools:overrideLibrary="com.blankj.utilcode"/>
-
     <application
         android:name=".MyApp"
         android:allowBackup="true"

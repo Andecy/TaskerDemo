@@ -38,6 +38,8 @@ public class PlayerListVH extends RecyclerView.ViewHolder {
         tv_name = (TextView) itemView.findViewById(R.id.tv_item_player_name);
         tv_time = (TextView) itemView.findViewById(R.id.tv_item_player_time);
         iv_status = (ImageView) itemView.findViewById(R.id.iv_item_player_status);
+        iv_cd = (ImageView) itemView.findViewById(R.id.iv_item_player_cd);
+        tv_no = (TextView) itemView.findViewById(R.id.tv_item_player_no);
     }
 
     public void handleData(AudioInfo info) {

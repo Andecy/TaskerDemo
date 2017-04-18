@@ -53,7 +53,7 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
 
                 RadioButton radioButton = new RadioButton(getActivity());
                 radioButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
+                radioButton.setSaveEnabled(false);
                 radioButton.setText(mItemTimu.getOptions()[i]);
                 radioButton.setChecked(mItemTimu.getOptionsKey()[i].equals(mItemAnswer.getAnswer()));
                 radioButton.setTag(mItemTimu.getOptionsKey()[i]);
@@ -66,7 +66,7 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
                 Matcher matcher = optionCodePattern.matcher(mItemTimu.getOptionsKey()[i]);
 
                 while (matcher.find()) {
-                    radioButton.setButtonDrawable(LocalUtils.generateChoiceOptionDrawble(getActivity(), matcher.group().replace("、","")));
+                    radioButton.setButtonDrawable(LocalUtils.generateChoiceOptionDrawble(getActivity(), matcher.group().replace("、", "")));
                 }
 
                 int leftPaddingPx = Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN ? SizeUtils.dp2px(6) : SizeUtils.dp2px(40);
