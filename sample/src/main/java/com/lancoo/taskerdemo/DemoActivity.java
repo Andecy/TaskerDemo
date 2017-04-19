@@ -69,7 +69,7 @@ public class DemoActivity extends FragmentActivity
 
         mTaskView.setTaskTitleName("(试卷总分：5.0分)");
 
-        mTaskView.addTaskListener(new TaskView.TaskListener() {
+        mTaskView.setTaskListener(new TaskView.TaskListener() {
 
             @Override
             public void onTimuChanged(int topicPosition, int itemPosition) {
@@ -81,6 +81,13 @@ public class DemoActivity extends FragmentActivity
                 ToastUtils.showLongToast("播放出错");
             }
 
+        });
+
+        mTaskView.setOnItemSwitchClickListener(new TaskView.ItemSwitchListener() {
+            @Override
+            public void onItemSwitcherClick(View view) {
+                ToastUtils.showLongToast("点击小题切换啦");
+            }
         });
     }
 

@@ -11,6 +11,7 @@ import com.lancoo.tasker.R;
 import com.lancoo.tasker.module.answer.ItemAnswer;
 import com.lancoo.tasker.module.timu.ItemTimu;
 import com.lancoo.tasker.tool.LocalUtils;
+import com.lancoo.tasker.tool.UITool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +55,8 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
                 RadioButton radioButton = new RadioButton(getActivity());
                 radioButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 radioButton.setSaveEnabled(false);
-                radioButton.setText(mItemTimu.getOptions()[i]);
+                UITool.setRichTitle(mItemTimu.getOptions()[i],radioButton);
+//                radioButton.setText(mItemTimu.getOptions()[i]);
                 radioButton.setChecked(mItemTimu.getOptionsKey()[i].equals(mItemAnswer.getAnswer()));
                 radioButton.setTag(mItemTimu.getOptionsKey()[i]);
                 radioButton.setId(i);

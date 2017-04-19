@@ -83,8 +83,11 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     private TextView tv_type;
     private TextView tv_itemNo;
     private TextView tv_itemCount;
+    private ImageView iv_switcher;
 
     private List<TaskListener> mListeners;
+
+    private ItemSwitchListener mSwitchListener;
 
     private BaseItemAdapter mItemAdapter;
 
@@ -131,6 +134,9 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         tv_type = findView(R.id.tv_tasker_topic_type);
         tv_itemNo = findView(R.id.tv_tasker_topic_item_no);
         tv_itemCount = findView(R.id.tv_tasker_topic_item_count);
+        iv_switcher = findView(R.id.iv_tasker_topic_switcher);
+
+        iv_switcher.setOnClickListener(this);
     }
 
     private <T extends View> T findView(@IdRes int viewId) {
@@ -266,7 +272,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
      * @param listener 要添加的监听器.
      * @see #removeTaskListener(TaskListener)
      */
-    public void addTaskListener(@NonNull TaskListener listener) {
+    public void setTaskListener(@NonNull TaskListener listener) {
         if (listener == null) {
             return;
         }
@@ -280,7 +286,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
      * 从Listener列表中移除某个用于监听作业事件的Listener.
      *
      * @param listener 要移除的监听器
-     * @see #addTaskListener(TaskListener)
+     * @see #setTaskListener(TaskListener)
      */
     public void removeTaskListener(@NonNull TaskListener listener) {
         if (listener == null) {
@@ -291,6 +297,16 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
             return;
         }
         mListeners.remove(listener);
+    }
+
+
+    public void setOnItemSwitchClickListener(@NonNull ItemSwitchListener listener) {
+        if (listener == null) {
+            return;
+        }
+
+        iv_switcher.setVisibility(VISIBLE);
+        mSwitchListener = listener;
     }
 
     public void setItemAdapter(@NonNull BaseItemAdapter adapter) {
@@ -412,20 +428,22 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
             rv_player_list.addOnItemTouchListener(new SingleItemClickListener(rv_player_list, new SingleItemClickListener.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    Log.w(TAG,"onItemClick");
+                    Log.w(TAG, "onItemClick");
                 }
 
                 @Override
                 public void onItemLongClick(View view, int position) {
-                    Log.w(TAG,"onItemLongClick");
+                    Log.w(TAG, "onItemLongClick");
                 }
             }));
             mPlayerListDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
-                    Log.w(TAG,"onDismiss");
+                    Log.w(TAG, "onDismiss");
                 }
             });
+        } else if (id == R.id.iv_tasker_topic_switcher && mSwitchListener != null) {
+            mSwitchListener.onItemSwitcherClick(v);
         }
 
     }
@@ -447,5 +465,10 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         @Override
         public void onTimuChanged(int topicPosition, int itemPosition) {
         }
+    }
+
+    public interface ItemSwitchListener {
+
+        void onItemSwitcherClick(View view);
     }
 }
