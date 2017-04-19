@@ -45,8 +45,11 @@ public class PlayerListVH extends RecyclerView.ViewHolder {
     public void handleData(AudioInfo info) {
         tv_name.setText(info.getAudioTitle());
         tv_time.setText(info.getPlayTime() + "");
-        if (mAudioPlayer == null) {
-            return;
+
+        if (info.getPlayTime() == 0) {
+            tv_time.setVisibility(View.INVISIBLE);
+        } else {
+            tv_time.setVisibility(View.VISIBLE);
         }
 
         if (info.getAudioUrl().equals(mAudioPlayer.getCurrentUri())) {
