@@ -19,7 +19,7 @@ import com.lancoo.tasker.module.timu.AudioInfo;
  * Description: TODO
  */
 
-public class PlayerListVH extends RecyclerView.ViewHolder {
+public class PlayerListVH extends RecyclerView.ViewHolder implements View.OnClickListener {
     private Context mContext;
 
     private TextView tv_name;
@@ -30,21 +30,30 @@ public class PlayerListVH extends RecyclerView.ViewHolder {
 
     private AudioPlayer mAudioPlayer;
 
-    public PlayerListVH(View itemView, AudioPlayer audioPlayer) {
+    private SingleItemClickListener mItemClickListener;
+
+    private int curPosition;
+
+    public PlayerListVH(View itemView, AudioPlayer audioPlayer,SingleItemClickListener singleItemClickListener) {
         super(itemView);
         mContext = itemView.getContext();
         mAudioPlayer = audioPlayer;
+        mItemClickListener = singleItemClickListener;
 
         tv_name = (TextView) itemView.findViewById(R.id.tv_item_player_name);
         tv_time = (TextView) itemView.findViewById(R.id.tv_item_player_time);
         iv_status = (ImageView) itemView.findViewById(R.id.iv_item_player_status);
         iv_cd = (ImageView) itemView.findViewById(R.id.iv_item_player_cd);
         tv_no = (TextView) itemView.findViewById(R.id.tv_item_player_no);
+
+        itemView.setOnClickListener(this);
     }
 
-    public void handleData(AudioInfo info) {
+    public void handleData(AudioInfo info, int position) {
         tv_name.setText(info.getAudioTitle());
         tv_time.setText(info.getPlayTime() + "");
+
+        curPosition = position;
 
         if (info.getPlayTime() == 0) {
             tv_time.setVisibility(View.INVISIBLE);
@@ -61,8 +70,15 @@ public class PlayerListVH extends RecyclerView.ViewHolder {
         }
     }
 
-    public static PlayerListVH getInstance(ViewGroup parent, AudioPlayer audioPlayer) {
+    public static PlayerListVH getInstance(ViewGroup parent, AudioPlayer audioPlayer,SingleItemClickListener singleItemClickListener) {
         return new PlayerListVH(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.tasker_item_player_list, parent, false), audioPlayer);
+                R.layout.tasker_item_player_list, parent, false), audioPlayer,singleItemClickListener);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (mItemClickListener != null) {
+            mItemClickListener.onItemOnClick(v, curPosition);
+        }
     }
 }

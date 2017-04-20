@@ -18,6 +18,7 @@ import java.util.List;
 public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListVH> {
     private List<AudioInfo> mAudioInfos;
     private AudioPlayer mAudioPlayer;
+    private SingleItemClickListener mItemClickListener;
 
     public PlayerListAdapter(AudioPlayer audioPlayer, List<AudioInfo> audioInfos) {
         mAudioInfos = audioInfos;
@@ -26,14 +27,17 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListVH> {
 
     @Override
     public PlayerListVH onCreateViewHolder(ViewGroup parent, int viewType) {
-        return PlayerListVH.getInstance(parent, mAudioPlayer);
+        return PlayerListVH.getInstance(parent, mAudioPlayer, mItemClickListener);
     }
 
     @Override
     public void onBindViewHolder(PlayerListVH holder, int position) {
-        holder.handleData(mAudioInfos.get(position));
+        holder.handleData(mAudioInfos.get(position), position);
     }
 
+    public void setItemClickListener(SingleItemClickListener itemClickListener) {
+        mItemClickListener = itemClickListener;
+    }
 
     @Override
     public int getItemCount() {

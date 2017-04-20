@@ -23,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.blankj.utilcode.utils.ToastUtils;
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.adapter.BaseItemAdapter;
 import com.lancoo.tasker.adapter.SingleItemClickListener;
@@ -418,24 +419,20 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
                 rv_player_list.setLayoutManager(new LinearLayoutManager(getContext()));
                 rv_player_list.setItemAnimator(new DefaultItemAnimator());
-//                rv_player_list.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
                 mPlayerListAdapter = new PlayerListAdapter(mAudioPlayer, mAudioInfos);
                 rv_player_list.setAdapter(mPlayerListAdapter);
+                mPlayerListAdapter.setItemClickListener(new SingleItemClickListener() {
+                    @Override
+                    public void onItemOnClick(View view, int postion) {
+                        ToastUtils.showShortToast("onItemClick-->" + postion);
+                        mPlayerListDialog.dismiss();
+                    }
+                });
             }
             tv_player_count.setText("音频列表(" + mAudioInfos.size() + ")");
             mPlayerListAdapter.notifyDataSetChanged();
             mPlayerListDialog.show();
-            rv_player_list.addOnItemTouchListener(new SingleItemClickListener(rv_player_list, new SingleItemClickListener.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    Log.w(TAG, "onItemClick");
-                }
 
-                @Override
-                public void onItemLongClick(View view, int position) {
-                    Log.w(TAG, "onItemLongClick");
-                }
-            }));
             mPlayerListDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
