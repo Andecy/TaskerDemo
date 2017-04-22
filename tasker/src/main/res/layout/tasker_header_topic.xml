@@ -3,26 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/default_background"
     android:paddingLeft="@dimen/padding_screen"
-    android:paddingRight="@dimen/padding_screen"
-    android:background="@color/default_background">
+    android:paddingRight="@dimen/padding_screen">
 
     <TextView
         android:id="@+id/tv_tasker_topic_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/padding_screen"
+        android:layout_toLeftOf="@+id/iv_tasker_topic_switcher"
+        android:singleLine="true"
         android:textColor="@color/primary_dark"
         tools:text="(阅读选择)"/>
 
     <ImageView
-        android:padding="@dimen/padding_screen"
         android:id="@+id/iv_tasker_topic_switcher"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/padding_tv_ic_drawable"
-        android:layout_toRightOf="@+id/tv_tasker_topic_type"
+        android:layout_toLeftOf="@+id/tv_tasker_topic_item_no"
+        android:padding="@dimen/padding_screen"
         android:src="@mipmap/tasker_ic_correct_item_switcher"/>
 
     <TextView
