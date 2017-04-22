@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/default_background"
-    android:padding="@dimen/padding_screen">
+    android:paddingLeft="@dimen/padding_screen"
+    android:paddingRight="@dimen/padding_screen"
+    android:background="@color/default_background">
 
     <TextView
         android:id="@+id/tv_tasker_topic_type"
@@ -15,9 +16,10 @@
         tools:text="(阅读选择)"/>
 
     <ImageView
+        android:padding="@dimen/padding_screen"
         android:id="@+id/iv_tasker_topic_switcher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/padding_tv_ic_drawable"
         android:layout_toRightOf="@+id/tv_tasker_topic_type"
