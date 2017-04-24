@@ -51,8 +51,8 @@ public class SplitView extends ViewGroup implements View.OnTouchListener {
         }
 
         //measure child
-        measureChild(mTop, widthMeasureSpec, MeasureSpec.makeMeasureSpec(mSplitHeight, MeasureSpec.EXACTLY));
         measureChild(mMid, widthMeasureSpec, heightMeasureSpec);
+        measureChild(mTop, widthMeasureSpec, MeasureSpec.makeMeasureSpec(mSplitHeight - mMid.getMeasuredHeight(), MeasureSpec.EXACTLY));
         measureChild(mBottom, widthMeasureSpec, MeasureSpec.makeMeasureSpec(getMeasuredHeight() - mSplitHeight, MeasureSpec.EXACTLY));
     }
 
@@ -120,7 +120,6 @@ public class SplitView extends ViewGroup implements View.OnTouchListener {
     }
 
     /**
-     *
      * @param splitRatio 0~1
      */
     public void setSplitRatio(float splitRatio) {

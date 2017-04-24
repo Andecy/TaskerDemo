@@ -14,7 +14,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,11 +22,10 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.blankj.utilcode.utils.ToastUtils;
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.adapter.BaseItemAdapter;
-import com.lancoo.tasker.adapter.SingleItemClickListener;
 import com.lancoo.tasker.adapter.PlayerListAdapter;
+import com.lancoo.tasker.adapter.SingleItemClickListener;
 import com.lancoo.tasker.audio.AudioPlayListener;
 import com.lancoo.tasker.audio.AudioPlayer;
 import com.lancoo.tasker.module.TaskData;
@@ -228,7 +226,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
             rl_player.setVisibility(GONE);
         } else {
             rl_player.setVisibility(VISIBLE);
-            setPlayer(topicTimu.getAudioInfos().get(0));
+            setPlayer(topicTimu.getAudioInfos().get(0), false);
 
         }
     }
@@ -341,13 +339,14 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         return mAudioPlayer;
     }
 
-    private void setPlayer(AudioInfo info) {
+    private void setPlayer(AudioInfo info, boolean isAutoPlayer) {
         if (mAudioPlayer == null) {
             mAudioPlayer = new AudioPlayer();
             mAudioPlayer.setAudioPlayListener(this);
             mAudioPlayer.bindSeekBar(sb_player);
             mAudioPlayer.bindTimer(tv_player_time);
         }
+        mAudioPlayer.setAutoPlay(isAutoPlayer);
         tv_player_title.setText(info.getAudioTitle());
         mAudioPlayer.loadUri(info.getAudioUrl());
     }
@@ -424,7 +423,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
                 mPlayerListAdapter.setItemClickListener(new SingleItemClickListener() {
                     @Override
                     public void onItemOnClick(View view, int postion) {
-                        ToastUtils.showShortToast("onItemClick-->" + postion);
+                        setPlayer(mAudioInfos.get(postion), true);
                         mPlayerListDialog.dismiss();
                     }
                 });
@@ -436,7 +435,6 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
             mPlayerListDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
-                    Log.w(TAG, "onDismiss");
                 }
             });
         } else if (id == R.id.iv_tasker_topic_switcher && mSwitchListener != null) {

@@ -73,7 +73,7 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
 
                 int leftPaddingPx = Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN ? SizeUtils.dp2px(6) : SizeUtils.dp2px(40);
                 radioButton.setPadding(leftPaddingPx, SizeUtils.dp2px(18), SizeUtils.dp2px(6), SizeUtils.dp2px(18));
-                radioButton.setTextColor(getResources().getColorStateList(R.color.pcs_exercise_option_color));
+                radioButton.setTextColor(getResources().getColorStateList(R.color.tasker_option_color));
                 radioButton.setTextSize(15);
 
             }

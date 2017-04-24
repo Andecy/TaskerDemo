@@ -34,7 +34,7 @@ public class PlayerListVH extends RecyclerView.ViewHolder implements View.OnClic
 
     private int curPosition;
 
-    public PlayerListVH(View itemView, AudioPlayer audioPlayer,SingleItemClickListener singleItemClickListener) {
+    public PlayerListVH(View itemView, AudioPlayer audioPlayer, SingleItemClickListener singleItemClickListener) {
         super(itemView);
         mContext = itemView.getContext();
         mAudioPlayer = audioPlayer;
@@ -65,14 +65,18 @@ public class PlayerListVH extends RecyclerView.ViewHolder implements View.OnClic
             iv_status.setImageResource(R.mipmap.tasker_ic_player_list_doing);
             iv_cd.setVisibility(View.VISIBLE);
             tv_no.setVisibility(View.INVISIBLE);
+            tv_name.setTextColor(mContext.getResources().getColor(R.color.primary));
         } else {
             iv_status.setImageResource(R.mipmap.tasker_ic_player_list_undo);
+            iv_cd.setVisibility(View.INVISIBLE);
+            tv_no.setVisibility(View.VISIBLE);
+            tv_name.setTextColor(mContext.getResources().getColor(R.color.tasker_txt_black1));
         }
     }
 
-    public static PlayerListVH getInstance(ViewGroup parent, AudioPlayer audioPlayer,SingleItemClickListener singleItemClickListener) {
+    public static PlayerListVH getInstance(ViewGroup parent, AudioPlayer audioPlayer, SingleItemClickListener singleItemClickListener) {
         return new PlayerListVH(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.tasker_item_player_list, parent, false), audioPlayer,singleItemClickListener);
+                R.layout.tasker_item_player_list, parent, false), audioPlayer, singleItemClickListener);
     }
 
     @Override
