@@ -14,13 +14,17 @@ import java.util.List;
  */
 
 public class KSTaskTimu implements TaskTimu {
+    private List<TopicTimu> mTopicTimus;
+
     @Override
     public List<TopicTimu> getTopicTimus() {
-        List<TopicTimu> topicTimus = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            topicTimus.add(new KSTopicTimu("大题题干" + i));
+        if (mTopicTimus == null) {
+            mTopicTimus = new ArrayList<>();
+            for (int i = 0; i < 5; i++) {
+                mTopicTimus.add(new KSTopicTimu("大题题干" + i));
+            }
         }
-        return topicTimus;
+        return mTopicTimus;
     }
 
     @Override

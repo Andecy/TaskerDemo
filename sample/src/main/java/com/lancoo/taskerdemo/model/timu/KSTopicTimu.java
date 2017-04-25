@@ -15,6 +15,8 @@ import java.util.List;
  */
 
 public class KSTopicTimu implements TopicTimu {
+    private List<AudioInfo> mAudioInfos;
+
     @Override
     public List<ItemTimu> getItemTimus() {
         List<ItemTimu> itemTimus = new ArrayList<>();
@@ -42,28 +44,30 @@ public class KSTopicTimu implements TopicTimu {
 
     @Override
     public List<AudioInfo> getAudioInfos() {
-        List<AudioInfo> audioInfos = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            AudioInfo info = new AudioInfo() {
-                @Override
-                public String getAudioTitle() {
-                    return "info:" + System.currentTimeMillis();
-                }
+        if (mAudioInfos == null) {
+            mAudioInfos = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                final int finalI = i;
+                AudioInfo info = new AudioInfo() {
+                    @Override
+                    public String getAudioTitle() {
+                        return "info:" + finalI;
+                    }
 
-                @Override
-                public String getAudioUrl() {
-                    return "http://www.baidu.com/baidu.mp3";
-                }
+                    @Override
+                    public String getAudioUrl() {
+                        return "http://www.baidu.com/" + getAudioTitle() + "baidu.mp3";
+                    }
 
-                @Override
-                public int getPlayTime() {
-                    return 321;
-                }
-            };
-            audioInfos.add(info);
+                    @Override
+                    public int getPlayTime() {
+                        return 321;
+                    }
+                };
+                mAudioInfos.add(info);
+            }
         }
-
-        return audioInfos;
+        return mAudioInfos;
     }
 
     @Override

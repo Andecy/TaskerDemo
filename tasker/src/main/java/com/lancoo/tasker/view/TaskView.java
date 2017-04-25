@@ -428,6 +428,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
                     }
                 });
             }
+            mPlayerListAdapter.setAudioInfos(mAudioInfos);
             tv_player_count.setText("音频列表(" + mAudioInfos.size() + ")");
             mPlayerListAdapter.notifyDataSetChanged();
             mPlayerListDialog.show();
