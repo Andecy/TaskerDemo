@@ -62,7 +62,8 @@ public abstract class BaseItemFragment extends TBaseFragment {
 
     public void initStandardableView(boolean enabled) {
         if (tv_answer != null) {
-            tv_answer.setText("标准答案：" + mItemTimu.getStandardAnswer());
+//            tv_answer.setText("标准答案：" + mItemTimu.getStandardAnswer());
+            UITool.setRichTitle("标准答案：" + mItemTimu.getStandardAnswer(), tv_answer);
 
             if (!TextUtils.isEmpty(mItemTimu.getStandardAnswer()) && enabled) {
                 tv_answer.setVisibility(View.VISIBLE);
@@ -72,7 +73,8 @@ public abstract class BaseItemFragment extends TBaseFragment {
         }
 
         if (tv_analysis != null) {
-            tv_analysis.setText("答案解析：" + mItemTimu.getAnalysis());
+//            tv_analysis.setText("答案解析：" + mItemTimu.getAnalysis());
+            UITool.setRichTitle("答案解析：" + mItemTimu.getAnalysis(), tv_analysis);
 
             if (!TextUtils.isEmpty(mItemTimu.getAnalysis()) && enabled) {
                 tv_analysis.setVisibility(View.VISIBLE);
