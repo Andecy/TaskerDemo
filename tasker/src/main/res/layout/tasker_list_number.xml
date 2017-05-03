@@ -12,11 +12,17 @@
         android:background="@color/primary">
 
         <ImageView
+            android:id="@+id/iv_list_number_close"
+            android:paddingLeft="@dimen/padding_screen"
+            android:paddingRight="@dimen/padding_screen"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:src="@mipmap/tasker_ic_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"/>
         <TextView
-            android:id="@+id/tv_list_number"
+            android:id="@+id/tv_list_number_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -26,7 +32,7 @@
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list_number"
+        android:id="@+id/rv_list_number_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

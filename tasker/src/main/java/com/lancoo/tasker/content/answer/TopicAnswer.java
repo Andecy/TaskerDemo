@@ -12,4 +12,9 @@ import java.util.List;
 public interface TopicAnswer {
 
     List<ItemAnswer> getItemAnswers();
+
+    /**
+     * @return 小题完成数量
+     */
+    int getItemAnswerFinishedCount();
 }

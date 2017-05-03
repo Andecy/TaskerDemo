@@ -53,8 +53,15 @@ public class TopicPopupWindow2 extends PopupWindow {
         setFocusable(true);
         setTouchable(true);
 
-        tv_title = (TextView) mContentView.findViewById(R.id.tv_list_number);
-        rv_content = (RecyclerView) mContentView.findViewById(R.id.rv_list_number);
+        tv_title = (TextView) mContentView.findViewById(R.id.tv_list_number_title);
+        rv_content = (RecyclerView) mContentView.findViewById(R.id.rv_list_number_content);
+        mContentView.findViewById(R.id.iv_list_number_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
         rv_content.setLayoutManager(new LinearLayoutManager(context));
         rv_content.setItemAnimator(new DefaultItemAnimator());
 

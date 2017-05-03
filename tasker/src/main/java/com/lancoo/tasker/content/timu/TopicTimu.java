@@ -11,13 +11,28 @@ import java.util.List;
 
 public interface TopicTimu {
 
+    /**
+     * @return 大题所属的小题
+     */
     List<ItemTimu> getItemTimus();
 
+    /**
+     * @return 大题题型
+     */
     String getTypeName();
 
+    /**
+     * @return 大题题干
+     */
     String getContent();
 
+    /**
+     * @return 音频信息
+     */
     List<AudioInfo> getAudioInfos();
 
+    /**
+     * @return 大题分数
+     */
     float getScore();
 }

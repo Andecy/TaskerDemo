@@ -1,61 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:paddingLeft="@dimen/padding_screen">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="@dimen/padding_screen"
+    android:layout_marginRight="@dimen/padding_screen"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="@dimen/radius_corner"
+    app:cardUseCompatPadding="true">
 
-
-    <ImageView
-        android:id="@+id/iv_item_player_cd"
-        android:layout_width="@dimen/size_player_item_cd"
-        android:layout_height="@dimen/size_player_item_cd"
-        android:layout_centerVertical="true"
-        android:src="@mipmap/tasker_ic_player_cd"/>
-
-    <TextView
-        android:id="@+id/tv_item_player_no"
-        android:layout_width="@dimen/size_player_item_cd"
-        android:layout_height="@dimen/size_player_item_cd"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        tools:text="02"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/padding_screen"
-        android:layout_toRightOf="@+id/iv_item_player_cd"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tv_item_player_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="录音：春风十里"/>
+        android:padding="@dimen/padding_screen">
+
+        <ImageView
+            android:id="@+id/iv_item_dotask_indicator"
+            android:src="@mipmap/tasker_ic_indicator_topic_list"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:layout_marginLeft="@dimen/padding_screen"
+            android:layout_toRightOf="@id/iv_item_dotask_indicator"
+            android:id="@+id/rl_item_dotask_topicno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:src="@color/accent"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_item_dotask_topicno"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:src="@color/default_background"/>
+            <TextView
+                android:id="@+id/tv_item_dotask_topicno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:maxLength="2"
+                android:text="50"
+                android:textSize="16sp"/>
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_item_player_time"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_item_dotask_topicno_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            tools:text="3分12秒"/>
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/padding_screen"
+            android:layout_marginRight="@dimen/padding_screen"
+            android:layout_toLeftOf="@+id/tv_item_dotask_topicno_count"
+            android:layout_toRightOf="@+id/rl_item_dotask_topicno"
+            android:paddingRight="@dimen/padding_screen"
+            android:singleLine="true"
+            tools:text="超级牛逼的题型12312313112331"/>
 
-    </LinearLayout>
-    <View
-        style="@style/DivideHorizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/padding_screen"
-        android:layout_toRightOf="@+id/iv_item_player_cd"/>
+        <TextView
+            android:id="@+id/tv_item_dotask_topicno_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/padding_screen"
+            android:paddingLeft="@dimen/padding_screen"
+            tools:text="0/1"/>
 
-    <ImageView
-        android:id="@+id/iv_item_player_status"
-        android:layout_marginRight="@dimen/padding_screen"
-        android:src="@mipmap/tasker_ic_player_list_undo"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
-</RelativeLayout>
+</android.support.v7.widget.CardView>

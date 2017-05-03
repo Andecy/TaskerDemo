@@ -50,8 +50,8 @@ public class ItemPopupWindow extends PopupWindow {
         setFocusable(true);
         setTouchable(true);
 
-        tv_title = (TextView) mContentView.findViewById(R.id.tv_list_number);
-        rv_content = (RecyclerView) mContentView.findViewById(R.id.rv_list_number);
+        tv_title = (TextView) mContentView.findViewById(R.id.tv_list_number_title);
+        rv_content = (RecyclerView) mContentView.findViewById(R.id.rv_list_number_content);
 
         rv_content.setAdapter(new TopicListAdapter(mTaskData.getTaskTimu().getTopicTimus(), mTaskData.getTaskAnswer().geTopicAnswers(), curTopicPosition));
     }
