@@ -16,7 +16,7 @@ import com.lancoo.tasker.content.timu.AudioInfo;
  * Description: TODO
  */
 
-public class PlayerListItem implements BaseRecylerItem<AudioInfo>{
+public class PlayerListItem implements BaseRecylerItem<AudioInfo> {
     private Context mContext;
 
     private TextView tv_name;
@@ -33,7 +33,7 @@ public class PlayerListItem implements BaseRecylerItem<AudioInfo>{
 
     @Override
     public int getLayoutResId() {
-        return R.layout.tasker_item_player_list;
+        return R.layout.tasker_item_player;
     }
 
     @Override

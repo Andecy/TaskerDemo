@@ -23,18 +23,18 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.lancoo.tasker.item.BaseItemAdapter;
-import com.lancoo.tasker.audio.PlayerListAdapter;
-import com.lancoo.tasker.audio.SingleItemClickListener;
 import com.lancoo.tasker.audio.AudioPlayListener;
 import com.lancoo.tasker.audio.AudioPlayer;
+import com.lancoo.tasker.audio.PlayerListAdapter;
+import com.lancoo.tasker.audio.SingleItemClickListener;
 import com.lancoo.tasker.content.TaskData;
 import com.lancoo.tasker.content.answer.TaskAnswer;
 import com.lancoo.tasker.content.timu.AudioInfo;
 import com.lancoo.tasker.content.timu.TaskTimu;
 import com.lancoo.tasker.content.timu.TopicTimu;
+import com.lancoo.tasker.item.BaseItemAdapter;
 import com.lancoo.tasker.timulist.ItemPopupWindow;
-import com.lancoo.tasker.timulist.TopicPopupWindow;
+import com.lancoo.tasker.timulist.TopicPopupWindow2;
 import com.lancoo.tasker.tool.UITool;
 import com.lancoo.tasker.view.SplitView;
 
@@ -73,6 +73,9 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     private PlayerListAdapter mPlayerListAdapter;
     private BottomSheetDialog mPlayerListDialog;
     private List<AudioInfo> mAudioInfos;
+
+    //小题List
+    private ItemPopupWindow mItemPopupWindow;
 
     //大题内容
     private TextView tv_content;
@@ -415,7 +418,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         } else if (id == R.id.iv_player_list) {
             if (mPlayerListDialog == null) {
                 mPlayerListDialog = new BottomSheetDialog(getContext());
-                mPlayerListDialog.setContentView(R.layout.tasker_player_list);
+                mPlayerListDialog.setContentView(R.layout.tasker_list_player);
                 rv_player_list = (RecyclerView) mPlayerListDialog.findViewById(R.id.rv_player_list);
                 tv_player_count = (TextView) mPlayerListDialog.findViewById(R.id.tv_player_count);
 
@@ -447,12 +450,12 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     }
 
     public void showItemSelectView() {
-        ItemPopupWindow itemPopupWindow = new ItemPopupWindow(getContext());
-        itemPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
+        mItemPopupWindow = new ItemPopupWindow(getContext(), mTaskData, curTopicPosition);
+        mItemPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
     }
 
     public void showTopicSelectView() {
-        TopicPopupWindow topicPopupWindow = new TopicPopupWindow(getContext());
+        TopicPopupWindow2 topicPopupWindow = new TopicPopupWindow2(getContext(), mTaskData, curTopicPosition);
         topicPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
     }
 

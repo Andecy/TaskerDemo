@@ -21,7 +21,6 @@ import java.util.List;
 public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<BaseRecyclerViewHolder> {
     private SingleItemClickListener mItemClickListener;
     private List<T> mDataList;
-    private int currentPos;
     private BaseRecyclerViewHolder<T> mViewHolder;
 
     public BaseRecyclerViewAdapter(@Nullable List<T> dataList) {
@@ -34,11 +33,6 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
     public void setItemClickListener(SingleItemClickListener itemClickListener) {
         mItemClickListener = itemClickListener;
     }
-
-    public SingleItemClickListener getItemClickListener() {
-        return mItemClickListener;
-    }
-
 
     public int getItemCount() {
         return this.mDataList == null ? 0 : this.mDataList.size();
@@ -57,10 +51,6 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
         return this.mDataList;
     }
 
-    public int getCurrentPosition() {
-        return currentPos;
-    }
-
     @Override
     public BaseRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mViewHolder = new BaseRecyclerViewHolder<>(parent, createItem(), mItemClickListener);
@@ -69,7 +59,6 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
 
     @Override
     public void onBindViewHolder(BaseRecyclerViewHolder holder, int position) {
-        currentPos = position;
         holder.handleData(mDataList.get(position), position);
     }
 }

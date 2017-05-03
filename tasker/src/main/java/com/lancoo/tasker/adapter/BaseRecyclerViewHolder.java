@@ -17,7 +17,7 @@ import com.lancoo.tasker.audio.SingleItemClickListener;
 public class BaseRecyclerViewHolder<T> extends RecyclerView.ViewHolder implements View.OnClickListener {
     private SingleItemClickListener mItemClickListener;
     private int curPosition;
-    protected BaseRecylerItem mItem;
+    protected BaseRecylerItem<T> mItem;
 
     public BaseRecyclerViewHolder(ViewGroup parent, BaseRecylerItem item, SingleItemClickListener singleItemClickListener) {
         super(LayoutInflater.from(parent.getContext()).inflate(item.getLayoutResId(), parent, false));
