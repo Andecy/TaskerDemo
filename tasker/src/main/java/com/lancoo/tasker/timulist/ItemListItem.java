@@ -1,6 +1,7 @@
 package com.lancoo.tasker.timulist;
 
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,10 +9,7 @@ import android.widget.TextView;
 import com.blankj.utilcode.utils.Utils;
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.adapter.BaseRecylerItem;
-import com.lancoo.tasker.content.answer.TopicAnswer;
-import com.lancoo.tasker.content.timu.TopicTimu;
-
-import java.util.List;
+import com.lancoo.tasker.content.answer.ItemAnswer;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -22,31 +20,25 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Description: TODO
  */
 
-public class TopicListItem implements BaseRecylerItem<TopicTimu> {
-    private List<TopicAnswer> mTopicAnswers;
+public class ItemListItem implements BaseRecylerItem<ItemAnswer> {
     private int curPosition;
 
-    private TextView tv_title;
-    private TextView tv_count;
     private TextView tv_no;
     private CircleImageView civ_no;
     private ImageView iv_indicator;
 
 
-    public TopicListItem(List<TopicAnswer> topicAnswers, int curPosition) {
-        mTopicAnswers = topicAnswers;
+    public ItemListItem(int curPosition) {
         this.curPosition = curPosition;
     }
 
     @Override
     public int getLayoutResId() {
-        return R.layout.tasker_item_number_topic;
+        return R.layout.tasker_item_number_item;
     }
 
     @Override
     public void bindViews(View view) {
-        tv_title = (TextView) view.findViewById(R.id.tv_item_number_title);
-        tv_count = (TextView) view.findViewById(R.id.tv_item_number_count);
         tv_no = (TextView) view.findViewById(R.id.tv_item_number_no);
         civ_no = (CircleImageView) view.findViewById(R.id.civ_item_number_no);
         iv_indicator = (ImageView) view.findViewById(R.id.iv_item_number_indicator);
@@ -58,16 +50,10 @@ public class TopicListItem implements BaseRecylerItem<TopicTimu> {
     }
 
     @Override
-    public void handleData(TopicTimu data, int position) {
-        tv_title.setText(data.getTypeName());
+    public void handleData(ItemAnswer data, int position) {
         tv_no.setText("" + (position + 1));
 
-        TopicAnswer topicAnswer = mTopicAnswers.get(position);
-
-        tv_count.setText(topicAnswer.getItemAnswerFinishedCount() + "/" + topicAnswer.getItemAnswers().size());
-
-
-        if (topicAnswer.getItemAnswerFinishedCount() == mTopicAnswers.get(position).getItemAnswers().size()) {
+        if (!TextUtils.isEmpty(data.getAnswer())) {
             civ_no.setImageResource(android.R.color.transparent);
             tv_no.setTextColor(Color.WHITE);
         } else {

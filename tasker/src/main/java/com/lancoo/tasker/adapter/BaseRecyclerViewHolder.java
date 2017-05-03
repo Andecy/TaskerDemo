@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lancoo.tasker.audio.SingleItemClickListener;
-
 /**
  * Author: Andecy
  * Time: 2017/4/28

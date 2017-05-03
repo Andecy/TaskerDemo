@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -14,6 +13,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.lancoo.tasker.R;
+import com.lancoo.tasker.adapter.BaseRecyclerViewAdapter;
+import com.lancoo.tasker.adapter.SingleItemClickListener;
 
 /**
  * Author: Andecy
@@ -30,10 +31,14 @@ public abstract class BaseTimuListPopupWindow extends PopupWindow {
     private TextView tv_title;
     private RecyclerView rv_content;
 
+    private SingleItemClickListener mListener;
 
-    public BaseTimuListPopupWindow(Context context, int curPosition) {
+    private BaseRecyclerViewAdapter mAdapter;
+
+
+    public BaseTimuListPopupWindow(Context context, int curPosition, SingleItemClickListener listener) {
         super(context);
-
+        mListener = listener;
         calWidthAndHeight(context);
         setWidth(mWidth);
         setHeight(mHeight);
@@ -42,24 +47,30 @@ public abstract class BaseTimuListPopupWindow extends PopupWindow {
         //设置布局与相关属性
         setContentView(view);
         setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        setAnimationStyle(R.style.PopStyleBottom);
         setFocusable(true);
         setTouchable(true);
 
         findView(view);
     }
 
-    protected void setAdapter(RecyclerView.Adapter adapter){
-        if (rv_content==null){
+    protected void setAdapter(BaseRecyclerViewAdapter adapter,
+                              RecyclerView.LayoutManager layoutManager) {
+        if (rv_content == null) {
             return;
         }
-
+        mAdapter = adapter;
+        rv_content.setLayoutManager(layoutManager);
         rv_content.setAdapter(adapter);
+        adapter.setItemClickListener(mListener);
     }
+
+
+
 
     private void findView(View view) {
         tv_title = (TextView) view.findViewById(R.id.tv_list_number_title);
         rv_content = (RecyclerView) view.findViewById(R.id.rv_list_number_content);
-        rv_content.setLayoutManager(new LinearLayoutManager(view.getContext()));
         rv_content.setItemAnimator(new DefaultItemAnimator());
         view.findViewById(R.id.iv_list_number_close).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +79,6 @@ public abstract class BaseTimuListPopupWindow extends PopupWindow {
             }
         });
     }
-
 
     /**
      * 设置PopupWindow的大小

@@ -33,4 +33,9 @@
         <item name="colorAccent">@color/primary</item>
     </style>
 
+    <style name="PopStyleBottom">
+        <item name="android:windowEnterAnimation">@anim/tasker_pop_show_bottom</item>
+        <item name="android:windowExitAnimation">@anim/tasker_pop_hide_bottom</item>
+    </style>
+
 </resources>

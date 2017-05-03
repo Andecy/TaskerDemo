@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.lancoo.tasker.audio.SingleItemClickListener;
-
 import java.util.ArrayList;
 import java.util.List;
 

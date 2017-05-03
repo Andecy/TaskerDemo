@@ -26,7 +26,7 @@ import android.widget.TextView;
 import com.lancoo.tasker.audio.AudioPlayListener;
 import com.lancoo.tasker.audio.AudioPlayer;
 import com.lancoo.tasker.audio.PlayerListAdapter;
-import com.lancoo.tasker.audio.SingleItemClickListener;
+import com.lancoo.tasker.adapter.SingleItemClickListener;
 import com.lancoo.tasker.content.TaskData;
 import com.lancoo.tasker.content.answer.TaskAnswer;
 import com.lancoo.tasker.content.timu.AudioInfo;
@@ -74,8 +74,24 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     private BottomSheetDialog mPlayerListDialog;
     private List<AudioInfo> mAudioInfos;
 
-    //小题List
+    //题目List
     private ItemPopupWindow mItemPopupWindow;
+    private TopicPopupWindow mTopicPopupWindow;
+    private SingleItemClickListener topicListener = new SingleItemClickListener() {
+        @Override
+        public void onItemOnClick(View view, int postion) {
+            changeTopicPosition(postion);
+            mTopicPopupWindow.dismiss();
+        }
+    };
+
+    private SingleItemClickListener itemListener = new SingleItemClickListener() {
+        @Override
+        public void onItemOnClick(View view, int postion) {
+            changeItemPosition(postion);
+            mItemPopupWindow.dismiss();
+        }
+    };
 
     //大题内容
     private TextView tv_content;
@@ -100,6 +116,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     private int curTopicPosition;
     private int curItemPosition;
+
 
     private ViewPager.OnPageChangeListener itemChangeListener;
 
@@ -449,14 +466,23 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         }
     }
 
+    /**
+     * 展示小题列表选择页面
+     */
     public void showItemSelectView() {
-        mItemPopupWindow = new ItemPopupWindow(getContext(), curTopicPosition);
+        mItemPopupWindow = new ItemPopupWindow(getContext(), curItemPosition,
+                mTaskData.getTaskAnswer().geTopicAnswers().get(curTopicPosition).getItemAnswers(),
+                itemListener);
         mItemPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
     }
 
+    /**
+     * 展示大题列表选择页面
+     */
     public void showTopicSelectView() {
-        TopicPopupWindow topicPopupWindow = new TopicPopupWindow(getContext(), mTaskData, curTopicPosition);
-        topicPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
+        mTopicPopupWindow = new TopicPopupWindow(getContext(), mTaskData, curTopicPosition,
+                topicListener);
+        mTopicPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
     }
 
     public interface TaskListener {
