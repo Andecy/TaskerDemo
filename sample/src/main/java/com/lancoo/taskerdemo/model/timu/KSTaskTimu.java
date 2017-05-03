@@ -1,7 +1,7 @@
 package com.lancoo.taskerdemo.model.timu;
 
-import com.lancoo.tasker.module.timu.TaskTimu;
-import com.lancoo.tasker.module.timu.TopicTimu;
+import com.lancoo.tasker.content.timu.TaskTimu;
+import com.lancoo.tasker.content.timu.TopicTimu;
 
 import java.util.ArrayList;
 import java.util.List;

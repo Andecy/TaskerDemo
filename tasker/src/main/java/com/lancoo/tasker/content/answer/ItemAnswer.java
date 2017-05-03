@@ -1,4 +1,4 @@
-package com.lancoo.tasker.module.answer;
+package com.lancoo.tasker.content.answer;
 
 import java.io.Serializable;
 

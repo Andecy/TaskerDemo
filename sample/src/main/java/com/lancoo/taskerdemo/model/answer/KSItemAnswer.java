@@ -1,6 +1,6 @@
 package com.lancoo.taskerdemo.model.answer;
 
-import com.lancoo.tasker.module.answer.ItemAnswer;
+import com.lancoo.tasker.content.answer.ItemAnswer;
 
 /**
  * Author: Andecy

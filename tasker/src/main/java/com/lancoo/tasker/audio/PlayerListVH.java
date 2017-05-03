@@ -1,4 +1,4 @@
-package com.lancoo.tasker.adapter;
+package com.lancoo.tasker.audio;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lancoo.tasker.R;
-import com.lancoo.tasker.audio.AudioPlayer;
-import com.lancoo.tasker.module.timu.AudioInfo;
+import com.lancoo.tasker.content.timu.AudioInfo;
 
 /**
  * Author: Andecy

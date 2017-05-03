@@ -1,4 +1,4 @@
-package com.lancoo.tasker.view;
+package com.lancoo.tasker;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,18 +23,20 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.lancoo.tasker.R;
-import com.lancoo.tasker.adapter.BaseItemAdapter;
-import com.lancoo.tasker.adapter.PlayerListAdapter;
-import com.lancoo.tasker.adapter.SingleItemClickListener;
+import com.lancoo.tasker.item.BaseItemAdapter;
+import com.lancoo.tasker.audio.PlayerListAdapter;
+import com.lancoo.tasker.audio.SingleItemClickListener;
 import com.lancoo.tasker.audio.AudioPlayListener;
 import com.lancoo.tasker.audio.AudioPlayer;
-import com.lancoo.tasker.module.TaskData;
-import com.lancoo.tasker.module.answer.TaskAnswer;
-import com.lancoo.tasker.module.timu.AudioInfo;
-import com.lancoo.tasker.module.timu.TaskTimu;
-import com.lancoo.tasker.module.timu.TopicTimu;
+import com.lancoo.tasker.content.TaskData;
+import com.lancoo.tasker.content.answer.TaskAnswer;
+import com.lancoo.tasker.content.timu.AudioInfo;
+import com.lancoo.tasker.content.timu.TaskTimu;
+import com.lancoo.tasker.content.timu.TopicTimu;
+import com.lancoo.tasker.timulist.ItemPopupWindow;
+import com.lancoo.tasker.timulist.TopicPopupWindow;
 import com.lancoo.tasker.tool.UITool;
+import com.lancoo.tasker.view.SplitView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -418,7 +421,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
                 rv_player_list.setLayoutManager(new LinearLayoutManager(getContext()));
                 rv_player_list.setItemAnimator(new DefaultItemAnimator());
-                mPlayerListAdapter = new PlayerListAdapter(mAudioPlayer, mAudioInfos);
+                mPlayerListAdapter = new PlayerListAdapter(mAudioInfos, mAudioPlayer);
                 rv_player_list.setAdapter(mPlayerListAdapter);
                 mPlayerListAdapter.setItemClickListener(new SingleItemClickListener() {
                     @Override
@@ -428,7 +431,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
                     }
                 });
             }
-            mPlayerListAdapter.setAudioInfos(mAudioInfos);
+            mPlayerListAdapter.setData(mAudioInfos);
             tv_player_count.setText("音频列表(" + mAudioInfos.size() + ")");
             mPlayerListAdapter.notifyDataSetChanged();
             mPlayerListDialog.show();
@@ -441,7 +444,16 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         } else if (id == R.id.iv_tasker_topic_switcher && mSwitchListener != null) {
             mSwitchListener.onItemSwitcherClick(v);
         }
+    }
 
+    public void showItemSelectView() {
+        ItemPopupWindow itemPopupWindow = new ItemPopupWindow(getContext());
+        itemPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
+    }
+
+    public void showTopicSelectView() {
+        TopicPopupWindow topicPopupWindow = new TopicPopupWindow(getContext());
+        topicPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
     }
 
     public interface TaskListener {

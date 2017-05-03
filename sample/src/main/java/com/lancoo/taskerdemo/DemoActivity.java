@@ -10,9 +10,9 @@ import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 import com.blankj.utilcode.utils.ToastUtils;
-import com.lancoo.tasker.adapter.SimpleItemAdapter;
-import com.lancoo.tasker.module.TaskData;
-import com.lancoo.tasker.view.TaskView;
+import com.lancoo.tasker.item.SimpleItemAdapter;
+import com.lancoo.tasker.content.TaskData;
+import com.lancoo.tasker.TaskView;
 import com.lancoo.taskerdemo.model.answer.KSTaskAnswer;
 import com.lancoo.taskerdemo.model.timu.KSTaskTimu;
 
@@ -24,8 +24,7 @@ import com.lancoo.taskerdemo.model.timu.KSTaskTimu;
  */
 
 public class DemoActivity extends FragmentActivity
-        implements CompoundButton.OnCheckedChangeListener
-{
+        implements CompoundButton.OnCheckedChangeListener {
     private TaskView mTaskView;
 
     private int position;
@@ -86,6 +85,7 @@ public class DemoActivity extends FragmentActivity
         mTaskView.setOnItemSwitchClickListener(new TaskView.ItemSwitchListener() {
             @Override
             public void onItemSwitcherClick(View view) {
+                mTaskView.showItemSelectView();
                 ToastUtils.showLongToast("点击小题切换啦");
             }
         });
@@ -123,5 +123,9 @@ public class DemoActivity extends FragmentActivity
                 mSimpleItemAdapter.setAnalysisable(isChecked);
                 break;
         }
+    }
+
+    public void onTopicListClick(View view) {
+        mTaskView.showTopicSelectView();
     }
 }

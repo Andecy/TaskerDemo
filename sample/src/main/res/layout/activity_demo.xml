@@ -48,10 +48,14 @@
             android:layout_marginLeft="@dimen/padding_screen"
             android:textOff="解析关"
             android:textOn="解析开"/>
+        <Button
+            android:text="大题列表"
+            android:onClick="onTopicListClick"
+            android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
     </LinearLayout>
-    <com.lancoo.tasker.view.TaskView
+    <com.lancoo.tasker.TaskView
         android:id="@+id/tasker_demo"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

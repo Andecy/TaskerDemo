@@ -1,7 +1,7 @@
-package com.lancoo.tasker.module;
+package com.lancoo.tasker.content;
 
-import com.lancoo.tasker.module.answer.TaskAnswer;
-import com.lancoo.tasker.module.timu.TaskTimu;
+import com.lancoo.tasker.content.answer.TaskAnswer;
+import com.lancoo.tasker.content.timu.TaskTimu;
 
 /**
  * Author: Andecy

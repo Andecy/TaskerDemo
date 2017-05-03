@@ -1,6 +1,6 @@
 package com.lancoo.taskerdemo.model.timu;
 
-import com.lancoo.tasker.module.timu.ItemTimu;
+import com.lancoo.tasker.content.timu.ItemTimu;
 
 /**
  * Author: Andecy

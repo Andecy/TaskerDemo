@@ -1,4 +1,4 @@
-package com.lancoo.tasker.module.timu;
+package com.lancoo.tasker.content.timu;
 
 import java.io.Serializable;
 

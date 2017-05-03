@@ -1,12 +1,10 @@
-package com.lancoo.tasker.adapter;
+package com.lancoo.tasker.item;
 
 import android.support.v4.app.FragmentManager;
 
-import com.lancoo.tasker.module.TaskData;
-import com.lancoo.tasker.module.answer.ItemAnswer;
-import com.lancoo.tasker.module.timu.ItemTimu;
-import com.lancoo.tasker.ui.BaseItemFragment;
-import com.lancoo.tasker.ui.DefaultSingleChoiceFragment;
+import com.lancoo.tasker.content.TaskData;
+import com.lancoo.tasker.content.answer.ItemAnswer;
+import com.lancoo.tasker.content.timu.ItemTimu;
 
 /**
  * Author: Andecy

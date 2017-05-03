@@ -1,7 +1,7 @@
 package com.lancoo.taskerdemo.model.answer;
 
-import com.lancoo.tasker.module.answer.TaskAnswer;
-import com.lancoo.tasker.module.answer.TopicAnswer;
+import com.lancoo.tasker.content.answer.TaskAnswer;
+import com.lancoo.tasker.content.answer.TopicAnswer;
 
 import java.util.ArrayList;
 import java.util.List;

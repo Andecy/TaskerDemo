@@ -1,8 +1,8 @@
 package com.lancoo.taskerdemo.model.timu;
 
-import com.lancoo.tasker.module.timu.AudioInfo;
-import com.lancoo.tasker.module.timu.ItemTimu;
-import com.lancoo.tasker.module.timu.TopicTimu;
+import com.lancoo.tasker.content.timu.AudioInfo;
+import com.lancoo.tasker.content.timu.ItemTimu;
+import com.lancoo.tasker.content.timu.TopicTimu;
 
 import java.util.ArrayList;
 import java.util.List;

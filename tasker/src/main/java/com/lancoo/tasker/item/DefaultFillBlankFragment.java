@@ -1,4 +1,4 @@
-package com.lancoo.tasker.ui;
+package com.lancoo.tasker.item;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,8 +7,8 @@ import android.text.TextWatcher;
 import android.view.View;
 
 import com.lancoo.tasker.R;
-import com.lancoo.tasker.module.answer.ItemAnswer;
-import com.lancoo.tasker.module.timu.ItemTimu;
+import com.lancoo.tasker.content.answer.ItemAnswer;
+import com.lancoo.tasker.content.timu.ItemTimu;
 import com.lancoo.tasker.view.WritableEditText;
 
 /**

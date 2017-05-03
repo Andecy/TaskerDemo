@@ -1,4 +1,4 @@
-package com.lancoo.tasker.ui;
+package com.lancoo.tasker.item;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;

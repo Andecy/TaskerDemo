@@ -1,4 +1,4 @@
-package com.lancoo.tasker.ui;
+package com.lancoo.tasker.item;
 
 import android.os.Build;
 import android.support.annotation.IdRes;
@@ -8,8 +8,8 @@ import android.widget.RadioGroup;
 
 import com.blankj.utilcode.utils.SizeUtils;
 import com.lancoo.tasker.R;
-import com.lancoo.tasker.module.answer.ItemAnswer;
-import com.lancoo.tasker.module.timu.ItemTimu;
+import com.lancoo.tasker.content.answer.ItemAnswer;
+import com.lancoo.tasker.content.timu.ItemTimu;
 import com.lancoo.tasker.tool.LocalUtils;
 import com.lancoo.tasker.tool.UITool;
 
