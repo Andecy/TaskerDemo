@@ -3,6 +3,8 @@ package com.lancoo.tasker.timulist;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -12,7 +14,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.lancoo.tasker.R;
-import com.lancoo.tasker.content.TaskData;
 
 /**
  * Author: Andecy
@@ -31,13 +32,11 @@ public class ItemPopupWindow extends PopupWindow {
     private TextView tv_title;
     private RecyclerView rv_content;
 
-    private TaskData mTaskData;
-    private int curTopicPosition;
+    private int curItemPosition;
 
-    public ItemPopupWindow(Context context, TaskData data, int curTopicPosition) {
+    public ItemPopupWindow(Context context, int curItemPosition) {
         super(context);
-        mTaskData = data;
-        this.curTopicPosition = curTopicPosition;
+        this.curItemPosition = curItemPosition;
 
         calWidthAndHeight(context);
         setWidth(mWidth);
@@ -53,7 +52,9 @@ public class ItemPopupWindow extends PopupWindow {
         tv_title = (TextView) mContentView.findViewById(R.id.tv_list_number_title);
         rv_content = (RecyclerView) mContentView.findViewById(R.id.rv_list_number_content);
 
-        rv_content.setAdapter(new TopicListAdapter(mTaskData.getTaskTimu().getTopicTimus(), mTaskData.getTaskAnswer().geTopicAnswers(), curTopicPosition));
+        rv_content.setLayoutManager(new LinearLayoutManager(context));
+        rv_content.setItemAnimator(new DefaultItemAnimator());
+
     }
 
 

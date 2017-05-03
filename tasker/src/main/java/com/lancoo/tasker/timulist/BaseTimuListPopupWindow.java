@@ -14,8 +14,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.lancoo.tasker.R;
-import com.lancoo.tasker.content.TaskData;
-
 
 /**
  * Author: Andecy
@@ -24,48 +22,51 @@ import com.lancoo.tasker.content.TaskData;
  * Description: TODO
  */
 
-public class TopicPopupWindow2 extends PopupWindow {
+public abstract class BaseTimuListPopupWindow extends PopupWindow {
 
     private int mWidth;
     private int mHeight;
 
-    private View mContentView;
-
     private TextView tv_title;
     private RecyclerView rv_content;
 
-    private TaskData mTaskData;
-    private int curTopicPosition;
 
-    public TopicPopupWindow2(Context context, TaskData data, int curTopicPosition) {
+    public BaseTimuListPopupWindow(Context context, int curPosition) {
         super(context);
-        mTaskData = data;
-        this.curTopicPosition = curTopicPosition;
 
         calWidthAndHeight(context);
         setWidth(mWidth);
         setHeight(mHeight);
 
-        mContentView = LayoutInflater.from(context).inflate(R.layout.tasker_list_number, null);
-        setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        View view = LayoutInflater.from(context).inflate(R.layout.tasker_list_number, null);
         //设置布局与相关属性
-        setContentView(mContentView);
+        setContentView(view);
+        setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         setFocusable(true);
         setTouchable(true);
 
-        tv_title = (TextView) mContentView.findViewById(R.id.tv_list_number_title);
-        rv_content = (RecyclerView) mContentView.findViewById(R.id.rv_list_number_content);
-        mContentView.findViewById(R.id.iv_list_number_close).setOnClickListener(new View.OnClickListener() {
+        findView(view);
+    }
+
+    protected void setAdapter(RecyclerView.Adapter adapter){
+        if (rv_content==null){
+            return;
+        }
+
+        rv_content.setAdapter(adapter);
+    }
+
+    private void findView(View view) {
+        tv_title = (TextView) view.findViewById(R.id.tv_list_number_title);
+        rv_content = (RecyclerView) view.findViewById(R.id.rv_list_number_content);
+        rv_content.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        rv_content.setItemAnimator(new DefaultItemAnimator());
+        view.findViewById(R.id.iv_list_number_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
             }
         });
-
-        rv_content.setLayoutManager(new LinearLayoutManager(context));
-        rv_content.setItemAnimator(new DefaultItemAnimator());
-
-        rv_content.setAdapter(new TopicListAdapter(mTaskData.getTaskTimu().getTopicTimus(), mTaskData.getTaskAnswer().geTopicAnswers(), curTopicPosition));
     }
 
 

@@ -34,7 +34,7 @@ import com.lancoo.tasker.content.timu.TaskTimu;
 import com.lancoo.tasker.content.timu.TopicTimu;
 import com.lancoo.tasker.item.BaseItemAdapter;
 import com.lancoo.tasker.timulist.ItemPopupWindow;
-import com.lancoo.tasker.timulist.TopicPopupWindow2;
+import com.lancoo.tasker.timulist.TopicPopupWindow;
 import com.lancoo.tasker.tool.UITool;
 import com.lancoo.tasker.view.SplitView;
 
@@ -450,12 +450,12 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     }
 
     public void showItemSelectView() {
-        mItemPopupWindow = new ItemPopupWindow(getContext(), mTaskData, curTopicPosition);
+        mItemPopupWindow = new ItemPopupWindow(getContext(), curTopicPosition);
         mItemPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
     }
 
     public void showTopicSelectView() {
-        TopicPopupWindow2 topicPopupWindow = new TopicPopupWindow2(getContext(), mTaskData, curTopicPosition);
+        TopicPopupWindow topicPopupWindow = new TopicPopupWindow(getContext(), mTaskData, curTopicPosition);
         topicPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
     }
 
