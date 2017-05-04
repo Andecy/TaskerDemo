@@ -17,4 +17,8 @@ public class Tasker {
     public static void init(Application application) {
         Utils.init(application);
     }
+
+    public static void setDebug(boolean debug){
+
+    }
 }
