@@ -23,12 +23,10 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.lancoo.tasker.adapter.SingleItemClickListener;
 import com.lancoo.tasker.audio.AudioPlayListener;
 import com.lancoo.tasker.audio.AudioPlayer;
 import com.lancoo.tasker.audio.PlayerListAdapter;
-import com.lancoo.tasker.adapter.SingleItemClickListener;
-import com.lancoo.tasker.content.TaskData;
-import com.lancoo.tasker.content.answer.ITaskAnswer;
 import com.lancoo.tasker.content.timu.IAudioInfo;
 import com.lancoo.tasker.content.timu.ITaskTimu;
 import com.lancoo.tasker.content.timu.ITopicTimu;
@@ -112,8 +110,6 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
     private BaseItemAdapter mItemAdapter;
 
-    private TaskData mTaskData;
-
     private int curTopicPosition;
     private int curItemPosition;
 
@@ -166,12 +162,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     }
 
 
-    private void injectData(@NonNull TaskData data) {
-        if (data == null || data.getTaskAnswer() == null || data.getTaskTimu() == null) {
-            return;
-        }
-        ITaskTimu taskTimu = data.getTaskTimu();
-        ITaskAnswer taskAnswer = data.getTaskAnswer();
+    private void injectData(ITaskTimu taskTimu) {
         setTaskInfo(taskTimu);
         setTopicInfo(0);
     }
@@ -207,8 +198,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
      */
     private void setTopicInfo(int position) {
         if (mItemAdapter == null ||
-                mItemAdapter.getData() == null ||
-                mItemAdapter.getData().getTaskTimu().getTopicTimus().size() <= position) {
+                mItemAdapter.getTaskTimu().getTopicTimus().size() <= position) {
             return;
         }
 
@@ -216,7 +206,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
         setItemInfo(0);
 
-        ITopicTimu topicTimu = mTaskData.getTaskTimu().getTopicTimus().get(position);
+        ITopicTimu topicTimu = mItemAdapter.getTaskTimu().getTopicTimus().get(position);
 
         if (mListeners != null) {
             int listenerCount = mListeners.size();
@@ -256,13 +246,6 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
 
     private void setItemInfo(int position) {
-        if (mItemAdapter == null ||
-                mItemAdapter.getData() == null ||
-                mItemAdapter.getData().getTaskTimu().getTopicTimus().get(curTopicPosition).getItemTimus().size() <= position) {
-
-            return;
-        }
-
         curItemPosition = position;
 
         vp_item.setCurrentItem(curItemPosition);
@@ -295,9 +278,6 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
      * @see #removeTaskListener(TaskListener)
      */
     public void setTaskListener(@NonNull TaskListener listener) {
-        if (listener == null) {
-            return;
-        }
         if (mListeners == null) {
             mListeners = new ArrayList<TaskListener>();
         }
@@ -311,9 +291,6 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
      * @see #setTaskListener(TaskListener)
      */
     public void removeTaskListener(@NonNull TaskListener listener) {
-        if (listener == null) {
-            return;
-        }
         if (mListeners == null) {
             // This can happen if this method is called before the first call to addDrawerListener
             return;
@@ -323,21 +300,14 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
 
     public void setOnItemSwitchClickListener(@NonNull ItemSwitchListener listener) {
-        if (listener == null) {
-            return;
-        }
-
         iv_switcher.setVisibility(VISIBLE);
         mSwitchListener = listener;
     }
 
     public void setItemAdapter(@NonNull BaseItemAdapter adapter) {
-        if (adapter != null && adapter.getData() != null) {
-            mItemAdapter = adapter;
-            mTaskData = mItemAdapter.getData();
-            injectData(mTaskData);
-            invalidate();
-        }
+        mItemAdapter = adapter;
+        injectData(mItemAdapter.getTaskTimu());
+        invalidate();
     }
 
     public void changeTopicPosition(int position) {
@@ -471,7 +441,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
      */
     public void showItemSelectView() {
         mItemPopupWindow = new ItemPopupWindow(getContext(), curItemPosition,
-                mTaskData.getTaskAnswer().geTopicAnswers().get(curTopicPosition).getItemAnswers(),
+                mItemAdapter.getTaskAnswer().geTopicAnswers().get(curTopicPosition).getItemAnswers(),
                 itemListener);
         mItemPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
     }
@@ -480,7 +450,10 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
      * 展示大题列表选择页面
      */
     public void showTopicSelectView() {
-        mTopicPopupWindow = new TopicPopupWindow(getContext(), mTaskData, curTopicPosition,
+        mTopicPopupWindow = new TopicPopupWindow(getContext(),
+                mItemAdapter.getTaskTimu().getTopicTimus(),
+                mItemAdapter.getTaskAnswer().geTopicAnswers(),
+                curTopicPosition,
                 topicListener);
         mTopicPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
     }

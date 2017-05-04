@@ -10,9 +10,8 @@ import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 import com.blankj.utilcode.utils.ToastUtils;
-import com.lancoo.tasker.item.SimpleItemAdapter;
-import com.lancoo.tasker.content.TaskData;
 import com.lancoo.tasker.TaskView;
+import com.lancoo.tasker.item.SimpleItemAdapter;
 import com.lancoo.taskerdemo.model.answer.KSTaskAnswer;
 import com.lancoo.taskerdemo.model.timu.KSTaskTimu;
 
@@ -37,12 +36,6 @@ public class DemoActivity extends FragmentActivity
     private ToggleButton switch_answerable;
     private ToggleButton switch_standardable;
 
-    private KSTaskTimu mKSTaskTimu;
-    private KSTaskAnswer mKSTaskAnswer;
-
-    private TaskData mTaskData;
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +48,8 @@ public class DemoActivity extends FragmentActivity
         switch_answerable.setOnCheckedChangeListener(this);
         switch_standardable.setOnCheckedChangeListener(this);
 
-        mKSTaskTimu = new KSTaskTimu();
-        mKSTaskAnswer = new KSTaskAnswer();
-
-        mTaskData = new TaskData(mKSTaskTimu, mKSTaskAnswer);
-
-        mSimpleItemAdapter = new SimpleItemAdapter(getSupportFragmentManager(), mTaskData);
+        mSimpleItemAdapter = new SimpleItemAdapter(getSupportFragmentManager(),
+                new KSTaskTimu(), new KSTaskAnswer());
 
         mSimpleItemAdapter.setAnswerable(switch_answerable.isChecked());
         mSimpleItemAdapter.setAnalysisable(switch_standardable.isChecked());

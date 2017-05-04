@@ -11,6 +11,9 @@ import java.util.List;
 
 public interface ITopicAnswer {
 
+    /**
+     * @return 小题作答
+     */
     List<? extends IItemAnswer> getItemAnswers();
 
     /**

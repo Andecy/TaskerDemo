@@ -3,9 +3,10 @@ package com.lancoo.tasker.item;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.lancoo.tasker.content.TaskData;
 import com.lancoo.tasker.content.answer.IItemAnswer;
+import com.lancoo.tasker.content.answer.ITaskAnswer;
 import com.lancoo.tasker.content.timu.IItemTimu;
+import com.lancoo.tasker.content.timu.ITaskTimu;
 
 /**
  * Author: Andecy
@@ -14,18 +15,21 @@ import com.lancoo.tasker.content.timu.IItemTimu;
  * Description: 描述不同体型采用的解析Fragment
  */
 
-public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
+public abstract class BaseItemAdapter<T extends ITaskTimu, A extends ITaskAnswer> extends FragmentStatePagerAdapter {
 
     private boolean mAnswerable = true;
     private boolean mStandardable = true;
 
-    private TaskData mData;
+    private T mTaskTimu;
+    private A mTaskAnswer;
 
     private int curTopicPosition;
 
-    public BaseItemAdapter(FragmentManager fm, TaskData data) {
+
+    public BaseItemAdapter(FragmentManager fm, T taskTimu, A taskAnswer) {
         super(fm);
-        mData = data;
+        mTaskTimu = taskTimu;
+        mTaskAnswer = taskAnswer;
     }
 
     public void update(int topicPosition) {
@@ -33,8 +37,12 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
         notifyDataSetChanged();
     }
 
-    public TaskData getData() {
-        return mData;
+    public T getTaskTimu() {
+        return mTaskTimu;
+    }
+
+    public A getTaskAnswer() {
+        return mTaskAnswer;
     }
 
     @Override
@@ -45,15 +53,15 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
     @Override
     public BaseItemFragment getItem(int position) {
         return getItemByType(
-                mData.getTaskTimu().getTopicTimus().get(curTopicPosition).getItemTimus().get(position),
-                mData.getTaskAnswer().geTopicAnswers().get(curTopicPosition).getItemAnswers().get(position));
+                mTaskTimu.getTopicTimus().get(curTopicPosition).getItemTimus().get(position),
+                mTaskAnswer.geTopicAnswers().get(curTopicPosition).getItemAnswers().get(position));
     }
 
     protected abstract BaseItemFragment getItemByType(IItemTimu itemTimu, IItemAnswer itemAnswer);
 
     @Override
     public int getCount() {
-        return mData.getTaskTimu().getTopicTimus().get(curTopicPosition).getItemTimus().size();
+        return mTaskTimu.getTopicTimus().get(curTopicPosition).getItemTimus().size();
     }
 
     public boolean isAnswerable() {
@@ -68,6 +76,7 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
     /**
      * 设置是否展示标准答案和解析
      * true==
+     *
      * @param answerable
      */
     public void setAnswerable(boolean answerable) {

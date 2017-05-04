@@ -1,7 +1,6 @@
 package com.lancoo.tasker.timulist;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.lancoo.tasker.adapter.BaseRecyclerViewAdapter;
 import com.lancoo.tasker.adapter.BaseRecylerItem;
@@ -21,7 +20,7 @@ public class TopicListAdapter extends BaseRecyclerViewAdapter<ITopicTimu> {
     private List<? extends ITopicAnswer> mTopicAnswers;
     private int curTopicPosition;
 
-    public TopicListAdapter(@Nullable List<? extends ITopicTimu> dataList, List<? extends ITopicAnswer> topicAnswers, int curTopicPosition) {
+    public TopicListAdapter(List<? extends ITopicTimu> dataList, List<? extends ITopicAnswer> topicAnswers, int curTopicPosition) {
         super(dataList);
         mTopicAnswers = topicAnswers;
         this.curTopicPosition = curTopicPosition;

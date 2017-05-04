@@ -11,7 +11,13 @@ import java.io.Serializable;
 
 public interface IItemAnswer extends Serializable {
 
+    /**
+     * @param answer 作答答案
+     */
     void setAnswer(String answer);
 
+    /**
+     * @return 作答答案
+     */
     String getAnswer();
 }

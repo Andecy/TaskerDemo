@@ -11,8 +11,14 @@ import java.util.List;
 
 public interface ITaskAnswer {
 
+    /**
+     * @return 用户Id
+     */
     String getUserId();
 
+    /**
+     * @return 大题作答
+     */
     List<? extends ITopicAnswer> geTopicAnswers();
 
 

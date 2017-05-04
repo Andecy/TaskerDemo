@@ -50,4 +50,14 @@ public class KSItemTimu implements IItemTimu {
     public String getAnalysis() {
         return "我是答案解析";
     }
+
+    @Override
+    public String getTypeName() {
+        return "单项选择";
+    }
+
+    @Override
+    public String getType() {
+        return "K01";
+    }
 }

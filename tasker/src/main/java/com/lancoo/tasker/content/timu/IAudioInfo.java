@@ -8,13 +8,19 @@ package com.lancoo.tasker.content.timu;
  */
 
 public interface IAudioInfo {
+
+    /**
+     * @return 音频标题
+     */
     String getAudioTitle();
 
+    /**
+     * @return 音频路径
+     */
     String getAudioUrl();
 
     /**
-     * 音频
-     * @return 单位：秒
+     * @return 音频时长 单位：秒(未知请传0)
      */
     int getPlayTime();
 }

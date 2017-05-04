@@ -2,9 +2,10 @@ package com.lancoo.tasker.item;
 
 import android.support.v4.app.FragmentManager;
 
-import com.lancoo.tasker.content.TaskData;
 import com.lancoo.tasker.content.answer.IItemAnswer;
+import com.lancoo.tasker.content.answer.ITaskAnswer;
 import com.lancoo.tasker.content.timu.IItemTimu;
+import com.lancoo.tasker.content.timu.ITaskTimu;
 
 /**
  * Author: Andecy
@@ -16,8 +17,8 @@ import com.lancoo.tasker.content.timu.IItemTimu;
 public class SimpleItemAdapter extends BaseItemAdapter {
 
 
-    public SimpleItemAdapter(FragmentManager fm, TaskData data) {
-        super(fm, data);
+    public SimpleItemAdapter(FragmentManager fm, ITaskTimu taskTimu, ITaskAnswer taskAnswer) {
+        super(fm, taskTimu, taskAnswer);
     }
 
     @Override

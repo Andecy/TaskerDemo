@@ -11,10 +11,19 @@ import java.util.List;
 
 public interface ITaskTimu {
 
+    /**
+     * @return 大题
+     */
     List<? extends ITopicTimu> getTopicTimus();
 
+    /**
+     * @return 作业标准分
+     */
     float getScore();
 
+    /**
+     * @return 作业名称
+     */
     String getTaskName();
 
 }

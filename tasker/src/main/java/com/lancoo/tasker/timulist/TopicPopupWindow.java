@@ -4,7 +4,10 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.lancoo.tasker.adapter.SingleItemClickListener;
-import com.lancoo.tasker.content.TaskData;
+import com.lancoo.tasker.content.answer.ITopicAnswer;
+import com.lancoo.tasker.content.timu.ITopicTimu;
+
+import java.util.List;
 
 
 /**
@@ -16,12 +19,12 @@ import com.lancoo.tasker.content.TaskData;
 
 public class TopicPopupWindow extends BaseTimuListPopupWindow {
 
-    public TopicPopupWindow(Context context, TaskData data, int curTopicPosition, SingleItemClickListener listener) {
+    public TopicPopupWindow(Context context, List<? extends ITopicTimu> dataList, List<? extends ITopicAnswer> topicAnswers, int curTopicPosition, SingleItemClickListener listener) {
         super(context, curTopicPosition, listener);
 
         setAdapter(new TopicListAdapter(
-                data.getTaskTimu().getTopicTimus(),
-                data.getTaskAnswer().geTopicAnswers(),
+                dataList,
+                topicAnswers,
                 curTopicPosition), new LinearLayoutManager(context));
     }
 }
