@@ -1,6 +1,6 @@
 package com.lancoo.taskerdemo.model.timu;
 
-import com.lancoo.tasker.content.timu.ItemTimu;
+import com.lancoo.tasker.content.timu.IItemTimu;
 
 /**
  * Author: Andecy
@@ -9,7 +9,7 @@ import com.lancoo.tasker.content.timu.ItemTimu;
  * Description: TODO
  */
 
-public class KSItemTimu implements ItemTimu {
+public class KSItemTimu implements IItemTimu {
     private String optionAsk;
 
     public KSItemTimu(String optionAsk) {

@@ -1,7 +1,7 @@
 package com.lancoo.taskerdemo.model.timu;
 
-import com.lancoo.tasker.content.timu.TaskTimu;
-import com.lancoo.tasker.content.timu.TopicTimu;
+import com.lancoo.tasker.content.timu.ITaskTimu;
+import com.lancoo.tasker.content.timu.ITopicTimu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +13,11 @@ import java.util.List;
  * Description: TODO
  */
 
-public class KSTaskTimu implements TaskTimu {
-    private List<TopicTimu> mTopicTimus;
+public class KSTaskTimu implements ITaskTimu {
+    private List<ITopicTimu> mTopicTimus;
 
     @Override
-    public List<TopicTimu> getTopicTimus() {
+    public List<ITopicTimu> getTopicTimus() {
         if (mTopicTimus == null) {
             mTopicTimus = new ArrayList<>();
             for (int i = 0; i < 5; i++) {

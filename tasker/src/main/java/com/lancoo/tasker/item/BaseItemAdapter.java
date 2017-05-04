@@ -4,9 +4,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.lancoo.tasker.content.TaskData;
-import com.lancoo.tasker.content.answer.ItemAnswer;
-import com.lancoo.tasker.content.timu.ItemTimu;
-import com.lancoo.tasker.item.BaseItemFragment;
+import com.lancoo.tasker.content.answer.IItemAnswer;
+import com.lancoo.tasker.content.timu.IItemTimu;
 
 /**
  * Author: Andecy
@@ -50,7 +49,7 @@ public abstract class BaseItemAdapter extends FragmentStatePagerAdapter {
                 mData.getTaskAnswer().geTopicAnswers().get(curTopicPosition).getItemAnswers().get(position));
     }
 
-    protected abstract BaseItemFragment getItemByType(ItemTimu itemTimu, ItemAnswer itemAnswer);
+    protected abstract BaseItemFragment getItemByType(IItemTimu itemTimu, IItemAnswer itemAnswer);
 
     @Override
     public int getCount() {

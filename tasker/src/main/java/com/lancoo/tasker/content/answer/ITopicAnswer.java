@@ -9,9 +9,9 @@ import java.util.List;
  * Description: TODO
  */
 
-public interface TopicAnswer {
+public interface ITopicAnswer {
 
-    List<ItemAnswer> getItemAnswers();
+    List<? extends IItemAnswer> getItemAnswers();
 
     /**
      * @return 小题完成数量

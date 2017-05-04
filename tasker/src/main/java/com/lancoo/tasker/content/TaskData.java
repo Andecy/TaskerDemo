@@ -1,7 +1,7 @@
 package com.lancoo.tasker.content;
 
-import com.lancoo.tasker.content.answer.TaskAnswer;
-import com.lancoo.tasker.content.timu.TaskTimu;
+import com.lancoo.tasker.content.answer.ITaskAnswer;
+import com.lancoo.tasker.content.timu.ITaskTimu;
 
 /**
  * Author: Andecy
@@ -12,19 +12,19 @@ import com.lancoo.tasker.content.timu.TaskTimu;
 
 public class TaskData {
 
-    private TaskTimu mTaskTimu;
-    private TaskAnswer mTaskAnswer;
+    private ITaskTimu mTaskTimu;
+    private ITaskAnswer mTaskAnswer;
 
-    public TaskData(TaskTimu taskTimu, TaskAnswer taskAnswer) {
+    public TaskData(ITaskTimu taskTimu, ITaskAnswer taskAnswer) {
         mTaskTimu = taskTimu;
         mTaskAnswer = taskAnswer;
     }
 
-    public TaskTimu getTaskTimu() {
+    public ITaskTimu getTaskTimu() {
         return mTaskTimu;
     }
 
-    public TaskAnswer getTaskAnswer() {
+    public ITaskAnswer getTaskAnswer() {
         return mTaskAnswer;
     }
 }

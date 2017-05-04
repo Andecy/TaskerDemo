@@ -18,10 +18,10 @@ import java.util.List;
 
 public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<BaseRecyclerViewHolder> {
     private SingleItemClickListener mItemClickListener;
-    private List<T> mDataList;
-    private BaseRecyclerViewHolder<T> mViewHolder;
+    private List<? extends T> mDataList;
+    private BaseRecyclerViewHolder<? extends T> mViewHolder;
 
-    public BaseRecyclerViewAdapter(@Nullable List<T> dataList) {
+    public BaseRecyclerViewAdapter(@Nullable List<? extends T> dataList) {
         if (dataList == null) {
             dataList = new ArrayList<>();
         }
@@ -36,16 +36,16 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
         return this.mDataList == null ? 0 : this.mDataList.size();
     }
 
-    public void setData(@NonNull List<T> data) {
+    public void setData(@NonNull List<? extends T> data) {
         this.mDataList = data;
     }
 
     @Keep
     @NonNull
-    public abstract BaseRecylerItem<T> createItem();
+    public abstract BaseRecylerItem<? extends T> createItem();
 
 
-    public List<T> getData() {
+    public List<? extends T> getData() {
         return this.mDataList;
     }
 

@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.blankj.utilcode.utils.Utils;
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.adapter.BaseRecylerItem;
-import com.lancoo.tasker.content.answer.ItemAnswer;
+import com.lancoo.tasker.content.answer.IItemAnswer;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -20,7 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Description: TODO
  */
 
-public class ItemListItem implements BaseRecylerItem<ItemAnswer> {
+public class ItemListItem implements BaseRecylerItem<IItemAnswer> {
     private int curPosition;
 
     private TextView tv_no;
@@ -50,7 +50,7 @@ public class ItemListItem implements BaseRecylerItem<ItemAnswer> {
     }
 
     @Override
-    public void handleData(ItemAnswer data, int position) {
+    public void handleData(IItemAnswer data, int position) {
         tv_no.setText("" + (position + 1));
 
         if (!TextUtils.isEmpty(data.getAnswer())) {

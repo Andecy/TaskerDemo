@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.tool.UITool;
-import com.lancoo.tasker.content.answer.ItemAnswer;
-import com.lancoo.tasker.content.timu.ItemTimu;
+import com.lancoo.tasker.content.answer.IItemAnswer;
+import com.lancoo.tasker.content.timu.IItemTimu;
 
 /**
  * Author: Andecy
@@ -24,8 +24,8 @@ public abstract class BaseItemFragment extends TBaseFragment {
     private TextView tv_answer;
     private TextView tv_analysis;
 
-    protected ItemTimu mItemTimu;
-    protected ItemAnswer mItemAnswer;
+    protected IItemTimu mItemTimu;
+    protected IItemAnswer mItemAnswer;
 
     protected boolean mAnswerable;
     protected boolean mStandardable;
@@ -37,7 +37,7 @@ public abstract class BaseItemFragment extends TBaseFragment {
         tv_analysis = findView(R.id.tv_tasker_item_analysis);
     }
 
-    public void setItems(boolean answerable, boolean standardable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
+    public void setItems(boolean answerable, boolean standardable, IItemTimu itemTimu, IItemAnswer itemAnswer) {
         mItemTimu = itemTimu;
         mItemAnswer = itemAnswer;
         mAnswerable = answerable;

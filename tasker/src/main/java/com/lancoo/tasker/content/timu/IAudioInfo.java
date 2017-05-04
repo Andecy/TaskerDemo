@@ -7,7 +7,7 @@ package com.lancoo.tasker.content.timu;
  * Description: TODO
  */
 
-public interface AudioInfo {
+public interface IAudioInfo {
     String getAudioTitle();
 
     String getAudioUrl();

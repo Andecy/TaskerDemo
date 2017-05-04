@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 
 import com.lancoo.tasker.adapter.SingleItemClickListener;
-import com.lancoo.tasker.content.answer.ItemAnswer;
+import com.lancoo.tasker.content.answer.IItemAnswer;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ItemPopupWindow extends BaseTimuListPopupWindow {
 
-    public ItemPopupWindow(Context context, int curItemPosition, List<ItemAnswer> itemAnswers, SingleItemClickListener listener) {
+    public ItemPopupWindow(Context context, int curItemPosition, List<? extends IItemAnswer> itemAnswers, SingleItemClickListener listener) {
         super(context, curItemPosition, listener);
         setAdapter(new ItemListAdapter(itemAnswers, curItemPosition),
                 new GridLayoutManager(context, 4));

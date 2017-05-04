@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.lancoo.tasker.adapter.BaseRecyclerViewAdapter;
 import com.lancoo.tasker.adapter.BaseRecylerItem;
-import com.lancoo.tasker.content.timu.AudioInfo;
+import com.lancoo.tasker.content.timu.IAudioInfo;
 
 import java.util.List;
 
@@ -16,17 +16,17 @@ import java.util.List;
  * Description: TODO
  */
 
-public class PlayerListAdapter extends BaseRecyclerViewAdapter<AudioInfo> {
+public class PlayerListAdapter extends BaseRecyclerViewAdapter<IAudioInfo> {
     private AudioPlayer mAudioPlayer;
 
-    public PlayerListAdapter(@Nullable List<AudioInfo> dataList, AudioPlayer audioPlayer) {
+    public PlayerListAdapter(@Nullable List<IAudioInfo> dataList, AudioPlayer audioPlayer) {
         super(dataList);
         mAudioPlayer = audioPlayer;
     }
 
     @NonNull
     @Override
-    public BaseRecylerItem<AudioInfo> createItem() {
+    public BaseRecylerItem<IAudioInfo> createItem() {
         return new PlayerListItem(mAudioPlayer);
     }
 }

@@ -1,7 +1,7 @@
 package com.lancoo.taskerdemo.model.answer;
 
-import com.lancoo.tasker.content.answer.ItemAnswer;
-import com.lancoo.tasker.content.answer.TopicAnswer;
+import com.lancoo.tasker.content.answer.IItemAnswer;
+import com.lancoo.tasker.content.answer.ITopicAnswer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +13,11 @@ import java.util.List;
  * Description: TODO
  */
 
-public class KSTopicAnswer implements TopicAnswer {
-    private List<ItemAnswer> mItemAnswers;
+public class KSTopicAnswer implements ITopicAnswer {
+    private List<IItemAnswer> mItemAnswers;
 
     @Override
-    public List<ItemAnswer> getItemAnswers() {
+    public List<IItemAnswer> getItemAnswers() {
         if (mItemAnswers == null) {
             mItemAnswers = new ArrayList<>();
             for (int i = 0; i < 10; i++) {

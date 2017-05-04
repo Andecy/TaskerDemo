@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.adapter.BaseRecylerItem;
-import com.lancoo.tasker.content.timu.AudioInfo;
+import com.lancoo.tasker.content.timu.IAudioInfo;
 
 /**
  * Author: Andecy
@@ -16,7 +16,7 @@ import com.lancoo.tasker.content.timu.AudioInfo;
  * Description: TODO
  */
 
-public class PlayerListItem implements BaseRecylerItem<AudioInfo> {
+public class PlayerListItem implements BaseRecylerItem<IAudioInfo> {
     private Context mContext;
 
     private TextView tv_name;
@@ -53,7 +53,7 @@ public class PlayerListItem implements BaseRecylerItem<AudioInfo> {
     }
 
     @Override
-    public void handleData(AudioInfo info, int position) {
+    public void handleData(IAudioInfo info, int position) {
         tv_name.setText(info.getAudioTitle());
         tv_time.setText(info.getPlayTime() + "");
 

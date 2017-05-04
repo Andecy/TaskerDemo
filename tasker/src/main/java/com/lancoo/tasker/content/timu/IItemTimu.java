@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Description: TODO
  */
 
-public interface ItemTimu extends Serializable {
+public interface IItemTimu extends Serializable {
 
     float getScore();
 

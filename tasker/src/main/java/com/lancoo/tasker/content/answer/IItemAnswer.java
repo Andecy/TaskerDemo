@@ -1,6 +1,6 @@
 package com.lancoo.tasker.content.answer;
 
-import java.util.List;
+import java.io.Serializable;
 
 /**
  * Author: Andecy
@@ -9,11 +9,9 @@ import java.util.List;
  * Description: TODO
  */
 
-public interface TaskAnswer {
+public interface IItemAnswer extends Serializable {
 
-    String getUserId();
+    void setAnswer(String answer);
 
-    List<TopicAnswer> geTopicAnswers();
-
-
+    String getAnswer();
 }

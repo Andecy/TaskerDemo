@@ -8,8 +8,8 @@ import android.widget.TextView;
 import com.blankj.utilcode.utils.Utils;
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.adapter.BaseRecylerItem;
-import com.lancoo.tasker.content.answer.TopicAnswer;
-import com.lancoo.tasker.content.timu.TopicTimu;
+import com.lancoo.tasker.content.answer.ITopicAnswer;
+import com.lancoo.tasker.content.timu.ITopicTimu;
 
 import java.util.List;
 
@@ -22,8 +22,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Description: TODO
  */
 
-public class TopicListItem implements BaseRecylerItem<TopicTimu> {
-    private List<TopicAnswer> mTopicAnswers;
+public class TopicListItem implements BaseRecylerItem<ITopicTimu> {
+    private List<? extends ITopicAnswer> mTopicAnswers;
     private int curPosition;
 
     private TextView tv_title;
@@ -33,7 +33,7 @@ public class TopicListItem implements BaseRecylerItem<TopicTimu> {
     private ImageView iv_indicator;
 
 
-    public TopicListItem(List<TopicAnswer> topicAnswers, int curPosition) {
+    public TopicListItem(List<? extends ITopicAnswer> topicAnswers, int curPosition) {
         mTopicAnswers = topicAnswers;
         this.curPosition = curPosition;
     }
@@ -58,11 +58,11 @@ public class TopicListItem implements BaseRecylerItem<TopicTimu> {
     }
 
     @Override
-    public void handleData(TopicTimu data, int position) {
+    public void handleData(ITopicTimu data, int position) {
         tv_title.setText(data.getTypeName());
         tv_no.setText("" + (position + 1));
 
-        TopicAnswer topicAnswer = mTopicAnswers.get(position);
+        ITopicAnswer topicAnswer = mTopicAnswers.get(position);
 
         tv_count.setText(topicAnswer.getItemAnswerFinishedCount() + "/" + topicAnswer.getItemAnswers().size());
 

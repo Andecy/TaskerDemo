@@ -9,12 +9,12 @@ import java.util.List;
  * Description: TODO
  */
 
-public interface TopicTimu {
+public interface ITopicTimu {
 
     /**
      * @return 大题所属的小题
      */
-    List<ItemTimu> getItemTimus();
+    List<? extends IItemTimu> getItemTimus();
 
     /**
      * @return 大题题型
@@ -29,7 +29,7 @@ public interface TopicTimu {
     /**
      * @return 音频信息
      */
-    List<AudioInfo> getAudioInfos();
+    List<IAudioInfo> getAudioInfos();
 
     /**
      * @return 大题分数

@@ -7,8 +7,8 @@ import android.text.TextWatcher;
 import android.view.View;
 
 import com.lancoo.tasker.R;
-import com.lancoo.tasker.content.answer.ItemAnswer;
-import com.lancoo.tasker.content.timu.ItemTimu;
+import com.lancoo.tasker.content.answer.IItemAnswer;
+import com.lancoo.tasker.content.timu.IItemTimu;
 import com.lancoo.tasker.view.WritableEditText;
 
 /**
@@ -22,7 +22,7 @@ public class DefaultFillBlankFragment extends BaseItemFragment implements TextWa
 
     private WritableEditText et_answer;
 
-    public static DefaultFillBlankFragment newInstance(boolean answerable, boolean standardable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
+    public static DefaultFillBlankFragment newInstance(boolean answerable, boolean standardable, IItemTimu itemTimu, IItemAnswer itemAnswer) {
         DefaultFillBlankFragment fragment = new DefaultFillBlankFragment();
         fragment.setItems(answerable, standardable, itemTimu, itemAnswer);
         return fragment;

@@ -1,7 +1,7 @@
 package com.lancoo.taskerdemo.model.answer;
 
-import com.lancoo.tasker.content.answer.TaskAnswer;
-import com.lancoo.tasker.content.answer.TopicAnswer;
+import com.lancoo.tasker.content.answer.ITaskAnswer;
+import com.lancoo.tasker.content.answer.ITopicAnswer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import java.util.List;
  * Description: TODO
  */
 
-public class KSTaskAnswer implements TaskAnswer {
-    private List<TopicAnswer> mKSTopicAnswers;
+public class KSTaskAnswer implements ITaskAnswer {
+    private List<ITopicAnswer> mKSTopicAnswers;
 
     @Override
     public String getUserId() {
@@ -22,7 +22,7 @@ public class KSTaskAnswer implements TaskAnswer {
     }
 
     @Override
-    public List<TopicAnswer> geTopicAnswers() {
+    public List<ITopicAnswer> geTopicAnswers() {
         if (mKSTopicAnswers==null){
             mKSTopicAnswers = new ArrayList<>();
             for (int i = 0; i < 5; i++) {

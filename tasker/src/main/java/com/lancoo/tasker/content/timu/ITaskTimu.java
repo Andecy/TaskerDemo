@@ -9,9 +9,9 @@ import java.util.List;
  * Description: TODO
  */
 
-public interface TaskTimu {
+public interface ITaskTimu {
 
-    List<TopicTimu> getTopicTimus();
+    List<? extends ITopicTimu> getTopicTimus();
 
     float getScore();
 

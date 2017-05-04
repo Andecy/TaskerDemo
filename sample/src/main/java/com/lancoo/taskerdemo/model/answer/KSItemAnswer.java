@@ -1,6 +1,6 @@
 package com.lancoo.taskerdemo.model.answer;
 
-import com.lancoo.tasker.content.answer.ItemAnswer;
+import com.lancoo.tasker.content.answer.IItemAnswer;
 
 /**
  * Author: Andecy
@@ -9,7 +9,7 @@ import com.lancoo.tasker.content.answer.ItemAnswer;
  * Description: TODO
  */
 
-public class KSItemAnswer implements ItemAnswer {
+public class KSItemAnswer implements IItemAnswer {
     private String answer;
 
     @Override

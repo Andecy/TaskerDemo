@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.lancoo.tasker.adapter.BaseRecyclerViewAdapter;
 import com.lancoo.tasker.adapter.BaseRecylerItem;
-import com.lancoo.tasker.content.answer.ItemAnswer;
+import com.lancoo.tasker.content.answer.IItemAnswer;
 
 import java.util.List;
 
@@ -16,17 +16,17 @@ import java.util.List;
  * Description: TODO
  */
 
-public class ItemListAdapter extends BaseRecyclerViewAdapter<ItemAnswer> {
+public class ItemListAdapter extends BaseRecyclerViewAdapter<IItemAnswer> {
     private int curTopicPosition;
 
-    public ItemListAdapter(@Nullable List<ItemAnswer> dataList, int curTopicPosition) {
+    public ItemListAdapter(@Nullable List<? extends IItemAnswer> dataList, int curTopicPosition) {
         super(dataList);
         this.curTopicPosition = curTopicPosition;
     }
 
     @NonNull
     @Override
-    public BaseRecylerItem<ItemAnswer> createItem() {
+    public BaseRecylerItem<IItemAnswer> createItem() {
         return new ItemListItem(curTopicPosition);
     }
 }

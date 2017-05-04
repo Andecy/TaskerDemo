@@ -25,6 +25,7 @@ import com.lancoo.taskerdemo.model.timu.KSTaskTimu;
 
 public class DemoActivity extends FragmentActivity
         implements CompoundButton.OnCheckedChangeListener {
+
     private TaskView mTaskView;
 
     private int position;

@@ -28,10 +28,10 @@ import com.lancoo.tasker.audio.AudioPlayer;
 import com.lancoo.tasker.audio.PlayerListAdapter;
 import com.lancoo.tasker.adapter.SingleItemClickListener;
 import com.lancoo.tasker.content.TaskData;
-import com.lancoo.tasker.content.answer.TaskAnswer;
-import com.lancoo.tasker.content.timu.AudioInfo;
-import com.lancoo.tasker.content.timu.TaskTimu;
-import com.lancoo.tasker.content.timu.TopicTimu;
+import com.lancoo.tasker.content.answer.ITaskAnswer;
+import com.lancoo.tasker.content.timu.IAudioInfo;
+import com.lancoo.tasker.content.timu.ITaskTimu;
+import com.lancoo.tasker.content.timu.ITopicTimu;
 import com.lancoo.tasker.item.BaseItemAdapter;
 import com.lancoo.tasker.timulist.ItemPopupWindow;
 import com.lancoo.tasker.timulist.TopicPopupWindow;
@@ -72,7 +72,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     private RecyclerView rv_player_list;
     private PlayerListAdapter mPlayerListAdapter;
     private BottomSheetDialog mPlayerListDialog;
-    private List<AudioInfo> mAudioInfos;
+    private List<IAudioInfo> mAudioInfos;
 
     //题目List
     private ItemPopupWindow mItemPopupWindow;
@@ -170,8 +170,8 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         if (data == null || data.getTaskAnswer() == null || data.getTaskTimu() == null) {
             return;
         }
-        TaskTimu taskTimu = data.getTaskTimu();
-        TaskAnswer taskAnswer = data.getTaskAnswer();
+        ITaskTimu taskTimu = data.getTaskTimu();
+        ITaskAnswer taskAnswer = data.getTaskAnswer();
         setTaskInfo(taskTimu);
         setTopicInfo(0);
     }
@@ -181,7 +181,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
      *
      * @param taskTimu 作业信息类
      */
-    private void setTaskInfo(TaskTimu taskTimu) {
+    private void setTaskInfo(ITaskTimu taskTimu) {
 //        tv_score.setText();
         tv_name.setText(taskTimu.getTaskName());
         if (taskTimu.getTopicTimus() == null) {
@@ -216,7 +216,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
         setItemInfo(0);
 
-        TopicTimu topicTimu = mTaskData.getTaskTimu().getTopicTimus().get(position);
+        ITopicTimu topicTimu = mTaskData.getTaskTimu().getTopicTimus().get(position);
 
         if (mListeners != null) {
             int listenerCount = mListeners.size();
@@ -362,7 +362,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         return mAudioPlayer;
     }
 
-    private void setPlayer(AudioInfo info, boolean isAutoPlayer) {
+    private void setPlayer(IAudioInfo info, boolean isAutoPlayer) {
         if (mAudioPlayer == null) {
             mAudioPlayer = new AudioPlayer();
             mAudioPlayer.setAudioPlayListener(this);

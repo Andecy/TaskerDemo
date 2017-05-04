@@ -3,8 +3,8 @@ package com.lancoo.tasker.item;
 import android.support.v4.app.FragmentManager;
 
 import com.lancoo.tasker.content.TaskData;
-import com.lancoo.tasker.content.answer.ItemAnswer;
-import com.lancoo.tasker.content.timu.ItemTimu;
+import com.lancoo.tasker.content.answer.IItemAnswer;
+import com.lancoo.tasker.content.timu.IItemTimu;
 
 /**
  * Author: Andecy
@@ -21,7 +21,7 @@ public class SimpleItemAdapter extends BaseItemAdapter {
     }
 
     @Override
-    protected BaseItemFragment getItemByType(ItemTimu itemTimu, ItemAnswer itemAnswer) {
+    protected BaseItemFragment getItemByType(IItemTimu itemTimu, IItemAnswer itemAnswer) {
         return DefaultSingleChoiceFragment.newInstance(isAnswerable(), isStandardable(), itemTimu, itemAnswer);
 //        switch ((int) (Math.random() * 10) % 2) {
 //            case 0:

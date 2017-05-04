@@ -1,8 +1,8 @@
 package com.lancoo.taskerdemo.model.timu;
 
-import com.lancoo.tasker.content.timu.AudioInfo;
-import com.lancoo.tasker.content.timu.ItemTimu;
-import com.lancoo.tasker.content.timu.TopicTimu;
+import com.lancoo.tasker.content.timu.IAudioInfo;
+import com.lancoo.tasker.content.timu.IItemTimu;
+import com.lancoo.tasker.content.timu.ITopicTimu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +14,12 @@ import java.util.List;
  * Description: TODO
  */
 
-public class KSTopicTimu implements TopicTimu {
-    private List<AudioInfo> mAudioInfos;
+public class KSTopicTimu implements ITopicTimu {
+    private List<IAudioInfo> mAudioInfos;
 
     @Override
-    public List<ItemTimu> getItemTimus() {
-        List<ItemTimu> itemTimus = new ArrayList<>();
+    public List<IItemTimu> getItemTimus() {
+        List<IItemTimu> itemTimus = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             itemTimus.add(new KSItemTimu(content + "的小题" + i));
         }
@@ -43,12 +43,12 @@ public class KSTopicTimu implements TopicTimu {
     }
 
     @Override
-    public List<AudioInfo> getAudioInfos() {
+    public List<IAudioInfo> getAudioInfos() {
         if (mAudioInfos == null) {
             mAudioInfos = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 final int finalI = i;
-                AudioInfo info = new AudioInfo() {
+                IAudioInfo info = new IAudioInfo() {
                     @Override
                     public String getAudioTitle() {
                         return "info:" + finalI;

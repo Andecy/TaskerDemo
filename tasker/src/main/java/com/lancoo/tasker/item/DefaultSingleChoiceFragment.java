@@ -8,8 +8,8 @@ import android.widget.RadioGroup;
 
 import com.blankj.utilcode.utils.SizeUtils;
 import com.lancoo.tasker.R;
-import com.lancoo.tasker.content.answer.ItemAnswer;
-import com.lancoo.tasker.content.timu.ItemTimu;
+import com.lancoo.tasker.content.answer.IItemAnswer;
+import com.lancoo.tasker.content.timu.IItemTimu;
 import com.lancoo.tasker.tool.LocalUtils;
 import com.lancoo.tasker.tool.UITool;
 
@@ -31,7 +31,7 @@ public class DefaultSingleChoiceFragment extends BaseItemFragment implements Rad
 
     private List<RadioButton> mRadioButtons;
 
-    public static DefaultSingleChoiceFragment newInstance(boolean answerable, boolean standardable, ItemTimu itemTimu, ItemAnswer itemAnswer) {
+    public static DefaultSingleChoiceFragment newInstance(boolean answerable, boolean standardable, IItemTimu itemTimu, IItemAnswer itemAnswer) {
         DefaultSingleChoiceFragment fragment = new DefaultSingleChoiceFragment();
         fragment.setItems(answerable, standardable, itemTimu, itemAnswer);
         return fragment;
