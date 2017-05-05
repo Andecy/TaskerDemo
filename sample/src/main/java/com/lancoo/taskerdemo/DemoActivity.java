@@ -9,9 +9,8 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
-import com.blankj.utilcode.utils.ToastUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.lancoo.tasker.TaskView;
-import com.lancoo.tasker.item.SimpleItemAdapter;
 import com.lancoo.taskerdemo.model.answer.KSTaskAnswer;
 import com.lancoo.taskerdemo.model.timu.KSTaskTimu;
 
@@ -31,7 +30,7 @@ public class DemoActivity extends FragmentActivity
 
     private int itemPosition;
 
-    private SimpleItemAdapter mSimpleItemAdapter;
+    private DemoItemAdapter mDemoItemAdapter;
 
     private ToggleButton switch_answerable;
     private ToggleButton switch_standardable;
@@ -48,13 +47,13 @@ public class DemoActivity extends FragmentActivity
         switch_answerable.setOnCheckedChangeListener(this);
         switch_standardable.setOnCheckedChangeListener(this);
 
-        mSimpleItemAdapter = new SimpleItemAdapter(getSupportFragmentManager(),
+        mDemoItemAdapter = new DemoItemAdapter(getSupportFragmentManager(),
                 new KSTaskTimu(), new KSTaskAnswer());
 
-        mSimpleItemAdapter.setAnswerable(switch_answerable.isChecked());
-        mSimpleItemAdapter.setAnalysisable(switch_standardable.isChecked());
+        mDemoItemAdapter.setAnswerable(switch_answerable.isChecked());
+        mDemoItemAdapter.setAnalysisable(switch_standardable.isChecked());
 
-        mTaskView.setItemAdapter(mSimpleItemAdapter);
+        mTaskView.setItemAdapter(mDemoItemAdapter);
 
         mTaskView.setTaskTitleName("(试卷总分：5.0分)");
 
@@ -107,10 +106,10 @@ public class DemoActivity extends FragmentActivity
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
             case R.id.tbtn_answerable:
-                mSimpleItemAdapter.setAnswerable(isChecked);
+                mDemoItemAdapter.setAnswerable(isChecked);
                 break;
             case R.id.tbtn_standardable:
-                mSimpleItemAdapter.setAnalysisable(isChecked);
+                mDemoItemAdapter.setAnalysisable(isChecked);
                 break;
         }
     }

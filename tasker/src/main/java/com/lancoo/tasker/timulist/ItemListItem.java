@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.blankj.utilcode.utils.Utils;
+import com.blankj.utilcode.util.Utils;
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.adapter.BaseRecylerItem;
 import com.lancoo.tasker.content.answer.IItemAnswer;

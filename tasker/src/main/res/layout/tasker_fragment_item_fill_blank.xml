@@ -15,16 +15,25 @@
 
         <include layout="@layout/tasker_module_item_que"/>
 
-        <com.lancoo.tasker.view.WritableEditText
-            android:saveEnabled="false"
-            android:id="@+id/et_tasker_item_answer"
+        <LinearLayout
+            android:paddingTop="@dimen/padding_tv_ic_drawable"
+            android:paddingLeft="@dimen/marginleft_tv_ic_tv"
+            android:paddingRight="@dimen/marginleft_tv_ic_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="6"
-            android:gravity="top"
-            android:paddingTop="@dimen/padding_tv_ic_drawable"
-            android:scrollbars="vertical"
-            android:textSize="14sp"/>
+            android:background="@drawable/tasker_bg_edittext">
+            <com.lancoo.tasker.view.WritableEditText
+                android:id="@+id/et_tasker_item_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:lines="6"
+                android:saveEnabled="false"
+                android:scrollbars="vertical"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+
         <include
             layout="@layout/tasker_module_item_standard"
             android:paddingTop="@dimen/padding_tv_ic_drawable"/>
