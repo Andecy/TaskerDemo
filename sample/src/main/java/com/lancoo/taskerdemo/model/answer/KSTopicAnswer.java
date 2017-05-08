@@ -27,9 +27,4 @@ public class KSTopicAnswer implements ITopicAnswer {
 
         return mItemAnswers;
     }
-
-    @Override
-    public int getItemAnswerFinishedCount() {
-        return 9;
-    }
 }

@@ -1,6 +1,7 @@
 package com.lancoo.tasker.timulist;
 
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TopicListItem implements BaseRecylerItem<ITopicTimu> {
     private List<? extends ITopicAnswer> mTopicAnswers;
+    private int[] mTopicAnswerCounts;
     private int curPosition;
 
     private TextView tv_title;
@@ -36,6 +38,15 @@ public class TopicListItem implements BaseRecylerItem<ITopicTimu> {
     public TopicListItem(List<? extends ITopicAnswer> topicAnswers, int curPosition) {
         mTopicAnswers = topicAnswers;
         this.curPosition = curPosition;
+        mTopicAnswerCounts = new int[topicAnswers.size()];
+        for (int i = 0; i < mTopicAnswers.size(); i++) {
+            for (int j = 0; j < mTopicAnswers.get(i).getItemAnswers().size(); j++) {
+                if (!TextUtils.isEmpty(mTopicAnswers.get(i).getItemAnswers().get(j).getAnswer())) {
+                    mTopicAnswerCounts[i]++;
+                }
+            }
+
+        }
     }
 
     @Override
@@ -64,10 +75,10 @@ public class TopicListItem implements BaseRecylerItem<ITopicTimu> {
 
         ITopicAnswer topicAnswer = mTopicAnswers.get(position);
 
-        tv_count.setText(topicAnswer.getItemAnswerFinishedCount() + "/" + topicAnswer.getItemAnswers().size());
+        tv_count.setText(mTopicAnswerCounts[position] + "/" + topicAnswer.getItemAnswers().size());
 
 
-        if (topicAnswer.getItemAnswerFinishedCount() == mTopicAnswers.get(position).getItemAnswers().size()) {
+        if (mTopicAnswerCounts[position] == mTopicAnswers.get(position).getItemAnswers().size()) {
             civ_no.setImageResource(android.R.color.transparent);
             tv_no.setTextColor(Color.WHITE);
         } else {
