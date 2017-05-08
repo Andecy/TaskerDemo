@@ -6,7 +6,7 @@
   - 大小题选择列表，可以展示作答进度和当前所在题目.
   - 大题题干、小题题目支持富文本，也可个性化定制小题展示页.
 
-----
+
 ## 使用
 
 ### Step 1
@@ -84,7 +84,6 @@ SimpleItemAdapter mSimpleItemAdapter = new SimpleItemAdapter(getSupportFragmentM
 
 ```
 
-----
 ## 关于作者
 
 
