@@ -58,7 +58,7 @@ public class PlayerListItem implements BaseRecylerItem<IAudioInfo> {
         tv_time.setText(info.getPlayTime() + "");
 
         if (info.getPlayTime() == 0) {
-            tv_time.setVisibility(View.INVISIBLE);
+            tv_time.setVisibility(View.GONE);
         } else {
             tv_time.setVisibility(View.VISIBLE);
         }

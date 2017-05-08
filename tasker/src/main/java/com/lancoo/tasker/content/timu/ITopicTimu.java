@@ -29,7 +29,7 @@ public interface ITopicTimu {
     /**
      * @return 音频信息
      */
-    List<IAudioInfo> getAudioInfos();
+    List<? extends IAudioInfo> getAudioInfos();
 
     /**
      * @return 大题分数

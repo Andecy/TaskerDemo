@@ -19,7 +19,7 @@ import java.util.List;
 public class PlayerListAdapter extends BaseRecyclerViewAdapter<IAudioInfo> {
     private AudioPlayer mAudioPlayer;
 
-    public PlayerListAdapter(@Nullable List<IAudioInfo> dataList, AudioPlayer audioPlayer) {
+    public PlayerListAdapter(@Nullable List<? extends IAudioInfo> dataList, AudioPlayer audioPlayer) {
         super(dataList);
         mAudioPlayer = audioPlayer;
     }

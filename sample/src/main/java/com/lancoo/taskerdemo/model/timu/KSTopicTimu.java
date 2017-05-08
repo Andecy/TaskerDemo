@@ -1,6 +1,5 @@
 package com.lancoo.taskerdemo.model.timu;
 
-import com.lancoo.tasker.content.timu.IAudioInfo;
 import com.lancoo.tasker.content.timu.IItemTimu;
 import com.lancoo.tasker.content.timu.ITopicTimu;
 
@@ -15,7 +14,7 @@ import java.util.List;
  */
 
 public class KSTopicTimu implements ITopicTimu {
-    private List<IAudioInfo> mAudioInfos;
+    private List<KSAudioInfo> mAudioInfos;
 
     @Override
     public List<IItemTimu> getItemTimus() {
@@ -43,28 +42,11 @@ public class KSTopicTimu implements ITopicTimu {
     }
 
     @Override
-    public List<IAudioInfo> getAudioInfos() {
+    public List<KSAudioInfo> getAudioInfos() {
         if (mAudioInfos == null) {
             mAudioInfos = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
-                final int finalI = i;
-                IAudioInfo info = new IAudioInfo() {
-                    @Override
-                    public String getAudioTitle() {
-                        return "info:" + finalI;
-                    }
-
-                    @Override
-                    public String getAudioUrl() {
-                        return "http://www.baidu.com/" + getAudioTitle() + "baidu.mp3";
-                    }
-
-                    @Override
-                    public int getPlayTime() {
-                        return 321;
-                    }
-                };
-                mAudioInfos.add(info);
+                mAudioInfos.add(new KSAudioInfo("" + i));
             }
         }
         return mAudioInfos;

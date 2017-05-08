@@ -70,7 +70,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     private RecyclerView rv_player_list;
     private PlayerListAdapter mPlayerListAdapter;
     private BottomSheetDialog mPlayerListDialog;
-    private List<IAudioInfo> mAudioInfos;
+    private List<? extends IAudioInfo> mAudioInfos;
 
     //题目List
     private ItemPopupWindow mItemPopupWindow;
