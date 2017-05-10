@@ -9,9 +9,12 @@
     android:layout_marginLeft="@dimen/padding_screen"
     android:layout_marginRight="@dimen/padding_screen"
     android:foreground="?android:attr/selectableItemBackground"
+    android:theme="@style/Theme.AppCompat.Light"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="@dimen/radius_corner"
     app:cardUseCompatPadding="true">
+
+    <!--android:background="@drawable/tasker_bg_number_list"-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,17 +23,17 @@
 
         <ImageView
             android:id="@+id/iv_item_number_indicator"
-            android:src="@mipmap/tasker_ic_indicator_topic_list"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/tasker_ic_indicator_topic_list"/>
 
         <RelativeLayout
-            android:layout_marginLeft="@dimen/padding_screen"
-            android:layout_toRightOf="@id/iv_item_number_indicator"
             android:id="@+id/rl_item_dotask_topicno"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_screen"
+            android:layout_toRightOf="@id/iv_item_number_indicator">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="42dp"

@@ -26,6 +26,8 @@ public class DemoItemAdapter extends BaseItemAdapter {
 
     @Override
     protected BaseItemFragment getItemByType(IItemTimu itemTimu, IItemAnswer itemAnswer) {
+
+
         return DefaultFillBlankFragment.newInstance(isAnswerable(), isStandardable(), itemTimu, itemAnswer);
 //        return DefaultSingleChoiceFragment.newInstance(isAnswerable(), isStandardable(), itemTimu, itemAnswer);
 //        switch ((int) (Math.random() * 10) % 2) {

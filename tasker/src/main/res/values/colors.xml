@@ -3,7 +3,8 @@
     <!--风格统一的颜色-->
     <!--风格统一的颜色-->
     <color name="light_gray">#fff5f5f5</color>
-    <color name="primary">#45A1CF</color>
+    <!--<color name="primary">#45A1CF</color>-->
+    <color name="primary">#3B96FD</color>
     <color name="primary_dark">#3399CC</color>
     <color name="primary_dark_semit">#AC246D92</color>
     <!--<color name="primary_dark">#0288D1</color>-->

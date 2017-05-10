@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.lancoo.tasker.R;
@@ -18,7 +19,7 @@ import com.lancoo.tasker.view.WritableEditText;
  * Description: TODO
  */
 
-public class DefaultFillBlankFragment extends BaseItemFragment implements TextWatcher {
+public class DefaultFillBlankFragment extends BaseItemFragment implements TextWatcher,View.OnTouchListener {
 
     private WritableEditText et_answer;
 
@@ -39,6 +40,7 @@ public class DefaultFillBlankFragment extends BaseItemFragment implements TextWa
         super.initView(view, savedInstanceState);
         et_answer.setText(mItemAnswer.getAnswer());
         et_answer.addTextChangedListener(this);
+        et_answer.setOnTouchListener(this);
     }
 
     @Override
@@ -66,4 +68,16 @@ public class DefaultFillBlankFragment extends BaseItemFragment implements TextWa
     public void afterTextChanged(Editable s) {
         mItemAnswer.setAnswer(String.valueOf(s));
     }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        //触摸的是EditText并且当前EditText可以滚动则将事件交给EditText处理；否则将事件交由其父类处理
+        if (v.getId() == R.id.et_tasker_item_answer) {
+            if (MotionEvent.ACTION_UP == (event.getAction() & MotionEvent.ACTION_MASK)) {
+                v.getParent().requestDisallowInterceptTouchEvent(false);
+            } else {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+            }
+        }
+        return false;    }
 }

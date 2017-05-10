@@ -54,6 +54,8 @@
             android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
     </LinearLayout>
+
+
     <com.lancoo.tasker.TaskView
         android:id="@+id/tasker_demo"
         android:layout_width="match_parent"
