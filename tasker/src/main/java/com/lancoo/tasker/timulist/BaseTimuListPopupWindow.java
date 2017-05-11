@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.lancoo.tasker.R;
 import com.lancoo.tasker.adapter.BaseRecyclerViewAdapter;
 import com.lancoo.tasker.adapter.SingleItemClickListener;
@@ -28,17 +28,18 @@ public abstract class BaseTimuListPopupWindow extends PopupWindow {
     private int mWidth;
     private int mHeight;
 
-    private TextView tv_title;
+    private Context mContext;
+
+
     private RecyclerView rv_content;
 
     private SingleItemClickListener mListener;
 
-    private BaseRecyclerViewAdapter mAdapter;
 
-
-    public BaseTimuListPopupWindow(Context context, int curPosition, SingleItemClickListener listener) {
+    public BaseTimuListPopupWindow(Context context, SingleItemClickListener listener) {
         super(context);
         mListener = listener;
+        mContext = context;
         calWidthAndHeight(context);
         setWidth(mWidth);
         setHeight(mHeight);
@@ -59,7 +60,6 @@ public abstract class BaseTimuListPopupWindow extends PopupWindow {
         if (rv_content == null) {
             return;
         }
-        mAdapter = adapter;
         rv_content.setLayoutManager(layoutManager);
         rv_content.setAdapter(adapter);
         adapter.setItemClickListener(mListener);
@@ -68,8 +68,7 @@ public abstract class BaseTimuListPopupWindow extends PopupWindow {
 
 
 
-    private void findView(View view) {
-        tv_title = (TextView) view.findViewById(R.id.tv_list_number_title);
+    protected void findView(View view) {
         rv_content = (RecyclerView) view.findViewById(R.id.rv_list_number_content);
         rv_content.setItemAnimator(new DefaultItemAnimator());
         view.findViewById(R.id.iv_list_number_close).setOnClickListener(new View.OnClickListener() {
@@ -90,8 +89,9 @@ public abstract class BaseTimuListPopupWindow extends PopupWindow {
         DisplayMetrics metrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(metrics);
 
+
         mWidth = (int) (metrics.widthPixels * 1);
         //设置高度为全屏高度的100%
-        mHeight = (int) (metrics.heightPixels * 1);
+        mHeight = (int) (metrics.heightPixels * 1)- BarUtils.getStatusBarHeight(mContext);
     }
 }

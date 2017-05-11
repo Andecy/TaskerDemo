@@ -18,7 +18,7 @@ import java.util.List;
 public class ItemPopupWindow extends BaseTimuListPopupWindow {
 
     public ItemPopupWindow(Context context, int curItemPosition, List<? extends IItemAnswer> itemAnswers, SingleItemClickListener listener) {
-        super(context, curItemPosition, listener);
+        super(context, listener);
         setAdapter(new ItemListAdapter(itemAnswers, curItemPosition),
                 new GridLayoutManager(context, 4));
     }

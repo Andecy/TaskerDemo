@@ -11,5 +11,7 @@
 
     <dimen name="radius_corner">4dp</dimen>
 
+    <dimen name="height_actionbar">49dp</dimen>
+
 
 </resources>

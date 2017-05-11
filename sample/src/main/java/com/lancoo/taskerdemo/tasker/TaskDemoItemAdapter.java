@@ -1,4 +1,4 @@
-package com.lancoo.taskerdemo;
+package com.lancoo.taskerdemo.tasker;
 
 import android.support.v4.app.FragmentManager;
 
@@ -17,10 +17,10 @@ import com.lancoo.tasker.item.DefaultFillBlankFragment;
  * Description: TODO
  */
 
-public class DemoItemAdapter extends BaseItemAdapter {
+public class TaskDemoItemAdapter extends BaseItemAdapter {
 
 
-    public DemoItemAdapter(FragmentManager fm, ITaskTimu taskTimu, ITaskAnswer taskAnswer) {
+    public TaskDemoItemAdapter(FragmentManager fm, ITaskTimu taskTimu, ITaskAnswer taskAnswer) {
         super(fm, taskTimu, taskAnswer);
     }
 

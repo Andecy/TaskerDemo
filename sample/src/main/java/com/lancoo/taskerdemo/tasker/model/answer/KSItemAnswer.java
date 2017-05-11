@@ -1,4 +1,4 @@
-package com.lancoo.taskerdemo.model.answer;
+package com.lancoo.taskerdemo.tasker.model.answer;
 
 import com.lancoo.tasker.content.answer.IItemAnswer;
 

@@ -2,6 +2,7 @@ package com.lancoo.taskerdemo;
 
 import android.app.Application;
 
+import com.lancoo.lancooimageloader.LancooImageLoader;
 import com.lancoo.tasker.Tasker;
 
 /**
@@ -17,5 +18,6 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         Tasker.init(this);
+        LancooImageLoader.init(this);
     }
 }

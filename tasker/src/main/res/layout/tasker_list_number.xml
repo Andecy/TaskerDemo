@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/height_actionbar"
         android:background="@color/primary">
 
         <ImageView
@@ -34,6 +34,17 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_list_number_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_list_number_submit"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_actionbar"
+        android:background="@color/primary"
+        android:text="提交"
+        android:textColor="@android:color/white"/>
 
 </LinearLayout>

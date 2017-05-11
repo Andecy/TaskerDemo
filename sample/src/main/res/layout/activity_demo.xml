@@ -5,59 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onForwardClick"
-            android:text="上大题"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onBackWorkClick"
-            android:text="下大题"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onForwardItemClick"
-            android:text="上小题"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onBackWorkItemClick"
-            android:text="下小题"/>
-    </LinearLayout>
+        android:onClick="onTaskClick"
+        android:text="Tasker"/>
 
-    <LinearLayout
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ToggleButton
-            android:id="@+id/tbtn_answerable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOff="作答关"
-            android:textOn="作答开"/>
-        <ToggleButton
-            android:id="@+id/tbtn_standardable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padding_screen"
-            android:textOff="解析关"
-            android:textOn="解析开"/>
-        <Button
-            android:text="大题列表"
-            android:onClick="onTopicListClick"
-            android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-
-    <com.lancoo.tasker.TaskView
-        android:id="@+id/tasker_demo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:onClick="onImageClick"
+        android:text="Lancoo-Image-Loader"/>
 </LinearLayout>

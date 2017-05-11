@@ -1,1 +1,1 @@
-include ':sample', ':tasker'
+include ':sample', ':tasker', ':lancooimageloader'

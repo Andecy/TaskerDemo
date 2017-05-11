@@ -36,7 +36,6 @@ import com.lancoo.tasker.timulist.TopicPopupWindow;
 import com.lancoo.tasker.tool.UITool;
 import com.lancoo.tasker.view.SplitView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -104,7 +103,7 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     private TextView tv_itemCount;
     private ImageView iv_switcher;
 
-    private List<TaskListener> mListeners;
+    private TaskListener mTaskListener;
 
     private ItemSwitchListener mSwitchListener;
 
@@ -208,11 +207,8 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
         ITopicTimu topicTimu = mItemAdapter.getTaskTimu().getTopicTimus().get(position);
 
-        if (mListeners != null) {
-            int listenerCount = mListeners.size();
-            for (int i = listenerCount - 1; i >= 0; i--) {
-                mListeners.get(i).onTimuChanged(curTopicPosition, curItemPosition);
-            }
+        if (mTaskListener != null) {
+            mTaskListener.onTimuChanged(curTopicPosition, curItemPosition);
         }
 
         if (vp_item.getAdapter() != mItemAdapter) {
@@ -258,11 +254,8 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
                     super.onPageSelected(position);
                     curItemPosition = position;
                     tv_itemNo.setText("(" + (position + 1) + ")");
-                    if (mListeners != null) {
-                        int listenerCount = mListeners.size();
-                        for (int i = listenerCount - 1; i >= 0; i--) {
-                            mListeners.get(i).onTimuChanged(curTopicPosition, curItemPosition);
-                        }
+                    if (mTaskListener != null) {
+                        mTaskListener.onTimuChanged(curTopicPosition, curItemPosition);
                     }
                 }
             };
@@ -272,32 +265,13 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     }
 
     /**
-     * 添加一个用于监听作业事件的Listener到Listener列表中.
+     * 设置一个用于监听作业事件的Listener.
      *
      * @param listener 要添加的监听器.
-     * @see #removeTaskListener(TaskListener)
      */
     public void setTaskListener(@NonNull TaskListener listener) {
-        if (mListeners == null) {
-            mListeners = new ArrayList<TaskListener>();
-        }
-        mListeners.add(listener);
+        mTaskListener = listener;
     }
-
-    /**
-     * 从Listener列表中移除某个用于监听作业事件的Listener.
-     *
-     * @param listener 要移除的监听器
-     * @see #setTaskListener(TaskListener)
-     */
-    public void removeTaskListener(@NonNull TaskListener listener) {
-        if (mListeners == null) {
-            // This can happen if this method is called before the first call to addDrawerListener
-            return;
-        }
-        mListeners.remove(listener);
-    }
-
 
     public void setOnItemSwitchClickListener(@NonNull ItemSwitchListener listener) {
         iv_switcher.setVisibility(VISIBLE);
@@ -386,11 +360,8 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
     @Override
     public void onAudioPlayError(MediaPlayer mp, int what, int extra) {
         iv_player_start.setImageResource(R.mipmap.tasker_ic_player_start2);
-        if (mListeners != null) {
-            int listenerCount = mListeners.size();
-            for (int i = listenerCount - 1; i >= 0; i--) {
-                mListeners.get(i).onAudioPlayError(mp, what, extra);
-            }
+        if (mTaskListener != null) {
+            mTaskListener.onAudioPlayError(mp, what, extra);
         }
     }
 
@@ -454,8 +425,14 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
                 mItemAdapter.getTaskTimu().getTopicTimus(),
                 mItemAdapter.getTaskAnswer().geTopicAnswers(),
                 curTopicPosition,
-                topicListener);
+                topicListener, mTaskListener);
         mTopicPopupWindow.showAtLocation(this, Gravity.CENTER, 0, 0);
+    }
+
+    public void dismissTopicSelectView() {
+        if (mTopicPopupWindow != null) {
+            mTopicPopupWindow.dismiss();
+        }
     }
 
     public interface TaskListener {
@@ -463,6 +440,8 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
         void onTimuChanged(int topicPosition, int itemPosition);
 
         void onAudioPlayError(MediaPlayer mp, int what, int extra);
+
+        void onTaskSubmitClick();
     }
 
     public abstract static class SimpleTaskListener implements TaskListener {
@@ -474,6 +453,11 @@ public class TaskView extends LinearLayout implements AudioPlayListener, View.On
 
         @Override
         public void onTimuChanged(int topicPosition, int itemPosition) {
+        }
+
+        @Override
+        public void onTaskSubmitClick() {
+
         }
     }
 

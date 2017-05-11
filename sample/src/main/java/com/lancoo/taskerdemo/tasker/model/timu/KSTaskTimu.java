@@ -1,4 +1,4 @@
-package com.lancoo.taskerdemo.model.timu;
+package com.lancoo.taskerdemo.tasker.model.timu;
 
 import com.lancoo.tasker.content.timu.ITaskTimu;
 import com.lancoo.tasker.content.timu.ITopicTimu;
