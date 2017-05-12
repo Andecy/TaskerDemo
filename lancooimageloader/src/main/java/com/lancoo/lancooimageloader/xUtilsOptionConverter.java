@@ -25,6 +25,7 @@ public class xUtilsOptionConverter extends OptionConverter<ImageOptions> {
                     .setFailureDrawable(getLancooImageOptions().getFailureDrawable())
                     .setLoadingDrawableId(getLancooImageOptions().getLoadingDrawableId())
                     .setFailureDrawableId(getLancooImageOptions().getFailureDrawableId())
+                    .setSize(getLancooImageOptions().getWidth(),getLancooImageOptions().getHeight())
                     .build();
         }
         return mImageOptions;

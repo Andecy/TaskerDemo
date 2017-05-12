@@ -12,12 +12,24 @@ import android.graphics.drawable.Drawable;
 public class LancooImageOptions {
     private OptionConverter converter;
 
+    // region ###################### decode options (equals & hashcode prop) ################
+    private int width = 0; // 小于0时不采样压缩. 等于0时自动识别ImageView的宽高和maxWidth.
+    private int height = 0; // 小于0时不采样压缩. 等于0时自动识别ImageView的宽高和maxHeight.
     private boolean ignoreGif = true;
 
+    // region ############# display options
     private int loadingDrawableId;
     private int failureDrawableId;
     private Drawable loadingDrawable;
     private Drawable failureDrawable;
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 
     public int getLoadingDrawableId() {
         return loadingDrawableId;
@@ -40,9 +52,6 @@ public class LancooImageOptions {
     }
 
     public static class Builder {
-        public enum LoaderType {
-            XUTILS3
-        }
 
         protected LancooImageOptions options;
 
@@ -58,10 +67,23 @@ public class LancooImageOptions {
 
 
         public LancooImageOptions build() {
-            if (options.converter==null){
+            if (options.converter == null) {
                 options.converter = new xUtilsOptionConverter(options);
             }
             return options;
+        }
+
+        /**
+         * 小于0时不采样压缩. 等于0时自动识别ImageView的宽高和(maxWidth, maxHeight).
+         *
+         * @param width
+         * @param height
+         * @return
+         */
+        public Builder setSize(int width, int height) {
+            options.width = width;
+            options.height = height;
+            return this;
         }
 
 

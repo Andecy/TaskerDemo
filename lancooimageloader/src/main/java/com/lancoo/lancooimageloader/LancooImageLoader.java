@@ -32,10 +32,10 @@ public class LancooImageLoader {
     }
 
     public static void clearMemCache() {
-
+        x.image().clearMemCache();
     }
 
     public static void clearCacheFiles() {
-
+        x.image().clearCacheFiles();
     }
 }
