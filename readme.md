@@ -1,3 +1,9 @@
+Lancoo-Android-Plugin-Package
+========
+
+蓝鸽android插件包
+
+
 Module
 --------
 
